@@ -20,7 +20,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{% static 'css/estilo_sign.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/estilo_sign_new.css' %}"/>
 </head>
 <body>
 	<div class="h-100 row align-items-center">
@@ -34,7 +34,7 @@
 					{% endif %}
 					<h3>Register for an Account</h3>
 					{% include 'form_template.html' %}
-					<button class="btn btn-lg btn-white btn-block" type="submit">Registrarse</button>
+					<button class="btn btn-lg btn-white btn-block" type="submit">Register</button>
 					<div class="text-white">
 						Already have an account? <a href="{% url 'foro:login_user' %}">Click here</a> to log in.
 					</div>

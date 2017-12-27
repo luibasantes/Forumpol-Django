@@ -55,14 +55,23 @@ img{
   margin-bottom: 10px;
 }
 
-#inputEmail{
+input{
+	color: white;
+	background-color:transparent;
+	margin-bottom: 5%;
+	border:1px solid #ced4da;
+	border-radius: .25rem;
+
+}
+#id_username{
 	margin-bottom: 5%;
 }
 
-#inputPassword{
+#id_password{
 	margin-bottom: 10%;
 }
 
-#inputEmail,#inputPassword{
+
+#id_username,#id_password{
 	background-color:transparent;
 }
