@@ -1,0 +1,68 @@
+/*
+body {
+  background-color: #eee;
+  height: 100%;
+}
+
+.container{
+	align-items: center;
+	vertical-align: middle;
+	display: block;
+   float: none;
+}
+
+img{
+	max-width: 330px;
+  	padding: 15px;
+  	margin: 0 auto;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+padding*/
+
+html,body{
+	color: white;
+	height: 100%;
+	background-color: #eee;
+	background-image: url("../images/fondo.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+img{
+	max-width: 100%;
+	padding-bottom: 5%;
+  	margin-bottom: 30%;
+  	margin: 0 auto;
+  	
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+#inputEmail{
+	margin-bottom: 5%;
+}
+
+#inputPassword{
+	margin-bottom: 10%;
+}
+
+#inputEmail,#inputPassword{
+	background-color:transparent;
+}

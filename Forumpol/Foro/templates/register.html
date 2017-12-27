@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ayudantías Espol - Registrarse</title>
+<meta name="generator" content="Bluefish 2.2.7" >
+<meta name="author" content="Personal" >
+<meta name="date" content="2017-11-13T03:10:22-0500" >
+<meta name="copyright" content="">
+<meta name="keywords" content="Ayudantías,espol,preguntas,inicio">
+<meta name="description" content="Página de inicio para ayudantías en línea de Espol">
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+{% load staticfiles %}
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/estilo_sign.css' %}"/>
+</head>
+<body>
+	<div class="h-100 row align-items-center">
+		<div class="col">
+			<div class="container">			
+				<form class="form-signin" role="form" action="" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<img class="mx-auto d-block" src="{% static 'images/logo_sign.png' %}" alt="Logo de pagina">
+					{% if error_message %}
+						<p><strong>{{ error_message }}</strong></p>
+					{% endif %}
+					<h3>Register for an Account</h3>
+					{% include 'form_template.html' %}
+					<button class="btn btn-lg btn-white btn-block" type="submit">Registrarse</button>
+					<div class="text-white">
+						Already have an account? <a href="{% url 'foro:login_user' %}">Click here</a> to log in.
+					</div>
+				</form>
+				
+			</div> 	
+		</div>
+	</div>
+
+</body>
+</html>
