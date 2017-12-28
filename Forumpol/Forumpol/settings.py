@@ -124,3 +124,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/Foro/static/',
 ]
+
+# For the server
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# For the users
+MEDIA_URL = '/media/'

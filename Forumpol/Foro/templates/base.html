@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="description" content="Foro de temas variados de ESPOL">
+        <title>{% block title %}{% endblock %}"</title>
+        {% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/estilo.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script defer src="{% static 'js/fontawesome-all.js' %}"></script>
+		<link rel="icon" href="espol.ico">﻿
+	</head>
+	<body>
+		<div id="cabecera" class="col-12">
+			<span class="logo col-1"><img class ="imagen" src="{% static 'images/espol.png' %}" alt="icono"></span>
+			<h2 class = 'col-9'>FORUMPOL</h2>
+			<div id="header-opts" class="col-2">
+				<div id="buscar" class="col-7">
+					<form action="search" class="search-form">
+					    <div class="form-group has-feedback">
+					        <label for="search" class="sr-only">buscar</label>
+					        <input type="text" class="form-control" name="search" id="search" placeholder="Buscar...">
+					        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+					    </div>
+					</form>
+				</div>
+				<h4 class="col-5"><a href="#">Iniciar Sesion</a></h4>
+			</div>
+		</div>
+		<nav id="navegation-bar" class="col-12">
+			<ul id="menu">
+				<li class="elemento-opcion"><a href="index.html">Inicio</a></li>
+				<li class="elemento-opcion"><a href="galeria.html">Galeria</a></li>
+				<li class="elemento-opcion"><a href="mapa.html">Mapa</a></li>
+				<li class="elemento-opcion"><a href="fechas.html">Fechas Históricas</a></li>
+				<li class="elemento-opcion"><a href="acercaDe.html">Acerca de nosotros</a></li>
+			</ul>
+		</nav>
+		<!--NAVEGACION RESPONSIVE-->
+        <nav class="navbar navbar-default navbar-fixed-top responsive-nav">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="#">FORUMPOL</a>
+	        </div>
+	        <div id="navbar" class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li><a href="index.html">Inicio</a></li>
+				<li><a href="galeria.html">Galeria</a></li>
+				<li><a href="mapa.html">Mapa</a></li>
+				<li><a href="fechas.html">Fechas Históricas</a></li>
+				<li><a href="acercaDe.html">Acerca de nosotros</a></li>
+	          </ul>
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    </nav>
+        {% block body %}
+        {% endblock %}
+		<footer>
+			<p><i>"El foro mas cool de toda la ESPOL"</i></p>
+			<p><i>Joe Saverio · Alix Ferrín · Geancarlo Murillo</i></p>
+			<p><i>ESPOL 2017</i></p>
+		</footer>
+	</body>
+</html>

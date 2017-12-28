@@ -1,28 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Ayudantías Espol - Home</title>
-<meta name="generator" content="Bluefish 2.2.7" >
-<meta name="author" content="Personal" >
-<meta name="date" content="2017-11-13T03:10:22-0500" >
-<meta name="copyright" content="">
-<meta name="keywords" content="Ayudantías,espol,preguntas,inicio">
-<meta name="description" content="Página de inicio para ayudantías en línea de Espol">
-<meta charset="utf-8">
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-{% load staticfiles %}
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script> 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{% static 'css/estilo_sign.css' %}"/>
-</head>
-<body>
-<h1>PAGINA DE INICIO</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block body %}
+    <section>
+        <div id="categoria" class="col-9">
+            <header class="categoria-header">
+                <h1 class="categoria-heading">COMUNIDAD ESPOL</h1>
+            </header>
+            <div class="foro">
+                <a href="anuncios.html" class="foro-contenido">
+                    <div class="foro-details">
+                        <i class="far fa-newspaper fa-5x icon"></i>
+                        <h1 class="foro-heading">Anuncios</h1>
+                        <span class="foro-description">Informacion general de cualquier tema de la ESPOL.</span>
+                    </div>
+                </a>
+                <a href="#" class="foro-contenido">
+                    <div class="foro-details">
+                        <i class="fas fa-users fa-5x icon"></i>
+                        <h1 class="foro-heading">Clubes Espol</h1>
+                        <span class="foro-description">Enterate de todo lo que los clubes de ESPOL ofrecen.</span>
+                    </div>
+                </a>
+                <a href="#" class="foro-contenido">
+                    <div class="foro-details">
+                        <i class="fas fa-universal-access fa-5x icon"></i>
+                        <h1 class="foro-heading">Vida Estudiantil</h1>
+                        <span class="foro-description">Comparte tus experiencias con los nuevos estudiantes de la ESPOL.</span>
+                    </div>
+                </a>
+            </div>
+            <header class="categoria-header">
+                <h1 class="categoria-heading">RECURSOS</h1>
+            </header>
+            <div class="foro">
+                <a href="#" class="foro-contenido">
+                    <div class="foro-details">
+                        <i class="fas fa-book fa-5x icon"></i>
+                        <h1 class="foro-heading">Folletos</h1>
+                        <span class="foro-description">Aquí encontrarás folletos de todas las materias que necesites</span>
+                    </div>
+                </a>
+                <a href="#" class="foro-contenido">
+                    <div class="foro-details">
+                        <i class="fas fa-database fa-5x icon"></i>
+                        <h1 class="foro-heading">Repositorio</h1>
+                        <span class="foro-description">Aquí encontrarás exámenes y lecciones de cualquier materia</span>
+                    </div>
+                </a>
+                <a href="#" class="foro-contenido">
+                    <div class="foro-details">
+                        <i class="fas fa-graduation-cap fa-5x icon"></i>
+                        <h1 class="foro-heading">Ayudantias</h1>
+                        <span class="foro-description">Podrás encontrar cualquier ayudantía que ofrezcan los ayudantes de ESPOL</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
