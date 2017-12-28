@@ -6,9 +6,10 @@ from .forms import UserForm
 
 # Create your views here.
 def index(request):
-	return render(request,"index.html")
+	username = request.user
+	return render(request,"index.html",{'usuario':username})
 		
-	
+		
 def login_user(request):
 	logout(request)
 	if request.method == "POST":
@@ -18,7 +19,7 @@ def login_user(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				return render(request,'index.html', {})
+				return render(request,'index.html', {'usuario':username})
 			else:
 				return render(request, 'login_user.html', {'error_message': 'Your account has been disabled'})
 		else:
@@ -33,6 +34,7 @@ def logout_user(request):
     return render(request, 'login_user.html', context)
 	
 def register(request):
+	logout(request)
 	form = UserForm(request.POST or None)
 	if form.is_valid():
 		user = form.save(commit=False)
