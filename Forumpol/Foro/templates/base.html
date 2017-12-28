@@ -28,8 +28,8 @@
 					    </div>
 					</form>
 				</div>
-				<h4 class="col-3">{{usuario}}</h4>
-				<h4 class="col-3"><a href="{% url 'foro:log_out' %}">Cerrar Sesion</a></h4>
+				<h4 class="col-3 user">{{usuario}}</h4>
+				<h4 class="col-3 log"><a href="{% url 'foro:log_out' %}">Cerrar Sesion</a></h4>
 			</div>
 		</div>
 		<nav id="navegation-bar" class="col-12">
@@ -71,5 +71,6 @@
 			<p><i>Joe Saverio · Alix Ferrín · Geancarlo Murillo</i></p>
 			<p><i>ESPOL 2017</i></p>
 		</footer>
+		{% block script %}{% endblock %}
 	</body>
 </html>

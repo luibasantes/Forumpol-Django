@@ -17,6 +17,12 @@
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
+/* Usuario y Login */
+
+.user, .log {
+    text-align: center;
+}
+
 /* Cabezera de la pagina */
 #cabecera {
   background-color: #001C43;

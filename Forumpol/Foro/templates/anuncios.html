@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block body %}
+    <section>
+        <div id="categoria" class="col-9">
+            <div class="container anuncios">
+                <h2><b>ANUNCIOS</b></h2>
+                <ul class="list-group">
+
+                </ul>
+                <nav id="paginas">
+                    <ul class="pagination">
+                        <li><a href="#" aria-label="Previous"><span>&laquo;</span></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#" aria-label="Next"><span>&raquo;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+    {% block script %}<script src=""></script>{% endblock %}
+{% endblock %}

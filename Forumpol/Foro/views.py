@@ -46,7 +46,7 @@ def register(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				return render(request, 'index.html', {})
+				return render(request, 'index.html', {"usuario":username})
 	context = {"form": form,}
 	return render(request, 'register.html', context)
 	
