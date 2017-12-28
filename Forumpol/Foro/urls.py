@@ -16,4 +16,7 @@ urlpatterns = [
 	
 	#Busqueda 127.0.0.1:8000/foro/log
 	url(r'^log/$', views.login_user, name='login_user'),
+	
+	#Busqueda 127.0.0.1:8000/foro/log_out
+	url(r'^log_out/$', views.logout_user, name='log_out'),
 ]

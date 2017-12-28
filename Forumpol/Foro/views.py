@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login ,logout
 from django.views import generic
 from django.views.generic import View
 from .forms import UserForm
@@ -10,19 +10,20 @@ def index(request):
 		
 	
 def login_user(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return render(request,'index.html', {})
-            else:
-                return render(request, 'login_user.html', {'error_message': 'Your account has been disabled'})
-        else:
-            return render(request, 'login_user.html', {'error_message': 'Invalid login'})
-    return render(request, 'login_user.html')
+	logout(request)
+	if request.method == "POST":
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			if user.is_active:
+				login(request, user)
+				return render(request,'index.html', {})
+			else:
+				return render(request, 'login_user.html', {'error_message': 'Your account has been disabled'})
+		else:
+			return render(request, 'login_user.html', {'error_message': 'Invalid login'})
+	return render(request, 'login_user.html')
 
 		
 def logout_user(request):
