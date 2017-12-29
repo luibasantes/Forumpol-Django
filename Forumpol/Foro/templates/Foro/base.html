@@ -28,13 +28,13 @@
 					    </div>
 					</form>
 				</div>
-				<h4 class="col-3 user">{{ usuario }}</h4>
+				<h4 class="col-3 user"><a href="{% url 'accounts:view_profile' %}">{{ usuario }}</a></h4>
 				<h4 class="col-3 log"><a href="{% url 'accounts:log_out' %}">Cerrar Sesion</a></h4>
 			</div>
 		</div>
 		<nav id="navegation-bar" class="col-12">
 			<ul id="menu">
-				<li class="elemento-opcion"><a href="index.html">Inicio</a></li>
+				<li class="elemento-opcion"><a href="{% url 'foro:index' %}">Inicio</a></li>
 				<li class="elemento-opcion"><a href="galeria.html">Galeria</a></li>
 				<li class="elemento-opcion"><a href="mapa.html">Mapa</a></li>
 				<li class="elemento-opcion"><a href="fechas.html">Fechas Históricas</a></li>

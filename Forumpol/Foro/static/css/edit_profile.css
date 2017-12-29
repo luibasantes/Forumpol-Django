@@ -1,0 +1,22 @@
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+input{
+	background-color:transparent;
+	margin-bottom: 5%;
+	border:1px solid #ced4da;
+	border-radius: .25rem;
+
+}
+#categoria{
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: white;
+}

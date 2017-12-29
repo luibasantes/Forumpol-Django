@@ -1,10 +1,46 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login ,logout
-from django.views import generic
-from django.views.generic import View
-from .forms import UserForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm ,PasswordChangeForm
+from django.urls import reverse
+
+from .forms import UserForm,EditProfileForm
 
 # Create your views here.
+
+def view_profile(request):
+	context = {'user':request.user,'usuario':request.user.username}
+	return render(request, 'accounts/profile.html',context)
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('accounts:view_profile'))
+    else:
+        form = EditProfileForm(instance=request.user)
+        context = {'form': form,'usuario':request.user.username}
+        return render(request, 'accounts/edit_profile.html', context)
+
+def change_password(request):
+	if request.method == 'POST':
+		form = PasswordChangeForm(data=request.POST, user=request.user)
+
+		if form.is_valid():
+			form.save()
+			update_session_auth_hash(request, form.user)
+			return redirect(reverse('accounts:view_profile'))
+		else:
+			return redirect(reverse('accounts:change_password'))
+	else:
+		form = PasswordChangeForm(user=request.user)
+
+		context = {'form': form,'usuario':request.user.username}
+		return render(request,'accounts/change_password.html', context)
+	
 def login_user(request):
 	logout(request)
 	if request.method == "POST":
@@ -25,7 +61,7 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     form = UserForm(request.POST or None)
-    context = {"form": form,}
+    context = {"form": form}
     return render(request, 'accounts/login_user.html', context)
 	
 def register(request):
@@ -35,13 +71,15 @@ def register(request):
 		user = form.save(commit=False)
 		username = form.cleaned_data['username']
 		password = form.cleaned_data['password']
+		first_name = form.cleaned_data['first_name']
+		last_name = form.cleaned_data['last_name']
 		user.set_password(password)
 		user.save()
 		user = authenticate(username=username, password=password)
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				return render(request, 'Foro/index.html', {"usuario":username})
+				return redirect('/foro')
 	context = {"form": form,}
 	return render(request, 'accounts/register.html', context)
 	

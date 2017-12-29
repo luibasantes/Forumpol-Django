@@ -1,0 +1,27 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/anuncios.css' %}">{% endblock %}
+{% block body %}
+    <section>
+        <div id="categoria" class="col-9">
+            <div class="container anuncios">
+                <h2><b>Profile</b></h2>
+				<p>Username: {{ user }}</p>
+				<p>First name: {{ user.first_name }}</p>
+				<p>Last name: {{ user.last_name }}</p>
+				<p>City: {{ user.userprofile.city }}</p>
+				<p>Website: <a href= "{{ user.userprofile.website }}">{{ user.userprofile.website }}</a></p>
+				<p>Phone: {{ user.userprofile.phone }}</p>
+				{% if user.userprofile.image %}
+					<img src="{{ user.userprofile.image.url }}" width="240">
+				{% endif %}
+
+				<h4><a href="{% url 'accounts:edit_profile' %}"><u>Edit Personal Info</u></a></h4>
+				<h4><a href="{% url 'accounts:change_password' %}"><u>Change Password</u></a></h4>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block script %}
+{% endblock%}

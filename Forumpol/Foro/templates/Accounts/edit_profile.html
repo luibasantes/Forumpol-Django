@@ -1,0 +1,20 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/edit_profile.css' %}">{% endblock %}
+{% block body %}
+    <section>
+        <div id="categoria" class="col-9">
+            <div class="container anuncios">
+                <form class="form-signin" role="form" action="" method="post" enctype="multipart/form-data">
+					<h2><b>Edit Your Profile</b></h2>
+					{% csrf_token %}
+					{% include 'form_template.html' %}
+					<button class="btn btn-lg btn-white btn-block" type="submit">Submit</button>
+				</form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block script %}
+{% endblock%}
