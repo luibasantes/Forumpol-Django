@@ -21,5 +21,5 @@ urlpatterns = [
 	url(r'^log_out/$', views.logout_user, name='log_out'),
 
 	#Posts de las sección de anuncios 127.0.0.1:8000/foro/anuncios
-	url(r'^anuncios/$', views.anuncios, name='anuncios')
+	url(r'^anuncios/$', views.anuncios, name='anuncios'),
 ]
