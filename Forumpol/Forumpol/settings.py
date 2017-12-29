@@ -131,4 +131,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # For the users
 MEDIA_URL = '/media/'
 
-LOGIN_URL = '/accounts/log/'
+LOGIN_URL = '/accounts/log_in/'

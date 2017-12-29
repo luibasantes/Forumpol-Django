@@ -15,7 +15,7 @@ urlpatterns = [
 	url(r'^register/$', views.register, name='register'),
 	
 	#Busqueda 127.0.0.1:8000/accounts/log
-	url(r'^log/$', views.login_user, name='login_user'),
+	url(r'^log_in/$', views.login_user, name='login_user'),
 	
 	#Busqueda 127.0.0.1:8000/accounts/log_out
 	url(r'^log_out/$', views.logout_user, name='log_out'),

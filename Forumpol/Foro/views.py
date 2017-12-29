@@ -6,14 +6,14 @@ from django.views.generic import View
 # Create your views here.
 def index(request):
 	username = request.user
-	return render(request,"index.html",{'usuario':username})
+	return render(request,"Foro/index.html",{'usuario':username})
 		
 
 def anuncios(request):
 	username = request.user
-	return render(request, "anuncios.html", {'usuario':username})
+	return render(request, "Foro/anuncios.html", {'usuario':username})
 	
 def hilo(request):
 	username = request.user
-	return render(request,"hilo.html", {'usuario':username})
+	return render(request,"Foro/hilo.html", {'usuario':username})
 

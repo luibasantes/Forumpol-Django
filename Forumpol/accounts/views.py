@@ -14,7 +14,7 @@ def login_user(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				return render(request,'index.html', {'usuario':username})
+				return render(request,'Foro/index.html', {'usuario':username})
 			else:
 				return render(request, 'accounts/login_user.html', {'error_message': 'Your account has been disabled'})
 		else:
@@ -41,7 +41,7 @@ def register(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				return render(request, 'index.html', {"usuario":username})
+				return render(request, 'Foro/index.html', {"usuario":username})
 	context = {"form": form,}
 	return render(request, 'accounts/register.html', context)
 	
