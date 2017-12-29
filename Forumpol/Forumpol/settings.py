@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	'accounts.apps.AccountsConfig',
 	'Foro.apps.ForoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -130,4 +131,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # For the users
 MEDIA_URL = '/media/'
 
-LOGIN_URL = '/foro/log/'
+LOGIN_URL = '/accounts/log/'
