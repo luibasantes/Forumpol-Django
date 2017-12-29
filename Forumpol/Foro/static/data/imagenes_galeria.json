@@ -1,0 +1,51 @@
+
+[ 
+	{
+		"title":"Rectora",
+		"archivo":"cecilia.jpg",
+		"tag": "autoridades",
+		"data-subtitle": "Ampliar imagen"
+	},
+	{
+		"title": "Paisaje1",
+		"archivo":"escaleras.jpg",
+		"tag": "paisajes",
+		"data-subtitle": "Ampliar imagen"
+	},
+	{
+		"title": "Gatito 1",
+		"archivo":"gato.jpg",
+		"tag": "gatos",
+		"data-subtitle": "Ampliar imagen"
+	},
+	{
+		"title": "Gatito 2",
+		"archivo":"gato2.jpg",
+		"tag": "gatos",
+		"data-subtitle": "Ampliar imagen"
+	},
+	{
+		"title": "Gatito 3",
+		"archivo":"gato3.jpg",
+		"tag": "gatos",
+		"data-subtitle": "Ampliar imagen"
+	},
+	{
+		"title": "Caminito Narnia",
+		"archivo":"narnia.jpg",
+		"tag": "gatos",
+		"data-subtitle": "Ampliar imagen"
+	},
+	{
+		"title": "ESPOL Peñas",
+		"archivo":"peñas.jpg",
+		"tag": "paisajes",
+		"data-subtitle": "Ampliar imagen"
+	},
+	{
+		"title": "Sergio Flores",
+		"archivo":"sergio.jpg",
+		"tag": "autoridades",
+		"data-subtitle": "Ampliar imagen"
+	}
+]

@@ -1,0 +1,56 @@
+/* Anuncios */
+
+.icon {
+	padding-right: 3px;
+}
+
+.post {
+	color: #001C43;
+}
+
+.post:hover {
+	text-decoration: none;
+}
+
+.post-item:hover {
+	background-color: #CDECF4;
+}
+
+.post-info {
+	display: inline-block;
+	width: 12%;
+	text-align: center;
+}
+
+.anuncios {
+	width: 96.5%;
+	padding-top: 2em;
+}
+
+#categoria h2 {
+  color: #001C43;
+}
+
+#categoria{
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: white;
+}
+
+div.responsive-nav{
+    display: none;
+}
+
+#paginas {
+	text-align: right;
+}
+
+@media only screen and (max-width : 480px) {
+	.fecha, .user {
+		display: none;
+	}
+
+	#categoria {
+		width: 90%;
+	}
+}

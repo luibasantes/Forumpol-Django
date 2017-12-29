@@ -22,4 +22,8 @@ urlpatterns = [
 
 	#Posts de las sección de anuncios 127.0.0.1:8000/foro/anuncios
 	url(r'^anuncios/$', views.anuncios, name='anuncios'),
+	
+	#Hilo 127.0.0.1:8000/foro/anuncios/hilo
+	url(r'^anuncios/hilo/$', views.hilo, name='hilo'),
+
 ]

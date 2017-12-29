@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+{% load static from staticfiles %}
 {% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/anuncios.css' %}">{% endblock %}
 {% block body %}
     <section>
         <div id="categoria" class="col-9">
@@ -20,5 +22,5 @@
             </div>
         </div>
     </section>
-    {% block script %}<script src=""></script>{% endblock %}
 {% endblock %}
+{% block script %}<script src="{% static 'js/carga_posts.js' %}"></script>{% endblock%}

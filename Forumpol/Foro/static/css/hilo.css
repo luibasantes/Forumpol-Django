@@ -1,0 +1,109 @@
+/* hilo */
+#hilo {
+  margin: 0 auto;
+}
+
+#paginas {
+  text-align: right;
+}
+
+/* Posts */
+
+#op-post h3 {
+  background-color: #001C43;
+  color: white;
+  padding: 5px;
+}
+
+#op-post {
+  background-color: white;
+  padding-bottom: 15px;
+  margin: 3px auto;
+}
+
+#op {
+  margin: 3px auto;
+  display: flex;
+}
+
+.poster {
+  width: 15%;
+}
+
+.post-area {
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.poster-info img {
+  width: 85%;
+}
+
+.opciones a {
+  padding-left: 5px;
+}
+
+.rep div[class="poster"] {
+  padding: 5px;
+}
+
+/* respuestas */
+
+.rep {
+  padding-left: 35px;
+  background-color: #E3F7FC;
+  margin: 3px auto;
+  display: flex;
+}
+
+.rep .poster-info img {
+  width: 73%;
+}
+
+.rep-container {
+  padding-left: 35px;
+  background-color: #E3F7FC;
+  margin: 3px auto;
+}
+
+/* final del hilo */
+#hilo-footer {
+  margin: 0 auto;
+}
+
+#resp-box {
+  display: none;
+  margin-bottom: 1em;
+}
+
+textarea {
+  margin-bottom: 1em;
+}
+
+@media only screen and (max-width : 480px) {
+  #hilo {
+    width: 90%;
+  }
+
+  .rep div[class="poster"] {
+    padding: 2px 0px 0px;
+  }
+
+  .poster {
+    border-bottom: solid;
+    width: 100%;
+  }
+
+  .poster-info > img {
+    display: none;
+  }
+
+  .rep, #op {
+    flex-direction: column;
+  }
+
+  #hilo-footer {
+    width: 90%;
+  }
+
+}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/hilo.css' %}">{% endblock %}
+{% block body %}
+    <div id="hilo" class="col-9">
+        <div id="op-post" class="container-fluid">
+            <h3 class="post-topic">Baile de gala<button class="btn btn-primary btn-xs pull-right resp-btn">RESPONDER</button></h3>
+            <div id="op">
+                <div class="poster">
+                    <div class="poster-info">
+                        <span class="glyphicon glyphicon-user"> alicsita</span>
+                        <img src="{% static 'images/alics.png' %}" alt="alicsita">
+                    </div>
+                </div>
+                <div class="post-area">
+                    <p>no tengo pareja para el baile de gala :c</p>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid rep">
+            <div class="poster">
+                <div class="poster-info">
+                    <span class="glyphicon glyphicon-user"> awesomejoe</span>
+                    <img src="{% static 'images/joe.jpg' %}" alt="awesomejoe">
+                </div>
+            </div>
+            <div class="post-area">
+                <p>ps ke pena puerk :v</p>
+            </div>
+            <div class="post-num">
+                <p>#1</p>
+            </div>
+        </div>
+        <div class="container-fluid rep">
+            <div class="poster">
+                <div class="poster-info">
+                    <span class="glyphicon glyphicon-user"> xXGeancaXx</span>
+                    <img src="{% static 'images/geanca.jpg' %}" alt="xXGeancaXx">
+                </div>
+            </div>
+            <div class="post-area">
+                <p>ps ke pena puerk :v x2</p>
+            </div>
+            <div class="post-num">
+                <p>#2</p>
+            </div>
+        </div>
+    </div>
+    <div id="hilo-footer" class="col-9">
+        <div class="container-fluid rep-container">
+            <div id="resp-box" class="form-group">
+                <h3>Escribe tu respuesta: </h3>
+                <textarea class="form-control resp-text" rows="5"></textarea>
+                <button type="submit" class="btn btn-default btn-reply">Enviar</button>
+            </div>
+        </div>
+        <nav id="paginas">
+            <ul class="pagination">
+                <li><a href="#" aria-label="Previous"><span>&laquo;</span></a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#" aria-label="Next"><span>&raquo;</span></a></li>
+            </ul>
+        </nav>
+    </div>
+{% endblock %}
+{% block script %}<script src="{% static 'js/resp.js' %}"></script>{% endblock%}

@@ -49,9 +49,15 @@ def register(request):
 				return render(request, 'index.html', {"usuario":username})
 	context = {"form": form,}
 	return render(request, 'register.html', context)
+
+def anuncios(request):
+	username = request.user
+	return render(request, "anuncios.html", {'usuario':username})
 	
-	
-	
+def hilo(request):
+	username = request.user
+	return render(request,"hilo.html", {'usuario':username})
+
 """	
 class UserFormView(View):
 	form_class = UserForm
