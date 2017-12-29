@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+{% load static from staticfiles %}
 {% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">{% endblock %}
 {% block body %}
     <section>
         <div id="categoria" class="col-9">
@@ -7,7 +9,7 @@
                 <h1 class="categoria-heading">COMUNIDAD ESPOL</h1>
             </header>
             <div class="foro">
-                <a href="anuncios.html" class="foro-contenido">
+                <a href="{% url 'foro:anuncios' %}" class="foro-contenido">
                     <div class="foro-details">
                         <i class="far fa-newspaper fa-5x icon"></i>
                         <h1 class="foro-heading">Anuncios</h1>
