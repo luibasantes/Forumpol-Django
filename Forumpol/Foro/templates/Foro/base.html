@@ -35,10 +35,10 @@
 		<nav id="navegation-bar" class="col-12">
 			<ul id="menu">
 				<li class="elemento-opcion"><a href="{% url 'foro:index' %}">Inicio</a></li>
-				<li class="elemento-opcion"><a href="galeria.html">Galeria</a></li>
-				<li class="elemento-opcion"><a href="mapa.html">Mapa</a></li>
+				<li class="elemento-opcion"><a href="#">Galeria</a></li>
+				<li class="elemento-opcion"><a href="{% url 'foro:mapa' %}">Mapa</a></li>
 				<li class="elemento-opcion"><a href="fechas.html">Fechas Históricas</a></li>
-				<li class="elemento-opcion"><a href="acercaDe.html">Acerca de nosotros</a></li>
+				<li class="elemento-opcion"><a href="{% url 'foro:acerca_de' %}">Acerca de nosotros</a></li>
 			</ul>
 		</nav>
 		<!--NAVEGACION RESPONSIVE-->

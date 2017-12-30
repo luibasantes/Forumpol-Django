@@ -1,29 +1,31 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm ,PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse
 
-from .forms import UserForm,EditProfileForm
+from .forms import UserForm, EditProfileForm, EditUserForm
+
 
 # Create your views here.
 
 def view_profile(request):
 	context = {'user':request.user,'usuario':request.user.username}
-	return render(request, 'accounts/profile.html',context)
+	return render(request, 'Accounts/profile.html',context)
 
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
-
-        if form.is_valid():
-            form.save()
+        user_form = EditUserForm(request.POST, instance=request.user)
+        profile_form = EditProfileForm(request.POST, instance=request.user.userprofile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
             return redirect(reverse('accounts:view_profile'))
     else:
-        form = EditProfileForm(instance=request.user)
-        context = {'form': form,'usuario':request.user.username}
-        return render(request, 'accounts/edit_profile.html', context)
+        user_form = EditUserForm(instance=request.user)
+        profile_form = EditProfileForm(instance=request.user.userprofile)
+        context = {'user_form': user_form, 'profile_form': profile_form,'usuario':request.user}
+        return render(request, 'Accounts/edit_profile.html', context)
 
 def change_password(request):
 	if request.method == 'POST':
@@ -38,8 +40,8 @@ def change_password(request):
 	else:
 		form = PasswordChangeForm(user=request.user)
 
-		context = {'form': form,'usuario':request.user.username}
-		return render(request,'accounts/change_password.html', context)
+		context = {'user_form': form,'usuario':request.user.username}
+		return render(request,'Accounts/change_password.html', context)
 	
 def login_user(request):
 	logout(request)
@@ -52,10 +54,10 @@ def login_user(request):
 				login(request, user)
 				return render(request,'Foro/index.html', {'usuario':username})
 			else:
-				return render(request, 'accounts/login_user.html', {'error_message': 'Your account has been disabled'})
+				return render(request, 'Accounts/login_user.html', {'error_message': 'Your account has been disabled'})
 		else:
-			return render(request, 'accounts/login_user.html', {'error_message': 'Invalid login'})
-	return render(request, 'accounts/login_user.html')
+			return render(request, 'Accounts/login_user.html', {'error_message': 'Invalid login'})
+	return render(request, 'Accounts/login_user.html')
 
 		
 def logout_user(request):

@@ -17,4 +17,9 @@ urlpatterns = [
 	#Hilo 127.0.0.1:8000/foro/anuncios/hilo
 	url(r'^anuncios/hilo/$', login_required(views.hilo), name='hilo'),
 
+	#Mapa 127.0.0.1:8000/foro/mapa
+	url(r'^mapa$', login_required(views.mapa), name='mapa'),
+
+	#Acerca de... 127.0.0.1:8000/foro/acerca_de
+	url(r'^acerca_de$', login_required(views.acerca_de), name='acerca_de')
 ]

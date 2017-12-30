@@ -1,0 +1,29 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}Perfile de {{ usuario }} | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">{% endblock %}
+{% block body %}
+    <section>
+        <div id="categoria" class="col-9">
+            <div class="container anuncios">
+				<div class="profile_image">
+					{% if user.userprofile.image %}
+						<img class="thumbnail" src="{{ user.userprofile.image.url }}" width="240">
+					{% endif %}<br>
+				</div>
+				<div class="user_detail">
+					<h2><b>{{ user }}</b></h2>
+					<p>First name: {{ user.first_name }}</p>
+					<p>Last name: {{ user.last_name }}</p>
+					<p>City: {{ user.userprofile.city }}</p>
+					<p>Website: <a href= "{{ user.userprofile.website }}">{{ user.userprofile.website }}</a></p>
+					<p>Phone: {{ user.userprofile.phone }}</p>
+					<a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">Editar Perfil</a>
+					<a class="btn btn-default" href="{% url 'accounts:change_password' %}">Cambiar Contraseña</a>
+				</div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block script %}
+{% endblock%}

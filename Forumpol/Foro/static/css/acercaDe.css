@@ -1,0 +1,78 @@
+/* Clase categorias */
+
+#categoria {
+	margin: 0 auto;
+	overflow: hidden;
+	background-color: white;
+	padding: 0px;
+}
+
+*{
+	font-family: "Libre Baskerville";
+}
+.categoria-heading {
+	padding-left: 1.900em;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	color: #213D5F;
+	display: flex;
+	margin: 0;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+/*Acerca de cards*/
+
+img.card{
+	float: none;
+	height: 100%;
+	width: 40%;
+}
+
+div#enlace-repositorio{
+	text-align: center;
+	margin: 5%;
+}
+
+.categoria-heading {
+	margin-top: 1.5em;
+}
+
+.thumbnail{
+	margin: 10% 5%;
+}
+
+.tarjeta{
+  display: flex;
+  flex-direction: row;
+  margin: 1.25em 1em 1.25em;    
+  box-shadow: 0 0 0 1px #563737;
+  border-width: 1px;
+  color: #001C43;
+  border-radius: 4px;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis--x path {
+  display: none;
+}
+
+@media only screen and (max-width : 480px) {
+
+  img.card{
+  	display: none;
+  }
+
+  #categoria {
+  	width: 90%;
+  }
+
+}
+
