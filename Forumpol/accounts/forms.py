@@ -22,14 +22,12 @@ class EditUserForm(UserChangeForm):
 		fields = ['first_name',
 				  'last_name',
 				  'email',
+				  'password'
 				  ]
 
 class EditProfileForm(UserChangeForm):
 
 	class Meta:
 		model = UserProfile
-		fields = ['city',
-				'website',
-				'phone',
-				'image',
-				 ]
+		fields = '__all__'
+		#exclude= ['user']

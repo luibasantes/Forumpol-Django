@@ -13,20 +13,44 @@ def view_profile(request):
 	context = {'user':request.user,'usuario':request.user.username}
 	return render(request, 'Accounts/profile.html',context)
 
-def edit_profile(request):
-    if request.method == 'POST':
-        user_form = EditUserForm(request.POST, instance=request.user)
-        profile_form = EditProfileForm(request.POST, instance=request.user.userprofile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            return redirect(reverse('accounts:view_profile'))
-    else:
-        user_form = EditUserForm(instance=request.user)
-        profile_form = EditProfileForm(instance=request.user.userprofile)
-        context = {'user_form': user_form, 'profile_form': profile_form,'usuario':request.user}
-        return render(request, 'Accounts/edit_profile.html', context)
+def edit_profile_basic_info(request):
+	if request.method == 'POST':
+		user_form = EditUserForm(request.POST, instance=request.user)
+		if user_form.is_valid():
+			user_form.save()
+			return redirect(reverse('accounts:view_profile'))
+	else:
+		user_form = EditUserForm(instance=request.user)
+		context = {'user_form': user_form,'usuario':request.user}
+		return render(request, 'Accounts/edit_profile.html', context)
 
+def edit_profile_secondary_info(request):
+	if request.method == 'POST':
+		profile_form = EditProfileForm(request.POST, instance=request.user.userprofile)
+		if profile_form.is_valid():
+			profile_form.save()
+			return redirect(reverse('accounts:view_profile'))
+	else:
+		profile_form = EditProfileForm(instance=request.user.userprofile)
+		context = {'profile_form': profile_form,'usuario':request.user}
+		return render(request, 'Accounts/edit_profile.html', context)
+
+	
+'''
+def edit_profile(request):
+	if request.method == 'POST':
+		user_form = EditUserForm(request.POST, instance=request.user,prefix="form1")
+		profile_form = EditProfileForm(request.POST, instance=request.user.userprofile,prefix="form2")
+		if user_form.is_valid() and profile_form.is_valid():
+			user_form.save()
+			profile_form.save()
+			return redirect(reverse('accounts:view_profile'))
+	else:
+		user_form = EditUserForm(instance=request.user,prefix="form1")
+		profile_form = EditProfileForm(instance=request.user.userprofile,prefix="form2")
+		context = {'user_form': user_form, 'profile_form': profile_form,'usuario':request.user}
+		return render(request, 'Accounts/edit_profile.html', context)
+'''
 def change_password(request):
 	if request.method == 'POST':
 		form = PasswordChangeForm(data=request.POST, user=request.user)

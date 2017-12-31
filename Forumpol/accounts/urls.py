@@ -15,9 +15,12 @@ urlpatterns = [
 	#Busqueda 127.0.0.1:8000/accounts/profile
     url(r'^profile/$', login_required(views.view_profile), name='view_profile'),
 	
-	#Busqueda 127.0.0.1:8000/accounts/profile/edit
-    url(r'^profile/edit/$', login_required(views.edit_profile), name='edit_profile'),
+	#Busqueda 127.0.0.1:8000/accounts/profile/edit_profile_basic_info
+    url(r'^profile/edit_profile_basic_info/$', login_required(views.edit_profile_basic_info), name='edit_profile_basic_info'),
 
+	#Busqueda 127.0.0.1:8000/accounts/profile/edit_profile_secondary_info
+    url(r'^profile/edit_profile_secondary_info/$', login_required(views.edit_profile_secondary_info), name='edit_profile_secondary_info'),
+	
 	#Busqueda 127.0.0.1:8000/accounts/profile/change_password
     url(r'^profile/change_password/$', login_required(views.change_password), name='change_password'),
 	
