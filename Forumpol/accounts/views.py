@@ -12,7 +12,7 @@ from .forms import UserForm, EditProfileForm, EditUserForm
 def view_profile(request):
 	context = {'user':request.user,'usuario':request.user.username}
 	return render(request, 'Accounts/profile.html',context)
-
+'''
 def edit_profile_basic_info(request):
 	if request.method == 'POST':
 		user_form = EditUserForm(request.POST, instance=request.user)
@@ -34,7 +34,7 @@ def edit_profile_secondary_info(request):
 		profile_form = EditProfileForm(instance=request.user.userprofile)
 		context = {'profile_form': profile_form,'usuario':request.user}
 		return render(request, 'Accounts/edit_profile.html', context)
-
+'''
 	
 
 def edit_profile(request):
