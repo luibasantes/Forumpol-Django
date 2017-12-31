@@ -18,8 +18,7 @@
 					<p>City: {{ user.userprofile.city }}</p>
 					<p>Website: <a href= "{{ user.userprofile.website }}">{{ user.userprofile.website }}</a></p>
 					<p>Phone: {{ user.userprofile.phone }}</p>
-					<a class="btn btn-default" href="{% url 'accounts:edit_profile_basic_info' %}">Editar Informacion de Cuenta</a>
-					<a class="btn btn-default" href="{% url 'accounts:edit_profile_secondary_info' %}">Editar Informacion Secundaria</a>
+					<a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">Editar Informacion</a>
 					<a class="btn btn-default" href="{% url 'accounts:change_password' %}">Cambiar Contraseña</a>
 				</div>
             </div>

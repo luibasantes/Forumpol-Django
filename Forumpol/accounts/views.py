@@ -36,7 +36,7 @@ def edit_profile_secondary_info(request):
 		return render(request, 'Accounts/edit_profile.html', context)
 
 	
-'''
+
 def edit_profile(request):
 	if request.method == 'POST':
 		user_form = EditUserForm(request.POST, instance=request.user,prefix="form1")
@@ -50,7 +50,7 @@ def edit_profile(request):
 		profile_form = EditProfileForm(instance=request.user.userprofile,prefix="form2")
 		context = {'user_form': user_form, 'profile_form': profile_form,'usuario':request.user}
 		return render(request, 'Accounts/edit_profile.html', context)
-'''
+
 def change_password(request):
 	if request.method == 'POST':
 		form = PasswordChangeForm(data=request.POST, user=request.user)

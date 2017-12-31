@@ -25,9 +25,9 @@ class EditUserForm(UserChangeForm):
 				  'password'
 				  ]
 
-class EditProfileForm(UserChangeForm):
+class EditProfileForm(forms.ModelForm):
 
 	class Meta:
 		model = UserProfile
 		fields = '__all__'
-		#exclude= ['user']
+		exclude= ['user','image']
