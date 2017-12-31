@@ -14,6 +14,12 @@ urlpatterns = [
 	#Posts de las sección de anuncios 127.0.0.1:8000/foro/anuncios
 	url(r'^anuncios/$', login_required(views.anuncios), name='anuncios'),
 	
+	#Posts de las sección de anuncios 127.0.0.1:8000/foro/anuncios/#IdDePost
+	url(r'^anuncios/(?P<Post_Id>[-]?[0-9]+)/$', login_required(views.detalle_anuncio), name='detalle_anuncio'),
+	
+	#Posts de las sección de anuncios 127.0.0.1:8000/foro/anuncios/crear
+	url(r'^anuncios/crear$', login_required(views.create_anuncio), name='create_anuncio'),
+	
 	#Hilo 127.0.0.1:8000/foro/anuncios/hilo
 	url(r'^anuncios/hilo/$', login_required(views.hilo), name='hilo'),
 

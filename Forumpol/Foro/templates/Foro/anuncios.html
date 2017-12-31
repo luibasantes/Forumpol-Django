@@ -8,7 +8,14 @@
             <div class="container anuncios">
                 <h2><b>ANUNCIOS</b></h2>
                 <ul class="list-group">
-
+					{% for thread in anuncios %}
+						<li class="list-group-item post-item" >
+						<a href="{{thread.op.id}}">{{thread.topic}}</a>
+						<span class="post-info pull-right user">{{thread.op.owner.username}}</span>
+						<span class="post-info pull-right fecha">{{thread.op.date}}</span>
+						<span class="post-info pull-right replies">3</span>
+						</li>
+					{% endfor %}
                 </ul>
                 <nav id="paginas">
                     <ul class="pagination">
@@ -19,8 +26,9 @@
                         <li><a href="#" aria-label="Next"><span>&raquo;</span></a></li>
                     </ul>
                 </nav>
+				<Button><a href="{% url 'foro:create_anuncio' %}" ><span>Crear Nuevo Anuncio</span></a></Button>
             </div>
         </div>
     </section>
 {% endblock %}
-{% block script %}<script src="{% static 'js/carga_posts.js' %}"></script>{% endblock%}
+{% block script %}<!--script src="{% static 'js/carga_posts.js' %}"></script-->{% endblock%}
