@@ -19,6 +19,7 @@
 
 /* Cabezera de la pagina */
 
+
 #cabecera {
   background-color: #001C43;
   margin: 0px;
@@ -219,13 +220,6 @@ nav.responsive-nav{
   display: none;
 }
 
-/* Footer */
-footer {
-  background-color: #001C43;
-  color: #7bdef7;
-  padding: 1.5em;
-  text-align: center;
-}
 
 @media only screen and (max-width : 480px) {
   span.logo, form#cse-search-box,form#searchform, nav#navegation-bar, div#cabecera{

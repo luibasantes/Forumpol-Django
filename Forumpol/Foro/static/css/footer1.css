@@ -1,0 +1,87 @@
+/*---------FOOTER CSS----------*/
+/*Contenedor que tiene enlaces de información sobre la pagina*/
+#info_footer{
+	list-style: none;
+    display:inline-block;
+}
+
+/*Contenedero que tiene los datos de contactos*/
+#contact_footer{
+	list-style: none;
+    display:inline-block;
+}
+
+#contact_footer li p{
+    margin-bottom:4%;
+}
+
+footer{
+	background-image: url("../images/fondo.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center top;
+	position:absolute;
+	bottom:0;
+	color:white;
+    width:100%;
+    
+}
+
+/*div que tiene el contenido de contacto*/
+footer div div.row:first-child div {
+    border-bottom: 1px solid white;
+    padding-bottom:1%;
+    padding-top:1%;
+}
+
+#info_footer,#contact_footer ,#info_footer li,#contact_footer li{
+    padding-left:0px;
+}
+
+#info_footer li,#contact_footer li{
+    text-align:center;
+    font-size:0.75rem;
+}
+
+footer div div.row:nth-child(2){
+    text-align:center;
+    padding-top:1%;
+    padding-bottom: 2%;
+}
+
+#social_icons{
+    margin: 0 auto;
+}
+
+#copyright_footer{
+    margin: 0 auto;
+    font-size: 0.6rem;
+}
+
+@media screen and (min-width: 760px){
+    #info_footer,#contact_footer{
+        width: 100%;
+    }
+    #info_footer li,#contact_footer li{
+        display: inline;
+        padding: 0% 3%;
+    }
+
+    #contact_footer li p{
+        display: inline;
+    }
+
+    footer div div.row:first-child div{
+        padding-bottom: 0%;
+    }
+}
+
+@media screen and (max-width: 480px){
+    h6{
+        font-size: 0.8rem;
+    }
+
+    a,#contact_footer li{
+        font-size: 0.6rem;
+    }
+}
