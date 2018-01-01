@@ -8,7 +8,7 @@
             <div class="container anuncios">
 				<div class="profile_image">
 					{% if user.userprofile.image %}
-						<img class="thumbnail" src="{{ user.userprofile.image.url }}" width="240">
+						<a href="{{user.userprofile.image.url }}"><img class="thumbnail" src="{{ user.userprofile.image.url }}" width="240"></a>
 					{% endif %}<br>
 				</div>
 				<div class="user_detail">

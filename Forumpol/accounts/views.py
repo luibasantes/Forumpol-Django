@@ -40,7 +40,7 @@ def edit_profile_secondary_info(request):
 def edit_profile(request):
 	if request.method == 'POST':
 		user_form = EditUserForm(request.POST, instance=request.user,prefix="form1")
-		profile_form = EditProfileForm(request.POST, instance=request.user.userprofile,prefix="form2")
+		profile_form = EditProfileForm(request.POST,request.FILES or None, instance=request.user.userprofile,prefix="form2")
 		if user_form.is_valid() and profile_form.is_valid():
 			user_form.save()
 			profile_form.save()

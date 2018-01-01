@@ -2,16 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+def upload_location(instance,filename):
+	return "posted_images/%s/%s" %(instance.owner.id, filename)
 
 class Post(models.Model):
 	#RESPUESTA HACIA QUE POST (VACIO SI ES POST ORIGINAL
 	reply_to = models.ForeignKey('self',blank=True, null=True,on_delete=models.SET_NULL)
 	#Puede ser anuncio, Anuncio de CLUB , Vida Estudiantil
 	content = models.CharField(max_length=300, default='')
-	image = models.ImageField(upload_to='posted_images', blank=True)
+	image = models.ImageField(upload_to=upload_location, blank=True,null=True)
 	owner = models.ForeignKey(User,null=True,on_delete=models.SET_NULL)
 	date = models.DateTimeField(auto_now=True)
 
+
+	def __str__(self):
+		return str(self.id)
 
 
 class Thread(models.Model):

@@ -8,10 +8,14 @@
             <div class="container anuncios">
 				<div class="border border-dark">
 					<h2><b>{{thread.topic}}</b></h2>
+					{% if anuncio.image %}
+						<a href="{{anuncio.image.url}}"><img  src="{{anuncio.image.url}}"  width=500 alt="ImagenAnuncio"></a>
+					{% endif %}
 					<p>owner: {{anuncio.owner.username}}</p>
-					<p>fecha: {{anuncio.date}}</p>
 					<p>contenido: {{anuncio.content}}</p>
+					<p>fecha: {{anuncio.date}}</p>
 				</div>
+				
             </div>
         </div>
     </section>

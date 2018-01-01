@@ -19,9 +19,6 @@ urlpatterns = [
 	
 	#Posts de las sección de anuncios 127.0.0.1:8000/foro/anuncios/crear
 	url(r'^anuncios/crear$', login_required(views.create_anuncio), name='create_anuncio'),
-	
-	#Hilo 127.0.0.1:8000/foro/anuncios/hilo
-	url(r'^anuncios/hilo/$', login_required(views.hilo), name='hilo'),
 
 	#Mapa 127.0.0.1:8000/foro/mapa
 	url(r'^mapa$', login_required(views.mapa), name='mapa'),

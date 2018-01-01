@@ -30,4 +30,4 @@ class EditProfileForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
 		fields = '__all__'
-		exclude= ['user','image']
+		exclude= ['user']

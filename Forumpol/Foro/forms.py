@@ -17,7 +17,7 @@ class CreateOriginalPostForm(forms.ModelForm):
 	class Meta:
 		model = Post
 		fields = '__all__'
-		exclude= ['date','image','owner','reply_to']
+		exclude= ['date','owner','reply_to']
 
 class CreateThreadForm(forms.ModelForm):
 

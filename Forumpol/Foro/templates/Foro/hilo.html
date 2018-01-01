@@ -5,55 +5,55 @@
 {% block body %}
     <div id="hilo" class="col-9">
         <div id="op-post" class="container-fluid">
-            <h3 class="post-topic">Baile de gala<button class="btn btn-primary btn-xs pull-right resp-btn">RESPONDER</button></h3>
+            <h3 class="post-topic">{{thread.topic}}<button class="btn btn-primary btn-xs pull-right resp-btn">RESPONDER</button></h3>
             <div id="op">
                 <div class="poster">
                     <div class="poster-info">
-                        <span class="glyphicon glyphicon-user"> alicsita</span>
-                        <img src="{% static 'images/alics.png' %}" alt="alicsita">
+                        <span class="glyphicon glyphicon-user">{{anuncio.owner.username}}</span>
+						{% if anuncio.owner.userprofile.image %}
+						<img src="{{anuncio.owner.userprofile.image.url}}" alt="userProfilePicture">
+						{% endif %}
                     </div>
                 </div>
                 <div class="post-area">
-                    <p>no tengo pareja para el baile de gala :c</p>
+					{% if anuncio.image %}
+						<a href="{{anuncio.image.url}}"><img  src="{{anuncio.image.url}}"  width=500 alt="ImagenAnuncio"></a>
+					{% endif %}
+                    <p>{{anuncio.content}}</p>
                 </div>
+				<p>{{anuncio.date}}</p>
             </div>
         </div>
+		{% for post in respuestas %}
         <div class="container-fluid rep">
             <div class="poster">
                 <div class="poster-info">
-                    <span class="glyphicon glyphicon-user"> awesomejoe</span>
-                    <img src="{% static 'images/joe.jpg' %}" alt="awesomejoe">
+                    <span class="glyphicon glyphicon-user">{{post.owner.username}}</span>
+                    {% if post.owner.userprofile.image %}
+						<a href="{{post.owner.userprofile.image.url}}"><img  src="{{post.owner.userprofile.image.url}}"  width=500 alt="ImagenResputa"></a>
+					{% endif %}
                 </div>
             </div>
             <div class="post-area">
-                <p>ps ke pena puerk :v</p>
+				{% if post.image %}
+						<a href="{{post.image.url}}"><img  src="{{post.image.url}}"  width=500 alt="ImagenResputa"></a>
+				{% endif %}
+                <p>{{post.content}}</p>
             </div>
             <div class="post-num">
-                <p>#1</p>
+                <p>{{post.date}}</p>
             </div>
         </div>
-        <div class="container-fluid rep">
-            <div class="poster">
-                <div class="poster-info">
-                    <span class="glyphicon glyphicon-user"> xXGeancaXx</span>
-                    <img src="{% static 'images/geanca.jpg' %}" alt="xXGeancaXx">
-                </div>
-            </div>
-            <div class="post-area">
-                <p>ps ke pena puerk :v x2</p>
-            </div>
-            <div class="post-num">
-                <p>#2</p>
-            </div>
-        </div>
+		{% endfor %}
     </div>
     <div id="hilo-footer" class="col-9">
         <div class="container-fluid rep-container">
-            <div id="resp-box" class="form-group">
+			<form id="resp-box" class="form-signin" role="form" action="" method="post" enctype="multipart/form-data">
                 <h3>Escribe tu respuesta: </h3>
-                <textarea class="form-control resp-text" rows="5"></textarea>
+				{% csrf_token %}
+				{{ form.as_p }}
                 <button type="submit" class="btn btn-default btn-reply">Enviar</button>
-            </div>
+            </form>
         </div>
         <nav id="paginas">
             <ul class="pagination">

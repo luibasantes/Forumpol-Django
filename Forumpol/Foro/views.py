@@ -17,32 +17,44 @@ def index(request):
 		
 
 def anuncios(request):
-	all_anuncios = Thread.objects.filter(category="anuncio")
+	all_anuncios = Thread.objects.filter(category="anuncio").order_by("-id")
 	username = request.user
 	context = {'usuario':username,"anuncios":all_anuncios}
 	return render(request, "Foro/anuncios.html", context)
 	
 #Vista detallada de cada Post
 def detalle_anuncio(request,Post_Id):
+	form_Post = CreateOriginalPostForm(request.POST or None,request.FILES or None)
 	try:
 		post = Post.objects.get(id = str(Post_Id))
 		thread = Thread.objects.get(op=post)
-		contenido = contenido={"anuncio":post,'thread':thread}
+		respuestas = Post.objects.filter(reply_to = str(Post_Id))
 		
 	except Post.DoesNotExist:
 		raise Http404("Anuncio no existe")
-	return render(request,"foro/anuncio.html",contenido)
+	except Thread.DoesNotExist:
+		raise Http404("Anuncio no es OP	")
+		
+	if 	form_Post.is_valid():
+		my_Post = form_Post.save(commit=False)
+		my_Post.reply_to = Post.objects.get(id = str(Post_Id))
+		my_Post.owner = request.user
+		my_Post.save()
+		form_Post = CreateOriginalPostForm(request.POST or None,request.FILES or None)
+		contenido={"anuncio":post,'thread':thread,'usuario':request.user,'respuestas':respuestas,'form':form_Post}	
+		return render(request,"foro/hilo.html",contenido)
+	contenido={"anuncio":post,'thread':thread,'usuario':request.user,'respuestas':respuestas,'form':form_Post}	
+	return render(request,"foro/hilo.html",contenido)
 	
 	
 def create_anuncio(request):
 	
 	form_Thread = CreateThreadForm(request.POST or None)
-	form_Post = CreateOriginalPostForm(request.POST or None)
+	form_Post = CreateOriginalPostForm(request.POST or None,request.FILES or None)
 	if form_Thread.is_valid() and form_Post.is_valid():
 		my_Post = form_Post.save(commit=False)
 		my_Post.owner = request.user
 		my_Post.save()
-		
 		my_thread = form_Thread.save(commit=False)
 		my_thread.category ='anuncio'
 		my_thread.op =Post.objects.last()
