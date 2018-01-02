@@ -1,7 +1,10 @@
 {% extends 'Foro/base.html' %}
 {% load static from staticfiles %}
 {% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
-{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/edit_profile.css' %}">{% endblock %}
+{% block estilo %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/edit_profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/crear_hilo.css' %}">
+{% endblock %}
 {% block body %}
     <section>
         <div id="categoria" class="col-9">

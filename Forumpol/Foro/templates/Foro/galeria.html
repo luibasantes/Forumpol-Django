@@ -1,0 +1,33 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}GALERIA | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}<link rel="stylesheet" href="{% static 'css/galeria.css' %}"/>{% endblock %}
+{% block body %}
+    <section id="least">
+        <h3><b>GALERIA</b></h3>
+        <!-- Least Gallery: Fullscreen Preview -->
+        <div class="least-preview"></div>
+
+        <!-- Least Gallery: Thumbnails -->
+        <ul class="least-gallery">
+            {% for post in posts %}
+            {% if post.image %}
+            <li>
+                <a href="{{ post.image.url }}" title="{{ post.owner }}" data-subtitle="{{ post.date }}" data-caption="<strong>Bold text</strong> normal caption text">
+                    <img src="{{ post.image.url }}" alt="Alt Image Text" />
+                </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <script>
+            $(document).ready(function(){
+                $('.least-gallery').least();
+            });
+        </script>
+    </section>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/least.min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+{% endblock%}

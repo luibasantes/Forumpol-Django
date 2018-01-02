@@ -6,14 +6,14 @@
     <section>
         <div id="categoria" class="col-9">
             <div class="container anuncios">
-                <h2><b>ANUNCIOS</b></h2>
+                <h2><b>ANUNCIOS</b><a href="{% url 'foro:create_anuncio' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-plus"> Nuevo Hilo</span></a></h2>
                 <ul class="list-group">
 					{% for thread in anuncios %}
 						<li class="list-group-item post-item" >
-						<a href="{{thread.op.id}}">{{thread.topic}}</a>
+						<a href="{% url 'foro:detalle_anuncio' thread.op.id %}">{{thread.topic}}</a>
 						<span class="post-info pull-right user">{{thread.op.owner.username}}</span>
 						<span class="post-info pull-right fecha">{{thread.op.date}}</span>
-						<span class="post-info pull-right replies">3</span>
+						<span class="post-info pull-right replies">{{ thread.respuestas }}</span>
 						</li>
 					{% endfor %}
                 </ul>
@@ -26,7 +26,7 @@
                         <li><a href="#" aria-label="Next"><span>&raquo;</span></a></li>
                     </ul>
                 </nav>
-				<Button><a href="{% url 'foro:create_anuncio' %}" ><span>Crear Nuevo Anuncio</span></a></Button>
+
             </div>
         </div>
     </section>

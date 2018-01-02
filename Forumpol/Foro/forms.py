@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from .models import Post,Thread
 from django import forms
 
@@ -13,10 +12,11 @@ class UserForm(forms.ModelForm):
 """
 
 class CreateOriginalPostForm(forms.ModelForm):
-
 	class Meta:
 		model = Post
-		fields = '__all__'
+		widgets = {
+			'content': forms.Textarea(attrs={'cols': 80, 'rows': 7}),
+		}
 		exclude= ['date','owner','reply_to']
 
 class CreateThreadForm(forms.ModelForm):
@@ -24,4 +24,4 @@ class CreateThreadForm(forms.ModelForm):
 	class Meta:
 		model = Thread
 		fields = '__all__'
-		exclude= ['op','category']
+		exclude= ['op','category','respuestas']

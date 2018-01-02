@@ -29,7 +29,6 @@ def detalle_anuncio(request,Post_Id):
 		post = Post.objects.get(id = str(Post_Id))
 		thread = Thread.objects.get(op=post)
 		respuestas = Post.objects.filter(reply_to = str(Post_Id))
-		
 	except Post.DoesNotExist:
 		raise Http404("Anuncio no existe")
 	except Thread.DoesNotExist:
@@ -40,6 +39,8 @@ def detalle_anuncio(request,Post_Id):
 		my_Post.reply_to = Post.objects.get(id = str(Post_Id))
 		my_Post.owner = request.user
 		my_Post.save()
+		thread.respuestas += 1
+		thread.save()
 		form_Post = CreateOriginalPostForm(request.POST or None,request.FILES or None)
 		contenido={"anuncio":post,'thread':thread,'usuario':request.user,'respuestas':respuestas,'form':form_Post}	
 		return render(request,"foro/hilo.html",contenido)
@@ -48,7 +49,6 @@ def detalle_anuncio(request,Post_Id):
 	
 	
 def create_anuncio(request):
-	
 	form_Thread = CreateThreadForm(request.POST or None)
 	form_Post = CreateOriginalPostForm(request.POST or None,request.FILES or None)
 	if form_Thread.is_valid() and form_Post.is_valid():
@@ -63,7 +63,10 @@ def create_anuncio(request):
 	context = {'user_form': form_Thread, 'profile_form': form_Post,'usuario':request.user}
 	return render(request, 'Foro/create_anuncio.html', context)
 
-
+def galeria(request):
+	username = request.user
+	posts = Post.objects.all()
+	return render(request,"Foro/galeria.html", {'usuario':username,'posts':posts})
 	
 def hilo(request):
 	username = request.user
