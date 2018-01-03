@@ -65,8 +65,15 @@ def create_anuncio(request):
 
 def galeria(request):
 	username = request.user
+	info = dict()
 	posts = Post.objects.all()
-	return render(request,"Foro/galeria.html", {'usuario':username,'posts':posts})
+	for post in posts:
+		if post.image:
+			if post.reply_to:
+				info[post] = Thread.objects.get(op=post.reply_to)
+			else:
+				info[post] = Thread.objects.get(op=post)
+	return render(request,"Foro/galeria.html", {'usuario':username, 'info':info})
 	
 def hilo(request):
 	username = request.user

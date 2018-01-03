@@ -10,24 +10,18 @@
 
         <!-- Least Gallery: Thumbnails -->
         <ul class="least-gallery">
-            {% for post in posts %}
-            {% if post.image %}
+            {% for key, value in info.items %}
             <li>
-                <a href="{{ post.image.url }}" title="{{ post.owner }}" data-subtitle="{{ post.date }}" data-caption="<strong>Bold text</strong> normal caption text">
-                    <img src="{{ post.image.url }}" alt="Alt Image Text" />
+                <a href="{{ key.image.url }}" title="{{ key.owner }}" data-subtitle="{{ key.date }}" data-caption="<a href='{% url 'foro:detalle_anuncio' value.op.id %}'><b>{{ value.topic }}</b></a> - {{ key.content }}">
+                    <img src="{{ key.image.url }}" alt="Alt Image Text" />
                 </a>
             </li>
-            {% endif %}
             {% endfor %}
         </ul>
-        <script>
-            $(document).ready(function(){
-                $('.least-gallery').least();
-            });
-        </script>
     </section>
 {% endblock %}
 {% block script %}
-    <script src="{% static 'js/least.min.js' %}"></script>
     <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/least.min.js' %}"></script>
+    <script src="{% static 'js/galeria.js' %}"></script>
 {% endblock%}
