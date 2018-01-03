@@ -26,6 +26,9 @@ urlpatterns = [
 	#Mapa 127.0.0.1:8000/foro/mapa
 	url(r'^mapa$', login_required(views.mapa), name='mapa'),
 
+	#Timeline 127.0.0.1:8000/foro/timeline
+	url(r'^timeline$', login_required(views.timeline), name='timeline'),
+
 	#Acerca de... 127.0.0.1:8000/foro/acerca_de
 	url(r'^acerca_de$', login_required(views.acerca_de), name='acerca_de')
 ]

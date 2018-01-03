@@ -83,6 +83,10 @@ def mapa(request):
 	username = request.user
 	return render(request, "Foro/mapa.html", {'usuario':username})
 
+def timeline(request):
+	username = request.user
+	return render(request, "Foro/fechas.html", {'usuario': username})
+
 def acerca_de(request):
 	admins = []
 	username = request.user
