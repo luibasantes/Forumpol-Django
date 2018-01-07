@@ -1,0 +1,35 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/hilo.css' %}">{% endblock %}
+{% block body %}
+    <div id="hilo" class="col-9">
+        <h3 class="post-topic">{{ titulo }} </h3>
+        {% for post in posts %}
+            <div class="container-fluid rep">
+                <div class="poster">
+                    <div class="poster-info">
+                        <span class="glyphicon glyphicon-user">{{post.owner.username}}</span>
+                        {% if post.owner.userprofile.image %}
+                            <a href="{{post.owner.userprofile.image.url}}"><img  src="{{post.owner.userprofile.image.url}}"  width=500 alt="ImagenResputa"></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="post-area">
+                    {% if post.image %}
+                            <a href="{{post.image.url}}"><img  src="{{post.image.url}}"  width=500 alt="ImagenResputa"></a>
+                    {% endif %}
+                    <p>{{post.content}}</p>
+                </div>
+                <div class="post-num">
+                    <p>{{post.date}}</p>
+                    <form id="{{ post.pk }}" action="{% url 'foro:aprobado' post.pk %}" method="post">
+                        {% csrf_token %}
+                        <input type="checkbox" name="aprobado" value="True"> Aprobar<br>
+                        <button form="{{ post.pk }}" class="btn btn-lg btn-white btn-block" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

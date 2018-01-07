@@ -6,7 +6,13 @@
     <section>
         <div id="categoria" class="col-9">
             <div class="container anuncios">
-                <h2><b>ANUNCIOS</b><a href="{% url 'foro:create_anuncio' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-plus"> Nuevo Hilo</span></a></h2>
+                <h2>
+                    <b>ANUNCIOS</b>
+                    <a href="{% url 'foro:create_anuncio' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-plus"> Nuevo Hilo</span></a>
+                    {% if moderador %}
+                        <a href="{% url 'foro:aprobar' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-inbox"> Aprobar Posts</span></a>
+                    {% endif %}
+                </h2>
                 <ul class="list-group">
 					{% for thread in anuncios %}
 						<li class="list-group-item post-item" >

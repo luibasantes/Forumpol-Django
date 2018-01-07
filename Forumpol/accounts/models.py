@@ -13,6 +13,7 @@ class UserProfile(models.Model):
 	website = models.URLField(default='')
 	phone = models.IntegerField(default=0)
 	image = models.ImageField(upload_to= upload_location, blank=True)
+	moderador = models.BooleanField(default=False)
 	
 	def __str__(self):
 		return self.user.username

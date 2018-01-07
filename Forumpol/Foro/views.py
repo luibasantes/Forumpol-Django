@@ -1,9 +1,5 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import authenticate, login ,logout
-from django.views import generic
-from django.views.generic import View
 from django.contrib.auth.models import User
-from django.apps import apps
 from .forms import CreateOriginalPostForm, CreateThreadForm
 from .models import Post,Thread
 from django.urls import reverse
@@ -17,9 +13,10 @@ def index(request):
 		
 
 def anuncios(request):
-	all_anuncios = Thread.objects.filter(category="anuncio").order_by("-id")
+	all_anuncios = Thread.objects.filter(category="anuncio",op__aprobado=True).order_by("-id")
 	username = request.user
-	context = {'usuario':username,"anuncios":all_anuncios}
+	moderador = request.user.userprofile.moderador
+	context = {'usuario':username,"anuncios":all_anuncios,"moderador":moderador}
 	return render(request, "Foro/anuncios.html", context)
 	
 #Vista detallada de cada Post
@@ -28,7 +25,7 @@ def detalle_anuncio(request,Post_Id):
 	try:
 		post = Post.objects.get(id = str(Post_Id))
 		thread = Thread.objects.get(op=post)
-		respuestas = Post.objects.filter(reply_to = str(Post_Id))
+		respuestas = Post.objects.filter(reply_to = str(Post_Id),aprobado = True)
 	except Post.DoesNotExist:
 		raise Http404("Anuncio no existe")
 	except Thread.DoesNotExist:
@@ -68,11 +65,12 @@ def galeria(request):
 	info = dict()
 	posts = Post.objects.all()
 	for post in posts:
-		if post.image:
-			if post.reply_to:
-				info[post] = Thread.objects.get(op=post.reply_to)
-			else:
-				info[post] = Thread.objects.get(op=post)
+		if post.aprobado:
+			if post.image:
+				if post.reply_to:
+					info[post] = Thread.objects.get(op=post.reply_to)
+				else:
+					info[post] = Thread.objects.get(op=post)
 	return render(request,"Foro/galeria.html", {'usuario':username, 'info':info})
 	
 def hilo(request):
@@ -92,3 +90,17 @@ def acerca_de(request):
 	username = request.user
 	staff = User.objects.filter(is_staff=True)
 	return render(request, "Foro/acercaDe.html", {'usuario':username, 'staff':staff})
+
+def aprobar(request):
+	username = request.user
+	posts = Post.objects.filter(aprobado=False)
+	if len(posts) > 0:
+		return render(request, "Foro/aprobar.html", {'usuario':username,'posts':posts, 'titulo':"Posts por aprobar"})
+	else:
+		return render(request, "Foro/aprobar.html", {'usuario': username, 'titulo': "No hay posts por aprobar"})
+
+def aprobado(request,Post_Id):
+	post = Post.objects.get(pk=Post_Id)
+	post.aprobado = request.POST.get('aprobado', False);
+	post.save()
+	return redirect(reverse('foro:aprobar'))

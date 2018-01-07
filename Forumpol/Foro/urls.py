@@ -30,5 +30,11 @@ urlpatterns = [
 	url(r'^timeline$', login_required(views.timeline), name='timeline'),
 
 	#Acerca de... 127.0.0.1:8000/foro/acerca_de
-	url(r'^acerca_de$', login_required(views.acerca_de), name='acerca_de')
+	url(r'^acerca_de$', login_required(views.acerca_de), name='acerca_de'),
+
+	#Aprobar post 127.0.0.1:8000/foro/anuncios/aprobar
+	url(r'anuncios/aprobar$', login_required(views.aprobar), name='aprobar'),
+
+	#Aprobando post 127.0.0.1:8000/foro/anuncios/aprobar/Post_ID
+	url(r'anuncios/aprobar/(?P<Post_Id>[-]?[0-9]+)/$', login_required(views.aprobado), name='aprobado'),
 ]

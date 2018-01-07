@@ -13,6 +13,7 @@ class Post(models.Model):
 	image = models.ImageField(upload_to=upload_location, blank=True,null=True)
 	owner = models.ForeignKey(User,null=True,on_delete=models.SET_NULL)
 	date = models.DateTimeField(auto_now=True)
+	aprobado = models.BooleanField(default=False,null=False)
 
 	def __str__(self):
 		return str(str(self.id) + " " + str(self.owner))
