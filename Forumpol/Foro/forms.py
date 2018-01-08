@@ -17,7 +17,7 @@ class CreateOriginalPostForm(forms.ModelForm):
 		widgets = {
 			'content': forms.Textarea(attrs={'cols': 80, 'rows': 7}),
 		}
-		exclude= ['date','owner','reply_to']
+		exclude= ['date','owner','reply_to','aprobado']
 
 class CreateThreadForm(forms.ModelForm):
 

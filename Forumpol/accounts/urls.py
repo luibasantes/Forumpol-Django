@@ -11,9 +11,12 @@ urlpatterns = [
 	#Busqueda 127.0.0.1:8000/accounts
     #url(r'^$', login_required(views.index), name='index'),
 	
-	
+	#Fue actualizado por el siguiente
 	#Busqueda 127.0.0.1:8000/accounts/profile
-    url(r'^profile/$', login_required(views.view_profile), name='view_profile'),
+    #url(r'^profile/$', login_required(views.view_profile), name='view_profile'),
+	
+	#Busqueda 127.0.0.1:8000/accounts/profile/user_id
+    url(r'^profile/(?P<user_id>[0-9]+)/$', login_required(views.view_profile), name='view_profile'),
 	
 	#Busqueda 127.0.0.1:8000/accounts/profile/edit
     url(r'^profile/edit_profile/$', login_required(views.edit_profile), name='edit_profile'),

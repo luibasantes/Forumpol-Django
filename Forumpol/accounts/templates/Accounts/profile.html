@@ -7,19 +7,21 @@
         <div id="categoria" class="col-9">
             <div class="container anuncios">
 				<div class="profile_image">
-					{% if user.userprofile.image %}
-						<a href="{{user.userprofile.image.url }}"><img class="thumbnail" src="{{ user.userprofile.image.url }}" width="240"></a>
+					{% if usuarioPerfil.userprofile.image %}
+						<a href="{{usuarioPerfil.userprofile.image.url }}"><img class="thumbnail" src="{{ usuarioPerfil.userprofile.image.url }}" width="240"></a>
 					{% endif %}<br>
 				</div>
 				<div class="user_detail">
-					<h2><b>{{ user }}</b></h2>
-					<p>First name: {{ user.first_name }}</p>
-					<p>Last name: {{ user.last_name }}</p>
-					<p>City: {{ user.userprofile.city }}</p>
-					<p>Website: <a href= "{{ user.userprofile.website }}">{{ user.userprofile.website }}</a></p>
-					<p>Phone: {{ user.userprofile.phone }}</p>
-					<a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">Editar Informacion</a>
-					<a class="btn btn-default" href="{% url 'accounts:change_password' %}">Cambiar Contraseña</a>
+					<h2><b>{{ usuarioPerfil }}</b></h2>
+					<p>First name: {{ usuarioPerfil.first_name }}</p>
+					<p>Last name: {{ usuarioPerfil.last_name }}</p>
+					<p>City: {{ usuarioPerfil.userprofile.city }}</p>
+					<p>Website: <a href= "{{ user.userprofile.website }}">{{ usuarioPerfil.userprofile.website }}</a></p>
+					<p>Phone: {{ usuarioPerfil.userprofile.phone }}</p>
+					{% if user.id == id %}
+						<a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">Editar Informacion</a>
+						<a class="btn btn-default" href="{% url 'accounts:change_password' %}">Cambiar Contraseña</a>
+					{% endif %}
 				</div>
             </div>
         </div>

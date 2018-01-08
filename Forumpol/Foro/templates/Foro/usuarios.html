@@ -1,0 +1,96 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}ACERCA DE NOSOTROS | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/acercaDe.css' %}">{% endblock %}
+{% block body %}
+	<section>
+		<div id="categoria" class="col-9">
+			{% if usuarios %}
+			<header class="categoria-header">
+				<h1 class="categoria-heading">USUARIOS ACTIVOS</h1>
+			</header>
+			<div class="row">
+				{% for user1 in usuarios %}
+			  	<div class="col-sm-3 col-md-4">
+					<div class="thumbnail  tarjeta">
+						{% if user1.userprofile.image %}
+				  		<img class = "card" src="{{ user1.userprofile.image.url }}" alt="perfil-{{ user1.first_name }}">
+						{% endif %}
+				  		<div class="caption">
+					  		<h3>{{ user1.first_name }} {{ user1.last_name }}</h3>
+					  		<p>{{ user1 }}</p>
+					  		<p><a id="boton{{ user1.first_name }}"  href="{% url 'accounts:view_profile' user1.id%}" class="btn btn-primary" role="button">Visitar Perfil</a></p>
+				  		</div>
+					</div>
+			  	</div>
+				{% endfor %}
+			</div>
+			{% endif %}
+			
+			{% if usuarios_No_Actvo %}
+			<header class="categoria-header">
+				<h1 class="categoria-heading">USUARIOS NO ACTIVOS</h1>
+			</header>
+			<div class="row">
+				{% for user in usuarios_No_Actvo %}
+			  	<div class="col-sm-3 col-md-4">
+					<div class="thumbnail  tarjeta">
+						{% if user.userprofile.image %}
+				  		<img class = "card" src="{{ user.userprofile.image.url }}" alt="perfil-{{ user.first_name }}">
+						{% endif %}
+				  		<div class="caption">
+					  		<h3>{{ user.first_name }} {{ user.last_name }}</h3>
+					  		<p>{{ user }}</p>
+					  		<p><a id="boton{{ user.first_name }}"  href="{% url 'accounts:view_profile' user.id%}" class="btn btn-primary" role="button">Visitar Perfil</a></p>
+				  		</div>
+					</div>
+			  	</div>
+				{% endfor %}
+			</div>
+			{% endif %}
+			{% if moderadores %}
+			<header class="categoria-header">
+				<h1 class="categoria-heading">MODERADORES</h1>
+			</header>
+			<div class="row">
+				{% for mod in moderadores %}
+			  	<div class="col-sm-3 col-md-4">
+					<div class="thumbnail  tarjeta">
+						{% if mod.userprofile.image %}
+				  		<img class = "card" src="{{ mod.userprofile.image.url }}" alt="perfil-{{ mod.first_name }}">
+						{% endif %}
+				  		<div class="caption">
+					  		<h3>{{ mod.first_name }} {{ mod.last_name }}</h3>
+					  		<p>{{ mod }}</p>
+					  		<p><a id="boton{{ mod.first_name }}" href="{% url 'accounts:view_profile' mod.id%}" class="btn btn-primary" role="button">Visitar Perfil</a></p>
+				  		</div>
+					</div>
+			  	</div>
+				{% endfor %}
+			</div>
+			{% endif %}
+			{% if staff %}
+			<header class="categoria-header">
+				<h1 class="categoria-heading">ADMINISTRADORES</h1>
+			</header>
+			<div class="row">
+				{% for admin in staff %}
+			  	<div class="col-sm-3 col-md-4">
+					<div class="thumbnail  tarjeta">
+				  		<img class = "card" src="{{ admin.userprofile.image.url }}" alt="perfil-{{ admin.first_name }}">
+				  		<div class="caption">
+					  		<h3>{{ admin.first_name }} {{ admin.last_name }}</h3>
+					  		<p>{{ admin }}</p>
+					  		<p><a id="boton{{ admin.first_name }}" href="{% url 'accounts:view_profile' admin.id%}" class="btn btn-primary" role="button">Visitar Perfil</a></p>
+				  		</div>
+					</div>
+			  	</div>
+				{% endfor %}
+			</div>
+			{% endif %}
+			<div id="enlace-repositorio" class="alert alert-info" role="button">
+			  <a class="alert-link">☺♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥☺</a>
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -28,7 +28,7 @@
 					    </div>
 					</form>
 				</div>
-				<h4 class="col-3 user"><a href="{% url 'accounts:view_profile' %}">{{ usuario }}</a></h4>
+				<h4 class="col-3 user"><a href="{% url 'accounts:view_profile' user.id%}">{{ user }}</a></h4>
 				<h4 class="col-3 log"><a href="{% url 'accounts:log_out' %}">Cerrar Sesion</a></h4>
 			</div>
 		</div>

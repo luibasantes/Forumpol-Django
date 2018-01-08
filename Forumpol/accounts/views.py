@@ -3,15 +3,35 @@ from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse
+from django.http import Http404,HttpResponseForbidden
+from django.contrib.auth.models import User
 
 from .forms import UserForm, EditProfileForm, EditUserForm
 
 
 # Create your views here.
 
+
+#Esta quedo desactualizado
+'''
+
 def view_profile(request):
 	context = {'user':request.user,'usuario':request.user.username}
 	return render(request, 'Accounts/profile.html',context)
+'''	
+def view_profile(request,user_id):
+	if not (request.user.id == int(user_id) or request.user.is_staff):
+		return HttpResponseForbidden()
+	try:
+		usuario = User.objects.get(id = str(user_id))
+	except User.DoesNotExist:
+		raise Http404("Usuario No existe")
+	
+	context = {'user':request.user,'usuarioPerfil':usuario,'id':int(user_id)}
+	return render(request, 'Accounts/profile.html',context)
+	
+	
+	
 '''
 def edit_profile_basic_info(request):
 	if request.method == 'POST':
@@ -44,7 +64,7 @@ def edit_profile(request):
 		if user_form.is_valid() and profile_form.is_valid():
 			user_form.save()
 			profile_form.save()
-			return redirect(reverse('accounts:view_profile'))
+			return redirect('accounts:view_profile',user_id =request.user.id)
 	else:
 		user_form = EditUserForm(instance=request.user,prefix="form1")
 		profile_form = EditProfileForm(instance=request.user.userprofile,prefix="form2")

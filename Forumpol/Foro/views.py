@@ -2,8 +2,9 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from .forms import CreateOriginalPostForm, CreateThreadForm
 from .models import Post,Thread
+from accounts.models import UserProfile
 from django.urls import reverse
-from django.http import Http404
+from django.http import Http404,HttpResponseForbidden
 
 # Create your views here.
 def index(request):
@@ -93,6 +94,8 @@ def acerca_de(request):
 
 def aprobar(request):
 	username = request.user
+	if not (username.userprofile.moderador):
+		return HttpResponseForbidden()
 	posts = Post.objects.filter(aprobado=False)
 	if len(posts) > 0:
 		return render(request, "Foro/aprobar.html", {'usuario':username,'posts':posts, 'titulo':"Posts por aprobar"})
@@ -104,3 +107,16 @@ def aprobado(request,Post_Id):
 	post.aprobado = request.POST.get('aprobado', False);
 	post.save()
 	return redirect(reverse('foro:aprobar'))
+	
+	
+def usuarios(request):
+	username = request.user
+	if not (username.userprofile.moderador or username.is_staff):
+		return HttpResponseForbidden()
+	admins = []
+	staff = User.objects.filter(is_staff=True,is_active=True)
+	moderadores = User.objects.filter(is_staff=False,is_active=True,userprofile__moderador=True)
+	#moderadores = UserProfile.objects.filter(moderador=True,user__is_staff=False,user__is_active=True)
+	usuarios =	User.objects.filter(is_staff=False,userprofile__moderador=False,is_active=True)
+	usuariosN = User.objects.filter(is_active=False)
+	return render(request, "Foro/usuarios.html", {'usuario':username, 'staff':staff,'moderadores':moderadores,'usuarios':usuarios,'usuarios_No_Actvo':usuariosN})
