@@ -23,11 +23,8 @@
                 </div>
                 <div class="post-num">
                     <p>{{post.date}}</p>
-                    <form id="{{ post.pk }}" action="{% url 'foro:aprobado' post.pk %}" method="post">
-                        {% csrf_token %}
-                        <input type="checkbox" name="aprobado" value="True"> Aprobar<br>
-                        <button form="{{ post.pk }}" class="btn btn-lg btn-white btn-block" type="submit">Submit</button>
-                    </form>
+					<a id="{{ post.pk }}"  href="{% url 'foro:aprobado' post.id 1%}" role="button"><i class="fas fa-check-circle fa-3x icon" ></i></a>
+					<a id="{{ post.pk }}"  href="{% url 'foro:aprobado' post.id 0%}" role="button"><i class="fas fa-window-close fa-3x icon"></i></a>
                 </div>
             </div>
         {% endfor %}

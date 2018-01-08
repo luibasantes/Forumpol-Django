@@ -20,14 +20,15 @@ def view_profile(request):
 	return render(request, 'Accounts/profile.html',context)
 '''	
 def view_profile(request,user_id):
-	if not (request.user.id == int(user_id) or request.user.is_staff):
+	user = request.user
+	if not (user.id == int(user_id) or user.is_staff or user.userprofile.moderador):
 		return HttpResponseForbidden()
 	try:
 		usuario = User.objects.get(id = str(user_id))
 	except User.DoesNotExist:
 		raise Http404("Usuario No existe")
 	
-	context = {'user':request.user,'usuarioPerfil':usuario,'id':int(user_id)}
+	context = {'user':user,'usuarioPerfil':usuario}
 	return render(request, 'Accounts/profile.html',context)
 	
 	

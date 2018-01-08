@@ -10,7 +10,8 @@
                     <b>ANUNCIOS</b>
                     <a href="{% url 'foro:create_anuncio' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-plus"> Nuevo Hilo</span></a>
                     {% if moderador %}
-                        <a href="{% url 'foro:aprobar' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-inbox"> Aprobar Posts</span></a>
+						<a href="{% url 'foro:rechazados' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-trash"> Post Rechazados</span></a>	
+                        <a href="{% url 'foro:aprobar' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-inbox"> Post por Revisar</span></a>
                     {% endif %}
                 </h2>
                 <ul class="list-group">

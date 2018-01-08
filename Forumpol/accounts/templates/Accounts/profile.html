@@ -16,9 +16,9 @@
 					<p>First name: {{ usuarioPerfil.first_name }}</p>
 					<p>Last name: {{ usuarioPerfil.last_name }}</p>
 					<p>City: {{ usuarioPerfil.userprofile.city }}</p>
-					<p>Website: <a href= "{{ user.userprofile.website }}">{{ usuarioPerfil.userprofile.website }}</a></p>
+					<p>Website: <a href= "{{ usuarioPerfil.userprofile.website }}">{{ usuarioPerfil.userprofile.website }}</a></p>
 					<p>Phone: {{ usuarioPerfil.userprofile.phone }}</p>
-					{% if user.id == id %}
+					{% if user.id == usuarioPerfil.id %}
 						<a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">Editar Informacion</a>
 						<a class="btn btn-default" href="{% url 'accounts:change_password' %}">Cambiar Contraseña</a>
 					{% endif %}

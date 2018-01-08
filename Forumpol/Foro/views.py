@@ -96,18 +96,34 @@ def aprobar(request):
 	username = request.user
 	if not (username.userprofile.moderador):
 		return HttpResponseForbidden()
-	posts = Post.objects.filter(aprobado=False)
+	posts = Post.objects.filter(aprobado=None).order_by("-id")
 	if len(posts) > 0:
 		return render(request, "Foro/aprobar.html", {'usuario':username,'posts':posts, 'titulo':"Posts por aprobar"})
 	else:
 		return render(request, "Foro/aprobar.html", {'usuario': username, 'titulo': "No hay posts por aprobar"})
 
-def aprobado(request,Post_Id):
+def rechazados(request):
+	username = request.user
+	if not (username.userprofile.moderador or username.is_staff):
+		return HttpResponseForbidden()
+	posts = Post.objects.filter(aprobado=False)
+	if len(posts) > 0:
+		return render(request, "Foro/aprobar.html", {'usuario':username,'posts':posts, 'titulo':"Posts Rechazados / Eliminados"})
+	else:
+		return render(request, "Foro/aprobar.html", {'usuario': username, 'titulo': "No hay posts Rechazados/Eliminados"})
+		
+		
+def aprobado(request,Post_Id,value):
+	username = request.user
+	if not (username.userprofile.moderador or username.is_staff):
+		return HttpResponseForbidden()
 	post = Post.objects.get(pk=Post_Id)
-	post.aprobado = request.POST.get('aprobado', False);
+	if (int(value)==1):
+		post.aprobado = True
+	else:
+		post.aprobado = False
 	post.save()
 	return redirect(reverse('foro:aprobar'))
-	
 	
 def usuarios(request):
 	username = request.user
@@ -120,3 +136,20 @@ def usuarios(request):
 	usuarios =	User.objects.filter(is_staff=False,userprofile__moderador=False,is_active=True)
 	usuariosN = User.objects.filter(is_active=False)
 	return render(request, "Foro/usuarios.html", {'usuario':username, 'staff':staff,'moderadores':moderadores,'usuarios':usuarios,'usuarios_No_Actvo':usuariosN})
+	
+def banHammer(request,user_id):
+	username = request.user
+	if not (username.userprofile.moderador or username.is_staff):
+		return HttpResponseForbidden()
+	try:
+		usuario = User.objects.get(id=int(user_id))
+		if not (usuario.is_staff):
+			if(usuario.is_active):
+				usuario.is_active = False
+			else:
+				usuario.is_active = True
+			usuario.save()
+	except User.DoesNotExist:
+		raise Http404("Usuario no existe")
+	return redirect(reverse('foro:usuarios'))
+	

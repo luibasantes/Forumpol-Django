@@ -5,7 +5,13 @@
 {% block body %}
     <div id="hilo" class="col-9">
         <div id="op-post" class="container-fluid">
-            <h3 class="post-topic">{{thread.topic}}<button class="btn btn-primary btn-xs pull-right resp-btn">RESPONDER</button></h3>
+            <h3 class="post-topic">
+				{{thread.topic}}
+				<button class="btn btn-primary btn-xs pull-right resp-btn glyphicon glyphicon-comment"> RESPONDER</button>
+				{% if usuario.userprofile.moderador %}
+				<button class="btn btn-primary btn-xs pull-right editar-btn glyphicon glyphicon-pencil"> EDITAR</button>
+				{% endif %}
+			</h3>
             <div id="op">
                 <div class="poster">
                     <div class="poster-info">
@@ -22,6 +28,7 @@
                     <p>{{anuncio.content}}</p>
                 </div>
 				<p>{{anuncio.date}}</p>
+				<p><a id="{{ anuncio.id }}"  class ="editar" href="{% url 'foro:aprobado' anuncio.id 0%}" role="button"><i class="fas fa-window-close fa-3x icon"></i></a></p>
             </div>
         </div>
 		{% for post in respuestas %}
@@ -42,6 +49,7 @@
             </div>
             <div class="post-num">
                 <p>{{post.date}}</p>
+				<a id="{{ post.id }}"  class ="editar" href="{% url 'foro:aprobado' post.id 0%}" role="button"><i class="fas fa-window-close fa-3x icon"></i></a>
             </div>
         </div>
 		{% endfor %}

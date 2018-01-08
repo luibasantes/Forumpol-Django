@@ -2,7 +2,9 @@
 #hilo {
   margin: 0 auto;
 }
-
+.editar {
+  display: none;
+}
 #paginas {
   text-align: right;
 }
@@ -78,6 +80,13 @@
 
 textarea {
   margin-bottom: 1em;
+}
+
+.fa-check-circle {
+  color: green;
+}
+.fa-window-close {
+  color: red;
 }
 
 @media only screen and (max-width : 480px) {

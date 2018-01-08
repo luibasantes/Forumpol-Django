@@ -1,6 +1,6 @@
 {% extends 'Foro/base.html' %}
 {% load static from staticfiles %}
-{% block title  %}ACERCA DE NOSOTROS | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block title  %}USUARIOS | "El foro mas cool de toda la ESPOL{% endblock %}
 {% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/acercaDe.css' %}">{% endblock %}
 {% block body %}
 	<section>
@@ -20,6 +20,9 @@
 					  		<h3>{{ user1.first_name }} {{ user1.last_name }}</h3>
 					  		<p>{{ user1 }}</p>
 					  		<p><a id="boton{{ user1.first_name }}"  href="{% url 'accounts:view_profile' user1.id%}" class="btn btn-primary" role="button">Visitar Perfil</a></p>
+							<p><a id="boton{{ user1.id }}"  href="{% url 'foro:banHammer' user1.id%}" class="btn btn-primary" role="button">Banear</a></p>
+							
+							</form>
 				  		</div>
 					</div>
 			  	</div>
@@ -42,6 +45,7 @@
 					  		<h3>{{ user.first_name }} {{ user.last_name }}</h3>
 					  		<p>{{ user }}</p>
 					  		<p><a id="boton{{ user.first_name }}"  href="{% url 'accounts:view_profile' user.id%}" class="btn btn-primary" role="button">Visitar Perfil</a></p>
+							<p><a id="boton{{ user1.id }}"  href="{% url 'foro:banHammer' user.id%}" class="btn btn-primary" role="button">Quitar Ban</a></p>
 				  		</div>
 					</div>
 			  	</div>

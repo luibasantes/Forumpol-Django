@@ -7,7 +7,9 @@
 .post {
 	color: #001C43;
 }
-
+.btn{
+	margin:1px;
+}
 .post:hover {
 	text-decoration: none;
 }
