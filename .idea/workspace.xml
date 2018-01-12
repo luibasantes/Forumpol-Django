@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6259351b-c7ae-41c2-af9e-e224f087c33d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Forumpol/db.sqlite3" afterPath="$PROJECT_DIR$/Forumpol/db.sqlite3" />
-    </list>
+    <list default="true" id="6259351b-c7ae-41c2-af9e-e224f087c33d" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +22,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Forumpol/Foro/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="38" column="70" selection-start-line="38" selection-start-column="70" selection-end-line="38" selection-end-column="70" />
+            <state relative-caret-position="765">
+              <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -34,8 +32,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Forumpol/Foro/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1258">
-              <caret line="77" column="50" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
+            <state relative-caret-position="1241">
+              <caret line="78" column="50" selection-start-line="78" selection-start-column="50" selection-end-line="78" selection-end-column="50" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -47,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/Forumpol/Foro/templates/Foro/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
-              <caret line="3" column="63" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="91" />
+              <caret line="12" column="46" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="91" />
               <folding />
             </state>
           </provider>
@@ -67,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/Forumpol/accounts/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="704">
-              <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+              <caret line="102" column="13" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -117,7 +115,6 @@
         <option value="$PROJECT_DIR$/Forumpol/Foro/static/css/edit_profile.css" />
         <option value="$PROJECT_DIR$/Forumpol/Foro/templates/form_template.html" />
         <option value="$PROJECT_DIR$/Forumpol/accounts/forms.py" />
-        <option value="$PROJECT_DIR$/Forumpol/accounts/views.py" />
         <option value="$PROJECT_DIR$/Forumpol/Foro/static/css/crear_anuncio.css" />
         <option value="$PROJECT_DIR$/Forumpol/Foro/templates/Foro/create_anuncio.html" />
         <option value="$PROJECT_DIR$/Forumpol/Foro/static/css/crear_hilo.css" />
@@ -135,6 +132,7 @@
         <option value="$PROJECT_DIR$/Forumpol/accounts/models.py" />
         <option value="$PROJECT_DIR$/Forumpol/Foro/views.py" />
         <option value="$PROJECT_DIR$/Forumpol/Foro/templates/Foro/anuncios.html" />
+        <option value="$PROJECT_DIR$/Forumpol/accounts/views.py" />
       </list>
     </option>
   </component>
@@ -169,131 +167,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <expand>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="accounts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="accounts" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="accounts" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="Accounts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="Foro" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="Foro" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="Foro" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="Foro" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="Foro" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="Foro" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="Foro" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="Foro" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="posted_images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="posted_images" type="462c0819:PsiDirectoryNode" />
-              <item name="1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Forumpol-Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Forumpol-Django" type="462c0819:PsiDirectoryNode" />
-              <item name="Forumpol" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="profile_image" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Forumpol-Django" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -340,7 +225,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21650165" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -637,7 +522,7 @@
     <entry file="file://$PROJECT_DIR$/Forumpol/Foro/templates/Foro/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="63" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="91" />
+          <caret line="12" column="46" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="91" />
           <folding />
         </state>
       </provider>
@@ -665,16 +550,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Forumpol/Foro/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="38" column="70" selection-start-line="38" selection-start-column="70" selection-end-line="38" selection-end-column="70" />
+        <state relative-caret-position="765">
+          <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Forumpol/Foro/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="77" column="50" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
+        <state relative-caret-position="1241">
+          <caret line="78" column="50" selection-start-line="78" selection-start-column="50" selection-end-line="78" selection-end-column="50" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>
@@ -699,7 +584,7 @@
     <entry file="file://$PROJECT_DIR$/Forumpol/accounts/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="704">
-          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+          <caret line="102" column="13" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
           <folding />
         </state>
       </provider>
