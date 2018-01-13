@@ -91,17 +91,20 @@ def change_password(request):
 def login_user(request):
 	logout(request)
 	if request.method == "POST":
-		username = request.POST['username']
-		password = request.POST['password']
-		user = authenticate(username=username, password=password)
-		if user is not None:
-			if user.is_active:
-				login(request, user)
-				return render(request,'Foro/index.html', {'usuario':username})
+		try:
+			username = request.POST['username']
+			password = request.POST['password']
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				if user.is_active:
+					login(request, user)
+					return render(request,'Foro/index.html', {'usuario':username})
+				else:
+					return render(request, 'Accounts/login_user.html', {'error_message': 'Your account has been disabled'})
 			else:
-				return render(request, 'Accounts/login_user.html', {'error_message': 'Your account has been disabled'})
-		else:
-			return render(request, 'Accounts/login_user.html', {'error_message': 'Invalid login'})
+				return render(request, 'Accounts/login_user.html', {'error_message': 'Invalid login'})
+		except:
+			print("Algo paso al cargar el login_user.")
 	return render(request, 'Accounts/login_user.html')
 
 		
