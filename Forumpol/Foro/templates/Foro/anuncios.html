@@ -15,6 +15,11 @@
                     {% endif %}
                 </h2>
                 <ul class="list-group">
+                    <li class="list-group-item active">Titulo
+                        <span class="post-info pull-right user glyphicon glyphicon-user"> Usuario</span>
+                        <span class="post-info pull-right fecha glyphicon glyphicon-calendar"> Fecha</span>
+                        <span class="post-info pull-right fecha glyphicon glyphicon glyphicon-comment"> Respuestas</span>
+                    </li>
 					{% for thread in anuncios %}
 						<li class="list-group-item post-item" >
 						<a href="{% url 'foro:detalle_anuncio' thread.op.id %}">{{thread.topic}}</a>
