@@ -46,5 +46,13 @@ urlpatterns = [
 	
 	#Aprobar post 127.0.0.1:8000/foro/anuncios/rechazados
 	url(r'anuncios/rechazados/$', login_required(views.rechazados), name='rechazados'),
-	
+
+	#Aprobar post 127.0.0.1:8000/foro/panel_moderacion
+	url(r'moderacion/$', login_required(views.moderacion), name='moderacion'),
+
+	#Administrar posts 127.0.0.1:8000/foro/administrar_posts
+	url(r'administrar_posts/$', login_required(views.admin_posts), name='admin_posts'),
+
+	#Administrar posts 127.0.0.1:8000/foro/adminstrar_posts/buscar
+	url(r'administrar_posts/buscar$', login_required(views.buscar), name='buscar'),
 ]

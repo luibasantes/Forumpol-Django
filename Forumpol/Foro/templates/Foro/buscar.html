@@ -1,0 +1,45 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/anuncios.css' %}">{% endblock %}
+{% block body %}
+    <section>
+        <div id="categoria" class="col-9">
+            <div class="container anuncios">
+                <h2>Buscar Posts</h2>
+                <div class="container-fluid">
+                    <form id="buscar" class="form-inline pull-right" method="post" action="{% url 'foro:buscar' %}">
+                        {% csrf_token %}
+                        <label for="user">Usuario: </label>
+                        <input type="text" class="form-control" id="user" name="usuario" required>
+                        <label for="post_categoria">Categoria: </label>
+                        <select id="post_categoria" name="categoria">
+                            {% for categoria in categorias %}
+                                <option>{{ categoria }}</option>
+                            {% endfor %}
+                        </select>
+                        <!--label for="fecha">Fecha: </label>
+                        <input id="fecha" type="date" name="fecha"-->
+                        <input class="btn btn-default" type="submit" value="Submit">
+                    </form>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item active">Respuestas
+                        <span class="post-info pull-right user glyphicon glyphicon-user"> Usuario</span>
+                        <span class="post-info pull-right fecha glyphicon glyphicon-calendar"> Fecha</span>
+                        <span class="post-info pull-right fecha glyphicon glyphicon-info"> Categoria</span>
+                    </li>
+					{% for post, thread in all_posts.items %}
+						<li class="list-group-item post-item" >
+						    <a href="{% url 'foro:detalle_anuncio' thread.op.id %}">{{post.content}}</a>
+                            <span class="post-info pull-right user">{{post.owner}}</span>
+                            <span class="post-info pull-right fecha">{{post.date}}</span>
+                            <span class="post-info pull-right user">{{thread.category}}</span>
+						</li>
+					{% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block script %}<!--script src="{% static 'js/carga_posts.js' %}"></script-->{% endblock%}

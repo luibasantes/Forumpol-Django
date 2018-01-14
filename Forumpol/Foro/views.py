@@ -86,6 +86,10 @@ def timeline(request):
 	username = request.user
 	return render(request, "Foro/fechas.html", {'usuario': username})
 
+def moderacion(request):
+	username = request.user
+	return render(request, "Foro/panel.html", {'usuario':username})
+
 def acerca_de(request):
 	admins = []
 	username = request.user
@@ -152,4 +156,25 @@ def banHammer(request,user_id):
 	except User.DoesNotExist:
 		raise Http404("Usuario no existe")
 	return redirect(reverse('foro:usuarios'))
-	
+
+def admin_posts(request):
+	username = request.user
+	categorias = Thread.objects.order_by().values_list('category',flat=True).distinct()
+	return render(request, "Foro/buscar.html", {'usuario':username,'categorias':categorias})
+
+def buscar(request):
+	username = request.user
+	categorias = Thread.objects.order_by().values_list('category', flat=True).distinct()
+	all_posts = dict()
+	try:
+		usuario = User.objects.get(username=request.POST['usuario'])
+	except User.DoesNotExist:
+		raise Http404("Usuario no existe")
+	categoria = request.POST['categoria']
+	posts = Post.objects.filter(owner=usuario).order_by("id")
+	for post in posts:
+		if post.reply_to:
+			all_posts[post] = Thread.objects.get(op=post.reply_to,category=categoria)
+		else:
+			all_posts[post] = Thread.objects.get(op=post,category=categoria)
+	return render(request, "Foro/buscar.html", {'usuario': username, 'categorias': categorias, 'all_posts':all_posts})

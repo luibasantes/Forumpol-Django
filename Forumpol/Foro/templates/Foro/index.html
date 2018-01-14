@@ -31,11 +31,11 @@
                     </div>
                 </a>
 				{% if user.is_staff or user.userprofile.moderador %}
-				<a href="{% url 'foro:usuarios' %}" class="foro-contenido">
+				<a href="{% url 'foro:moderacion' %}" class="foro-contenido">
                     <div class="foro-details">
-                        <i class="fas fa-user-circle fa-5x icon"></i>
-                        <h1 class="foro-heading">Usuarios</h1>
-                        <span class="foro-description">Informacion sobre los usuarios en el foro.</span>
+                        <i class="fas fa-shield-alt fa-5x icon"></i>
+                        <h1 class="foro-heading">Panel de moderación</h1>
+                        <span class="foro-description">Informacion sobre los usuarios y post en el foro.</span>
                     </div>
                 </a>
 				{% endif %}

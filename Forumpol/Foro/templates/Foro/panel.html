@@ -1,0 +1,29 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">{% endblock %}
+{% block body %}
+    <section>
+        <div id="categoria" class="col-9">
+            <header class="categoria-header">
+                <h1 class="categoria-heading">Panel del Moderador</h1>
+            </header>
+            <div class="foro">
+                <a href="{% url 'foro:usuarios' %}" class="foro-contenido">
+                    <div class="foro-details">
+                        <i class="fas fa-user-circle fa-5x icon"></i>
+                        <h1 class="foro-heading">Usuarios</h1>
+                        <span class="foro-description">Informacion los usuarios del foro </span>
+                    </div>
+                </a>
+                <a href="{% url 'foro:admin_posts' %}" class="foro-contenido">
+                    <div class="foro-details">
+                        <i class="far fa-address-card fa-5x icon"></i>
+                        <h1 class="foro-heading">Posts </h1>
+                        <span class="foro-description">Busca posts de usuarios específicos</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
