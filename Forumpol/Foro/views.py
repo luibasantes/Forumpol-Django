@@ -5,6 +5,7 @@ from .models import Post,Thread
 from accounts.models import UserProfile
 from django.urls import reverse
 from django.http import Http404,HttpResponseForbidden
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 def index(request):
@@ -99,7 +100,7 @@ def acerca_de(request):
 def aprobar(request):
 	username = request.user
 	if not (username.userprofile.moderador):
-		return HttpResponseForbidden()
+		raise PermissionDenied
 	posts = Post.objects.filter(aprobado=None).order_by("-id")
 	if len(posts) > 0:
 		return render(request, "Foro/aprobar.html", {'usuario':username,'posts':posts, 'titulo':"Posts por aprobar"})
@@ -109,7 +110,7 @@ def aprobar(request):
 def rechazados(request):
 	username = request.user
 	if not (username.userprofile.moderador or username.is_staff):
-		return HttpResponseForbidden()
+		return PermissionDenied
 	posts = Post.objects.filter(aprobado=False)
 	if len(posts) > 0:
 		return render(request, "Foro/aprobar.html", {'usuario':username,'posts':posts, 'titulo':"Posts Rechazados / Eliminados"})
@@ -120,7 +121,7 @@ def rechazados(request):
 def aprobado(request,Post_Id,value):
 	username = request.user
 	if not (username.userprofile.moderador or username.is_staff):
-		return HttpResponseForbidden()
+		return PermissionDenied
 	post = Post.objects.get(pk=Post_Id)
 	if (int(value)==1):
 		post.aprobado = True
@@ -132,7 +133,7 @@ def aprobado(request,Post_Id,value):
 def usuarios(request):
 	username = request.user
 	if not (username.userprofile.moderador or username.is_staff):
-		return HttpResponseForbidden()
+		raise PermissionDenied
 	admins = []
 	staff = User.objects.filter(is_staff=True,is_active=True)
 	moderadores = User.objects.filter(is_staff=False,is_active=True,userprofile__moderador=True)
@@ -144,7 +145,7 @@ def usuarios(request):
 def banHammer(request,user_id):
 	username = request.user
 	if not (username.userprofile.moderador or username.is_staff):
-		return HttpResponseForbidden()
+		return PermissionDenied
 	try:
 		usuario = User.objects.get(id=int(user_id))
 		if not (usuario.is_staff):
@@ -178,3 +179,8 @@ def buscar(request):
 		else:
 			all_posts[post] = Thread.objects.get(op=post,category=categoria)
 	return render(request, "Foro/buscar.html", {'usuario': username, 'categorias': categorias, 'all_posts':all_posts})
+
+
+def repo(request):
+	username = request.user
+	return render(request, "Foro/repositorio.html",{'usuario':username})

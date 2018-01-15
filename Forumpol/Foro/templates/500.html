@@ -1,0 +1,13 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FORUMPOL | ERROR 500</title>
+	{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/error.css' %}">{% endblock %}
+</head>
+<body>
+	<h1 class="advisor">ERROR DEL SERVIDOR</h1>
+	<h2> Existen algunos problemas que estan afectando al servidor, intente mas luego</h2> 
+	<p>Si crees que esto es un error, por favor contáctese con este administrador.</p>
+</body>
+</html>

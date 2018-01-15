@@ -55,4 +55,7 @@ urlpatterns = [
 
 	#Administrar posts 127.0.0.1:8000/foro/adminstrar_posts/buscar
 	url(r'administrar_posts/buscar$', login_required(views.buscar), name='buscar'),
+
+	#Repositorio localhost:8000/foro/repositorio
+	url(r'repositorio/$',login_required(views.repo),name='repo')
 ]

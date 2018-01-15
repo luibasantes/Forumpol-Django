@@ -18,6 +18,9 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.defaults import (permission_denied,
+                                   page_not_found,
+                                   server_error)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +29,12 @@ urlpatterns = [
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+
+urlpatterns += [
+        path(r'^403/$', permission_denied),
+        path(r'^404/$', page_not_found),
+        path(r'^500/$', server_error)
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

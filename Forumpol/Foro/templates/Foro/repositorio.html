@@ -1,0 +1,18 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/repo.css' %}">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+{% endblock %}
+{% block body %}
+	<section>
+		<div id="repo_body" class="col-9">
+			<div class="container recursos">
+				<h2>Repositorio</h2>
+			</div>
+		</div>
+	</section>
+{% endblock %}

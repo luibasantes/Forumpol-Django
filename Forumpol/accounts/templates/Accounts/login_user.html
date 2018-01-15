@@ -30,7 +30,7 @@
 				<form class="form-signin" role="form" action="{% url 'accounts:login_user'%}" method="post" enctype="multipart/form-data">
 					{% csrf_token %}
 					<img class="mx-auto d-block" src="{% static 'images/logo_sign.png' %}" alt="Logo de pagina">
-					<h3>Log in to Forumpol</h3>
+					<h3>Iniciar sesi&oacute;n en Forumpol</h3>
 					{% if error_message %}
 						<p><strong>{{ error_message }}</strong></p>
 					{% endif %}
@@ -38,7 +38,7 @@
 					<input id="id_password" maxlength="15" name="password" type="password" class="form-control text-white" placeholder="password" required>
 					<button class="btn btn-lg btn-white btn-block" type="submit">Log In</button>
 					<div class="text-white">
-						Don't have an account? <a href="{% url 'accounts:register' %}">Click here</a> to register.
+						No tienes una cuenta? <a href="{% url 'accounts:register' %}">click aqui</a> para registrarte.
 					</div>
 				</form>
 				

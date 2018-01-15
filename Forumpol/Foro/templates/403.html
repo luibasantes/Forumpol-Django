@@ -1,0 +1,13 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FORUMPOL | ERROR 403</title>
+	{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/error.css' %}">{% endblock %}
+</head>
+<body>
+	<h1 class="advisor">ACCESO DENEGADO</h1>
+	<h2> No tienes permisos para acceder al contenido de esta página.</h2> 
+	<p>Si crees que esto es un error, por favor contáctese con este administrador.</p>
+</body>
+</html>

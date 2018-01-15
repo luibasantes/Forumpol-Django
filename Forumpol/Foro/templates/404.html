@@ -1,0 +1,13 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FORUMPOL | ERROR 404</title>
+	{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/error.css' %}">{% endblock %}
+</head>
+<body>
+	<h1 class="advisor">PÁGINA NO ENCONTRADA</h1>
+	<h2> La página que estás intentando acceder no existe o se ha movido.</h2> 
+	<p>Si crees que esto es un error, por favor contáctese con este administrador.</p>
+</body>
+</html>

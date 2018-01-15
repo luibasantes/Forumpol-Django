@@ -5,6 +5,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse
 from django.http import Http404,HttpResponseForbidden
 from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
 
 from .forms import UserForm, EditProfileForm, EditUserForm
 
@@ -22,7 +23,7 @@ def view_profile(request):
 def view_profile(request,user_id):
 	user = request.user
 	if not (user.id == int(user_id) or user.is_staff or user.userprofile.moderador):
-		return HttpResponseForbidden()
+		raise PermissionDenied
 	try:
 		usuario = User.objects.get(id = str(user_id))
 	except User.DoesNotExist:
@@ -100,9 +101,9 @@ def login_user(request):
 					login(request, user)
 					return render(request,'Foro/index.html', {'usuario':username})
 				else:
-					return render(request, 'Accounts/login_user.html', {'error_message': 'Your account has been disabled'})
+					return render(request, 'Accounts/login_user.html', {'error_message': 'Tu cuenta ha sido deshabilitada'})
 			else:
-				return render(request, 'Accounts/login_user.html', {'error_message': 'Invalid login'})
+				return render(request, 'Accounts/login_user.html', {'error_message': 'Usuario o contraseña incorrecto'})
 		except:
 			print("Algo paso al cargar el login_user.")
 	return render(request, 'Accounts/login_user.html')
