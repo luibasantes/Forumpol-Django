@@ -133,7 +133,11 @@ MEDIA_URL = '/media/'
 
 LOGIN_URL = '/accounts/log_in/'
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'forumpol2018@gmail.com' 
+EMAIL_HOST_PASSWORD = 'forumpol.2018'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 #Para probar el servicio, correr las lineas inferiores
-#python -m smtpd -n -c DebuggingServer localhost:1025
+#python -m smtpd -n -c DebuggingServer localhost:587
