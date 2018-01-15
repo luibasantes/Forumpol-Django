@@ -135,3 +135,5 @@ LOGIN_URL = '/accounts/log_in/'
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
+#Para probar el servicio, correr las lineas inferiores
+#python -m smtpd -n -c DebuggingServer localhost:1025

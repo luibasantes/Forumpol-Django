@@ -12,3 +12,4 @@ $(".resp-btn").on("click", function(event) {
 $(".editar-btn").on("click", function(event) {
 	$(".editar").show();
 });
+
