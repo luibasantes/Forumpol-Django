@@ -7,9 +7,9 @@
         <div id="op-post" class="container-fluid">
             <h3 class="post-topic">
 				{{thread.topic}}
-				<button class="btn btn-primary btn-xs pull-right resp-btn glyphicon glyphicon-comment"> RESPONDER</button>
+				<a href="#formulario"><button class="btn btn-primary btn-xs pull-right resp-btn glyphicon glyphicon-comment"> RESPONDER</button></a>
 				{% if usuario.userprofile.moderador %}
-				<button class="btn btn-primary btn-xs pull-right editar-btn glyphicon glyphicon-pencil"> EDITAR</button>
+				<button class="btn btn-primary btn-xs pull-right editar-btn glyphicon glyphicon-pencil" href=""> EDITAR</button>
 				{% endif %}
 			</h3>
             <div id="op">
@@ -56,7 +56,8 @@
     </div>
     <div id="hilo-footer" class="col-9">
         <div class="container-fluid rep-container">
-			<form id="resp-box" class="form-signin" role="form" action="" method="post" enctype="multipart/form-data">
+            <a name="formulario"></a>
+			<form id="resp-box"  class="form-signin" role="form" action="" method="post" enctype="multipart/form-data">
                 <h3>Escribe tu respuesta: </h3>
 				{% csrf_token %}
 				{{ form.as_p }}

@@ -30,15 +30,24 @@
 				<form class="form-signin" role="form" action="{% url 'accounts:login_user'%}" method="post" enctype="multipart/form-data">
 					{% csrf_token %}
 					<img class="mx-auto d-block" src="{% static 'images/logo_sign.png' %}" alt="Logo de pagina">
+<<<<<<< HEAD
 					<h3>Iniciar sesi&oacute;n en Forumpol</h3>
+=======
+					<h3>Bienvenido a Forumpol</h3>
+>>>>>>> 9e3a4e4b2953cd80b1ec8e282302e09f12e55514
 					{% if error_message %}
 						<p><strong>{{ error_message }}</strong></p>
 					{% endif %}
 					<input id="id_username" maxlength="15" name="username" type="text" class="form-control text-white" placeholder="Username" required >
 					<input id="id_password" maxlength="15" name="password" type="password" class="form-control text-white" placeholder="password" required>
-					<button class="btn btn-lg btn-white btn-block" type="submit">Log In</button>
+					<button class="btn btn-lg btn-white btn-block" type="submit">Iniciar Sesion</button>
 					<div class="text-white">
+<<<<<<< HEAD
 						No tienes una cuenta? <a href="{% url 'accounts:register' %}">click aqui</a> para registrarte.
+=======
+						No tienes Cuenta? <a href="{% url 'accounts:register' %}">Presiona Aqui</a> para registrarte.<br>
+						¿Olvidaste tu contraseña? <a href="{% url 'accounts:reset_password' %}">Presiona Aqui</a>.
+>>>>>>> 9e3a4e4b2953cd80b1ec8e282302e09f12e55514
 					</div>
 				</form>
 				

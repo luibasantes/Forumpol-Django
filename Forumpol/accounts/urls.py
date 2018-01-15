@@ -26,13 +26,13 @@ urlpatterns = [
     url(r'^profile/change_password/$', login_required(views.change_password), name='change_password'),
 
     #Busqueda 127.0.0.1:8000/accounts/reset_password
-    url(r'^reset_password/$', password_reset,{'template_name':'Accounts/reset_password.html','post_reset_redirect':'accounts:password_reset_done'}),
+    url(r'^reset_password/$', password_reset,{'template_name':'Accounts/reset_password.html','post_reset_redirect':'accounts:password_reset_done', 'email_template_name': 'Accounts/reset_password_email.html'},name='reset_password'),
 
     #Busqueda 127.0.0.1:8000/accounts/reset_password/done
-    url(r'^reset_password/done/$', password_reset_done, name='password_reset_done'),
+    url(r'^reset_password/done/$', password_reset_done,{'template_name':'Accounts/reset_password_done.html'}, name='password_reset_done'),
 
     #Busqueda 127.0.0.1:8000/accounts/reset_password/confirm
-    url(r'^reset_password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', password_reset_confirm, name='password_reset_confirm'),
+    url(r'^reset_password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', password_reset_confirm, {'post_reset_redirect': 'accounts:password_reset_complete'},name='password_reset_confirm'),
 
     #Busqueda 127.0.0.1:8000/accounts/reset_password/complete
     url(r'^reset_password/complete/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', password_reset_complete, name='password_reset_complete'),
