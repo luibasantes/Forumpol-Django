@@ -1,7 +1,11 @@
 {% extends 'Foro/base.html' %}
 {% load static from staticfiles %}
 {% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
-{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/anuncios.css' %}">{% endblock %}
+{% block estilo %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/anuncios.css' %}">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+{% endblock %}
 {% block body %}
     <section>
         <div id="categoria" class="col-9">
@@ -14,33 +18,40 @@
                         <a href="{% url 'foro:aprobar' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-inbox"> Post por Revisar</span></a>
                     {% endif %}
                 </h2>
-                <ul class="list-group">
-                    <li class="list-group-item active">Titulo
-                        <span class="post-info pull-right user glyphicon glyphicon-user"> Usuario</span>
-                        <span class="post-info pull-right fecha glyphicon glyphicon-calendar"> Fecha</span>
-                        <span class="post-info pull-right fecha glyphicon glyphicon glyphicon-comment"> Respuestas</span>
-                    </li>
-					{% for thread in anuncios %}
-						<li class="list-group-item post-item" >
-						<a href="{% url 'foro:detalle_anuncio' thread.op.id %}">{{thread.topic}}</a>
-						<span class="post-info pull-right user">{{thread.op.owner.username}}</span>
-						<span class="post-info pull-right fecha">{{thread.op.date}}</span>
-						<span class="post-info pull-right replies">{{ thread.respuestas }}</span>
-						</li>
-					{% endfor %}
-                </ul>
-                <nav id="paginas">
-                    <ul class="pagination">
-                        <li><a href="#" aria-label="Previous"><span>&laquo;</span></a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#" aria-label="Next"><span>&raquo;</span></a></li>
-                    </ul>
-                </nav>
-
+                <table id="myTable" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Respuestas</th>
+                            <th>Fecha</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Respuestas</th>
+                            <th>Fecha</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for thread in anuncios %}
+                        <tr>
+                            <td><a href="{% url 'foro:detalle_anuncio' thread.op.id %}">{{thread.topic}}</a></td>
+                            <td>{{ thread.respuestas }}</td>
+                            <td>{{thread.op.date}}</td>
+                            <td>{{thread.op.owner.username}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 {% endblock %}
-{% block script %}<!--script src="{% static 'js/carga_posts.js' %}"></script-->{% endblock%}
+{% block script %}
+<script src="{% static 'js/carga_posts.js' %}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+{% endblock%}
