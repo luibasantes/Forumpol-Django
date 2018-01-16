@@ -142,3 +142,14 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 #Para probar el servicio, correr las lineas inferiores
 #python -m smtpd -n -c DebuggingServer localhost:587
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}

@@ -41,7 +41,6 @@ def detalle_anuncio(request,Post_Id):
 		my_Post.reply_to = Post.objects.get(id = str(Post_Id))
 		my_Post.owner = request.user
 		my_Post.save()
-		thread.respuestas += 1
 		thread.save()
 		form_Post = CreateOriginalPostForm(request.POST or None,request.FILES or None)
 		contenido={"anuncio":post,'thread':thread,'usuario':request.user,'respuestas':respuestas,'form':form_Post}	
@@ -128,8 +127,16 @@ def aprobado(request,Post_Id,value):
 	post = Post.objects.get(pk=Post_Id)
 	if (int(value)==1):
 		post.aprobado = True
+		if post.reply_to:
+			thread = Thread.objects.get(op=post.reply_to)
+			thread.respuestas += 1
+			thread.save()
 	else:
 		post.aprobado = False
+		if post.reply_to:
+			thread = Thread.objects.get(op=post.reply_to)
+			thread.respuestas -= 1
+			thread.save()
 	post.save()
 	return redirect(reverse('foro:aprobar'))
 	

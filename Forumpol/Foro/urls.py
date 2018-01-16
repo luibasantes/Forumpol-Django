@@ -2,11 +2,8 @@ from django.urls import path
 from django.conf.urls import url, include
 from . import views
 from django.contrib.auth.decorators import login_required
-#from rest_framework.urlpatterns import format_suffix_patterns
 
 app_name = "foro"
-
-
 
 urlpatterns = [
 	#Busqueda 127.0.0.1:8000/foro
@@ -59,9 +56,4 @@ urlpatterns = [
 
 	#Repositorio localhost:8000/foro/repositorio
 	url(r'repositorio/$',login_required(views.repo),name='repo'),
-
-    #REST API 127.0.0.1:8000/stocks
-	#url(r'^api/posts/', include('..api.urls', namespace='api-posts'))
 ]
-
-#urlpatterns = format_suffix_patterns(urlpatterns)
