@@ -2,10 +2,13 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from .forms import CreateOriginalPostForm, CreateThreadForm
 from .models import Post,Thread
-from accounts.models import UserProfile
 from django.urls import reverse
-from django.http import Http404,HttpResponseForbidden
+from django.http import Http404
 from django.core.exceptions import PermissionDenied
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import PostSerializer
 
 # Create your views here.
 def index(request):
@@ -184,3 +187,12 @@ def buscar(request):
 def repo(request):
 	username = request.user
 	return render(request, "Foro/repositorio.html",{'usuario':username})
+
+'''
+class PostList(APIView):
+
+	def get(self, request):
+		posts = Post.objects.all()
+		serializer = PostSerializer(posts,many=True)
+		return Response(serializer.data)
+'''
