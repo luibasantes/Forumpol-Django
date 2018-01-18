@@ -10,6 +10,8 @@ urlpatterns = [
     # Crear y Listar post 127.0.0.1:8000/api/posts
     url(r'^posts/$', PostAPIView.as_view(), name='post_create'),
 
+    url(r'^posts/user/(?P<pk>\d+)/$', PostUserAPIView.as_view(), name='post_user'),
+
     # Leer, Actualizar, Borrar 127 thread 127.0.0.1:8000/api/threads/Id_Thread
     url(r'^threads/(?P<pk>\d+)/$', ThreadRudView.as_view(), name='thread_rud'),
 

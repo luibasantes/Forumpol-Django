@@ -9,13 +9,19 @@ class PostAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 
     def get_queryset(self):
         return Post.objects.all()
-
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
+class PostUserAPIView(mixins.CreateModelMixin, generics.ListAPIView):
+    lookup_field = 'pk'
+    serializer_class= PostSerializer
+
+    def get_queryset(self):
+        uid = self.kwargs.get("pk")
+        return Post.objects.filter(owner_id=uid)
 
 class PostRudView(generics.RetrieveUpdateAPIView):
     lookup_field = 'pk'
