@@ -4,8 +4,11 @@ from .forms import CreateOriginalPostForm, CreateThreadForm
 from .models import Post,Thread
 from accounts.models import UserProfile
 from django.urls import reverse
-from django.http import Http404,HttpResponseForbidden
+from django.http import Http404,HttpResponseForbidden,HttpResponse
 from django.core.exceptions import PermissionDenied
+from django.core.serializers.json import DjangoJSONEncoder
+from django.urls import reverse
+import json
 
 # Create your views here.
 def index(request):
@@ -178,8 +181,12 @@ def buscar(request):
 			all_posts[post] = Thread.objects.get(op=post.reply_to,category=categoria)
 		else:
 			all_posts[post] = Thread.objects.get(op=post,category=categoria)
-	return render(request, "Foro/buscar.html", {'usuario': username, 'categorias': categorias, 'all_posts':all_posts})
+	result=[serializeUserPosts(p,t) for p,t in all_posts.items()]
+	results={"datos" : result, "posts_url" : reverse('foro:anuncios')}
+	return HttpResponse(json.dumps(results,cls=DjangoJSONEncoder),content_type='application/json')
 
+def serializeUserPosts(post,thread):
+	return {"id": thread.op.id,"content" : post.content,"owner" : post.owner.username,"date" : post.date, "category" : thread.category}
 
 def repo(request):
 	username = request.user
