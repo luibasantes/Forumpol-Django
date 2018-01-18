@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,22 @@ MEDIA_URL = '/media/'
 
 LOGIN_URL = '/accounts/log_in/'
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'forumpol2018@gmail.com' 
+EMAIL_HOST_PASSWORD = 'forumpol.2018'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 #Para probar el servicio, correr las lineas inferiores
-#python -m smtpd -n -c DebuggingServer localhost:1025
+#python -m smtpd -n -c DebuggingServer localhost:587
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}

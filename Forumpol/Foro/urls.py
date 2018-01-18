@@ -1,11 +1,9 @@
 from django.urls import path
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
-from django.contrib.auth.decorators import login_required	
+from django.contrib.auth.decorators import login_required
 
 app_name = "foro"
-
-
 
 urlpatterns = [
 	#Busqueda 127.0.0.1:8000/foro
@@ -57,5 +55,5 @@ urlpatterns = [
 	url(r'administrar_posts/buscar$', login_required(views.buscar), name='buscar'),
 
 	#Repositorio localhost:8000/foro/repositorio
-	url(r'repositorio/$',login_required(views.repo),name='repo')
+	url(r'repositorio/$',login_required(views.repo),name='repo'),
 ]

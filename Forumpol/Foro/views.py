@@ -2,13 +2,17 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from .forms import CreateOriginalPostForm, CreateThreadForm
 from .models import Post,Thread
-from accounts.models import UserProfile
 from django.urls import reverse
 from django.http import Http404,HttpResponseForbidden,HttpResponse
 from django.core.exceptions import PermissionDenied
 from django.core.serializers.json import DjangoJSONEncoder
 from django.urls import reverse
 import json
+from django.core.exceptions import PermissionDenied
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import PostSerializer
 
 # Create your views here.
 def index(request):
@@ -41,7 +45,6 @@ def detalle_anuncio(request,Post_Id):
 		my_Post.reply_to = Post.objects.get(id = str(Post_Id))
 		my_Post.owner = request.user
 		my_Post.save()
-		thread.respuestas += 1
 		thread.save()
 		form_Post = CreateOriginalPostForm(request.POST or None,request.FILES or None)
 		contenido={"anuncio":post,'thread':thread,'usuario':request.user,'respuestas':respuestas,'form':form_Post}	
@@ -128,8 +131,16 @@ def aprobado(request,Post_Id,value):
 	post = Post.objects.get(pk=Post_Id)
 	if (int(value)==1):
 		post.aprobado = True
+		if post.reply_to:
+			thread = Thread.objects.get(op=post.reply_to)
+			thread.respuestas += 1
+			thread.save()
 	else:
 		post.aprobado = False
+		if post.reply_to:
+			thread = Thread.objects.get(op=post.reply_to)
+			thread.respuestas -= 1
+			thread.save()
 	post.save()
 	return redirect(reverse('foro:aprobar'))
 	
@@ -191,3 +202,12 @@ def serializeUserPosts(post,thread):
 def repo(request):
 	username = request.user
 	return render(request, "Foro/repositorio.html",{'usuario':username})
+
+'''
+class PostList(APIView):
+
+	def get(self, request):
+		posts = Post.objects.all()
+		serializer = PostSerializer(posts,many=True)
+		return Response(serializer.data)
+'''

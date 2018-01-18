@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 	path(r'foro/', include('Foro.urls')),
 	path(r'accounts/', include('accounts.urls')),
+    path(r'api/', include('Foro.api.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()

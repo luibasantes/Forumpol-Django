@@ -81,7 +81,9 @@
 				{% for admin in staff %}
 			  	<div class="col-sm-3 col-md-4">
 					<div class="thumbnail  tarjeta">
+						{% if admin.userprofile.image %}
 				  		<img class = "card" src="{{ admin.userprofile.image.url }}" alt="perfil-{{ admin.first_name }}">
+						{% endif %}
 				  		<div class="caption">
 					  		<h3>{{ admin.first_name }} {{ admin.last_name }}</h3>
 					  		<p>{{ admin }}</p>
