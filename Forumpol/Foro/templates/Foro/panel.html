@@ -19,8 +19,22 @@
                 <a href="{% url 'foro:admin_posts' %}" class="foro-contenido">
                     <div class="foro-details">
                         <i class="far fa-address-card fa-5x icon"></i>
-                        <h1 class="foro-heading">Posts </h1>
+                        <h1 class="foro-heading">Busqueda Posts </h1>
                         <span class="foro-description">Busca posts de usuarios específicos</span>
+                    </div>
+                </a>
+                <a href="{% url 'foro:aprobar_post' %}" class="foro-contenido">
+                    <div class="foro-details">
+                        <i class="far fa-envelope-open fa-5x icon"></i>
+                        <h1 class="foro-heading">Post Pendientes </h1>
+                        <span class="foro-description">Se mostraran los post por aprobar</span>
+                    </div>
+                </a>
+                <a href="{% url 'foro:rechazar_post' %}" class="foro-contenido">
+                    <div class="foro-details">
+                        <i class="far fa-trash-o fa-5x icon"></i>
+                        <h1 class="foro-heading">Post Rechazados </h1>
+                        <span class="foro-description">Se mostraran los post rechazados</span>
                     </div>
                 </a>
             </div>

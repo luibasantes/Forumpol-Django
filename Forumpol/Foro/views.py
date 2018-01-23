@@ -9,12 +9,13 @@ from django.core.serializers.json import DjangoJSONEncoder
 import json
 
 
-# Create your views here.
+#--------------------------------------MENU PRINCIPAL-----------------------------------------------------
 def index(request):
 	username = request.user
 	return render(request,"Foro/index.html",{'usuario':username})
 
 
+#--------------------------------------AQUI EMPIEZA ANUNCIOS-----------------------------------------------------
 def anuncios(request):
 	all_anuncios = Thread.objects.filter(category="anuncio",op__aprobado=True).order_by("-id")
 	username = request.user
@@ -42,7 +43,7 @@ def detalle_anuncio(request,Post_Id):
 		thread.save()
 		form_Post = CreateOriginalPostForm(request.POST or None,request.FILES or None)
 		contenido={"anuncio":post,'thread':thread,'usuario':request.user,'respuestas':respuestas,'form':form_Post}
-		return render(request,"foro/hilo.html",contenido)
+		return render(request,"Foro/hilo.html",contenido)
 	contenido={"anuncio":post,'thread':thread,'usuario':request.user,'respuestas':respuestas,'form':form_Post}
 	return render(request,"Foro/hilo.html",contenido)
 
@@ -62,6 +63,68 @@ def create_anuncio(request):
 	context = {'user_form': form_Thread, 'profile_form': form_Post,'usuario':request.user}
 	return render(request, 'Foro/create_anuncio.html', context)
 
+
+
+
+
+#--------------------------------------AQUI TERMINA ANUNCIOS-----------------------------------------------------
+
+#--------------------------------------AQUI EMPIEZA VIDA ESTUDIANTIL---------------------------------------------
+def vida_estudiantil(request):
+	all_anuncios = Thread.objects.filter(category="vida_estudiantil",op__aprobado=True).order_by("-id")
+	username = request.user
+	moderador = request.user.userprofile.moderador
+	context = {'usuario':username,"threads":all_anuncios,"moderador":moderador}
+	return render(request, "Foro/vida_estudiantil.html", context)
+
+def create_experiencia(request):
+	form_Thread = CreateThreadForm(request.POST or None)
+	form_Post = CreateOriginalPostForm(request.POST or None,request.FILES or None)
+	if form_Thread.is_valid() and form_Post.is_valid():
+		my_Post = form_Post.save(commit=False)
+		my_Post.owner = request.user
+		my_Post.save()
+		my_thread = form_Thread.save(commit=False)
+		my_thread.category ='vida_estudiantil'
+		my_thread.op =Post.objects.last()
+		my_thread.save()
+		return redirect(reverse('foro:vida_estudiantil'))
+	context = {'user_form': form_Thread, 'profile_form': form_Post,'usuario':request.user}
+	return render(request, 'Foro/create_experiencia.html', context)
+
+
+
+
+
+#--------------------------------------AQUI TERMINA VIDA ESTUDIANTIL---------------------------------------------
+
+#--------------------------------------AQUI EMPIEZA CLUBS ESPOL--------------------------------------------------
+def clubs_espol(request):
+	all_anuncios = Thread.objects.filter(category="clubs_espol",op__aprobado=True).order_by("-id")
+	username = request.user
+	moderador = request.user.userprofile.moderador
+	context = {'usuario':username,"threads":all_anuncios,"moderador":moderador}
+	return render(request, "Foro/clubs_espol.html", context)
+
+def create_evento_club(request):
+	form_Thread = CreateThreadForm(request.POST or None)
+	form_Post = CreateOriginalPostForm(request.POST or None,request.FILES or None)
+	if form_Thread.is_valid() and form_Post.is_valid():
+		my_Post = form_Post.save(commit=False)
+		my_Post.owner = request.user
+		my_Post.save()
+		my_thread = form_Thread.save(commit=False)
+		my_thread.category ='clubs_espol'
+		my_thread.op =Post.objects.last()
+		my_thread.save()
+		return redirect(reverse('foro:clubs_espol'))
+	context = {'user_form': form_Thread, 'profile_form': form_Post,'usuario':request.user}
+	return render(request, 'Foro/create_evento_club.html', context)
+
+#--------------------------------------AQUI TERMINA CLUBS ESPOL--------------------------------------------------
+
+
+#--------------------------------------AQUI EMPIEZA VARIOS-------------------------------------------------------
 def galeria(request):
 	username = request.user
 	info = dict()
@@ -94,46 +157,12 @@ def acerca_de(request):
 	staff = User.objects.filter(is_staff=True)
 	return render(request, "Foro/acercaDe.html", {'usuario':username, 'staff':staff})
 
-def aprobar(request):
-	username = request.user
-	if not (username.userprofile.moderador):
-		raise PermissionDenied
-	posts = Post.objects.filter(aprobado=None).order_by("-id")
-	if len(posts) > 0:
-		return render(request, "Foro/aprobar.html", {'usuario':username,'posts':posts, 'titulo':"Posts por aprobar"})
-	else:
-		return render(request, "Foro/aprobar.html", {'usuario': username, 'titulo': "No hay posts por aprobar"})
-
-def rechazados(request):
-	username = request.user
-	if not (username.userprofile.moderador or username.is_staff):
-		return PermissionDenied
-	posts = Post.objects.filter(aprobado=False)
-	if len(posts) > 0:
-		return render(request, "Foro/aprobar.html", {'usuario':username,'posts':posts, 'titulo':"Posts Rechazados / Eliminados"})
-	else:
-		return render(request, "Foro/aprobar.html", {'usuario': username, 'titulo': "No hay posts Rechazados/Eliminados"})
 
 
-def aprobado(request,Post_Id,value):
-	username = request.user
-	if not (username.userprofile.moderador or username.is_staff):
-		raise PermissionDenied
-	post = Post.objects.get(pk=Post_Id)
-	if (int(value)==1):
-		post.aprobado = True
-		if post.reply_to:
-			thread = Thread.objects.get(op=post.reply_to)
-			thread.respuestas += 1
-			thread.save()
-	else:
-		post.aprobado = False
-		if post.reply_to:
-			thread = Thread.objects.get(op=post.reply_to)
-			thread.respuestas -= 1
-			thread.save()
-	post.save()
-	return redirect(reverse('foro:aprobar'))
+
+#--------------------------------------AQUI TERMINA VARIOS-------------------------------------------------------
+
+#--------------------------------------AQUI EMPIEZA PANEL MODERADOR----------------------------------------------
 
 def usuarios(request):
 	username = request.user
@@ -162,6 +191,51 @@ def banHammer(request,user_id):
 		raise Http404("Usuario no existe")
 	return redirect(reverse('foro:usuarios'))
 
+def aprobar_post(request):
+	username = request.user
+	if not (username.userprofile.moderador):
+		raise PermissionDenied
+	posts = Post.objects.filter(aprobado=None).order_by("-id")
+	if len(posts) > 0:
+		return render(request, "Foro/aprobar.html", {'usuario':username,'posts':posts, 'titulo':"Posts por aprobar"})
+	else:
+		return render(request, "Foro/aprobar.html", {'usuario': username, 'titulo': "No hay Post por aprobar"})
+
+def rechazar_post(request):
+	username = request.user
+	if not (username.userprofile.moderador or username.is_staff):
+		return PermissionDenied
+	posts = Post.objects.filter(aprobado=False)
+	if len(posts) > 0:
+		return render(request, "Foro/aprobar.html", {'usuario':username,'posts':posts, 'titulo':"Post Rechazados"})
+	else:
+		return render(request, "Foro/aprobar.html", {'usuario': username, 'titulo': "No hay Post Rechazados"})
+
+def aprobado(request,Post_Id,value):
+	username = request.user
+	if not (username.userprofile.moderador or username.is_staff):
+		raise PermissionDenied
+	post = Post.objects.get(pk=Post_Id)
+	contador=1
+	if (int(value)==1):
+		post.aprobado = True
+		if post.reply_to:
+			thread = Thread.objects.get(op=post.reply_to)
+			thread.respuestas += contador
+			thread.save()
+		post.save()
+		return redirect(reverse('foro:aprobar_post'))
+	else:
+		if(post.aprobado==None):
+		   contador=0
+		post.aprobado = False
+		if post.reply_to:
+			thread = Thread.objects.get(op=post.reply_to)
+			thread.respuestas -= contador
+			thread.save()
+		post.save()
+		return redirect(reverse('foro:rechazar_post'))
+
 def admin_posts(request):
 	username = request.user
 	categorias = Thread.objects.order_by().values_list('category',flat=True).distinct()
@@ -187,6 +261,9 @@ def buscar(request):
     result=[serializeUserPosts(p,t) for p,t in all_posts.items()]
     results={"datos" : result, "posts_url" : reverse('foro:anuncios')}
     return HttpResponse(json.dumps(results,cls=DjangoJSONEncoder),content_type='application/json')
+
+#--------------------------------------AQUI TERMINA PANEL MODERADOR----------------------------------------------
+
 
 def serializeUserPosts(post,thread):
 	return {"id": thread.op.id,"content" : post.content,"owner" : post.owner.username,"date" : post.date, "category" : thread.category}

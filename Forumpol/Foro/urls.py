@@ -18,6 +18,27 @@ urlpatterns = [
 	#Posts de las sección de anuncios 127.0.0.1:8000/foro/anuncios/crear
 	url(r'^anuncios/crear/$', login_required(views.create_anuncio), name='create_anuncio'),
 
+	#Aprobar post 127.0.0.1:8000/foro/anuncios/aprobar
+	url(r'anuncios/aprobar/$', login_required(views.aprobar_post), name='aprobar_post'),
+
+	#Aprobar post 127.0.0.1:8000/foro/anuncios/rechazados
+	url(r'anuncios/rechazados/$', login_required(views.rechazar_post), name='rechazar_post'),
+
+	#Aprobando post 127.0.0.1:8000/foro/anuncios/aprobar/#Post_ID/1 || 0
+	url(r'anuncios/aprobar/(?P<Post_Id>[-]?[0-9]+)/(?P<value>(1|0))/$', login_required(views.aprobado), name='aprobado'),
+
+	#Posts de las sección de anuncios 127.0.0.1:8000/foro/vida_estudiantil
+	url(r'^vida_estudiantil/$', login_required(views.vida_estudiantil), name='vida_estudiantil'),
+
+	#Posts de las sección de anuncios 127.0.0.1:8000/foro/anuncios/crear
+	url(r'^vida_estudiantil/crear/$', login_required(views.create_experiencia), name='create_experiencia'),
+
+	#Posts de las sección de anuncios 127.0.0.1:8000/foro/vida_estudiantil
+	url(r'^clubs_espol/$', login_required(views.clubs_espol), name='clubs_espol'),
+
+	#Posts de las sección de anuncios 127.0.0.1:8000/foro/anuncios/crear
+	url(r'^clubs_espol/crear/$', login_required(views.create_evento_club), name='create_evento_club'),
+
 	#Galeria 127.0.0.1:8000/foro/galeria
 	url(r'^galeria/$', login_required(views.galeria), name='galeria'),
 
@@ -35,15 +56,6 @@ urlpatterns = [
 
 	#Aprobando post 127.0.0.1:8000/foro/anuncios/usuarios/banHammer/#user_id
 	url(r'usuarios/banHammer/(?P<user_id>[-]?[0-9]+)/$', login_required(views.banHammer), name='banHammer'),
-
-	#Aprobar post 127.0.0.1:8000/foro/anuncios/aprobar
-	url(r'anuncios/aprobar/$', login_required(views.aprobar), name='aprobar'),
-
-	#Aprobando post 127.0.0.1:8000/foro/anuncios/aprobar/#Post_ID/1 || 0
-	url(r'anuncios/aprobar/(?P<Post_Id>[-]?[0-9]+)/(?P<value>(1|0))/$', login_required(views.aprobado), name='aprobado'),
-
-	#Aprobar post 127.0.0.1:8000/foro/anuncios/rechazados
-	url(r'anuncios/rechazados/$', login_required(views.rechazados), name='rechazados'),
 
 	#Aprobar post 127.0.0.1:8000/foro/panel_moderacion
 	url(r'moderacion/$', login_required(views.moderacion), name='moderacion'),
