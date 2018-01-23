@@ -245,7 +245,7 @@ def buscar(request):
     username = request.user
     if not (username.userprofile.moderador or username.is_staff):
         raise PermissionDenied
-    categorias = Thread.objects.order_by().values_list('category', flat=True).distinct()
+    #categorias = Thread.objects.order_by().values_list('category', flat=True).distinct()
     all_posts = dict()
     try:
         usuario = User.objects.get(username=request.POST['usuario'])

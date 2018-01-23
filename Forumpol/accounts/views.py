@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse
-from django.http import Http404,HttpResponseForbidden
+from django.http import Http404
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from Foro.models import Thread, Post
@@ -24,7 +24,7 @@ def view_profile(request,user_id):
 		usuario = User.objects.get(id = str(user_id))
 	except User.DoesNotExist:
 		raise Http404("Usuario No existe")
-	threads = Thread.objects.filter(op__owner = user_id)
+	threads = Thread.objects.filter(op__owner = user_id,op__aprobado=True)
 	context = {'user':user,'usuarioPerfil':usuario,'threads':threads}
 	return render(request, 'Accounts/profile.html',context)
 
