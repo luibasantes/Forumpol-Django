@@ -12,10 +12,10 @@
             <div class="container anuncios">
                 <h2>
                     <b>ANUNCIOS</b>
-                    <a href="{% url 'foro:create_anuncio' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-plus"> Nuevo Hilo</span></a>
+                    <a href="{% url 'foro:create_anuncio' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-plus"> Nuevo Anuncio</span></a>
                     {% if moderador %}
-						<a href="{% url 'foro:rechazados' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-trash"> Post Rechazados</span></a>	
-                        <a href="{% url 'foro:aprobar' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-inbox"> Post por Revisar</span></a>
+						<a href="{% url 'foro:rechazados' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-trash"> Anuncios Rechazados</span></a>
+                        <a href="{% url 'foro:aprobar' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-inbox"> Anuncios por Aprobar</span></a>
                     {% endif %}
                 </h2>
                 <table id="myTable" class="display" cellspacing="0" width="100%">
@@ -36,7 +36,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        {% for thread in anuncios %}
+                        {% for thread in threads %}
                         <tr>
                             <td><a href="{% url 'foro:detalle_anuncio' thread.op.id %}">{{thread.topic}}</a></td>
                             <td>{{ thread.respuestas }}</td>

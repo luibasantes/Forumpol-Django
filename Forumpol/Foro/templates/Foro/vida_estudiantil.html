@@ -1,9 +1,8 @@
 {% extends 'Foro/base.html' %}
 {% load static from staticfiles %}
-{% block title  %}Perfil de {{ usuarioPerfil }} | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
 {% block estilo %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/anuncios.css' %}">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
 {% endblock %}
@@ -11,35 +10,20 @@
     <section>
         <div id="categoria" class="col-9">
             <div class="container anuncios">
-				<div class="profile_image">
-					{% if usuarioPerfil.userprofile.image %}
-						<a href="{{usuarioPerfil.userprofile.image.url }}"><img class="thumbnail" src="{{ usuarioPerfil.userprofile.image.url }}" width="240"></a>
-					{% endif %}<br>
-				</div>
-				<div class="user_detail">
-					<h2><b>{{ usuarioPerfil }}</b></h2>
-					<p>First name: {{ usuarioPerfil.first_name }}</p>
-					<p>Last name: {{ usuarioPerfil.last_name }}</p>
-					<p>City: {{ usuarioPerfil.userprofile.city }}</p>
-					<p>Website: <a href= "{{ usuarioPerfil.userprofile.website }}">{{ usuarioPerfil.userprofile.website }}</a></p>
-					<p>Phone: {{ usuarioPerfil.userprofile.phone }}</p>
-					{% if user.id == usuarioPerfil.id %}
-						<a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">Editar Informacion</a>
-						<a class="btn btn-default" href="{% url 'accounts:change_password' %}">Cambiar Contraseña</a>
-					{% endif %}
-				</div>
-            </div>
-            {% if threads %}
-            <div class="anuncios container"><h1><b>Mis Post</b></h1></div>
-            <div class="container">
-
-				<table id="myTable" class="display" cellspacing="0" width="100%">
+                <h2>
+                    <b>VIDA ESTUDIANTIL</b>
+                    <a href="{% url 'foro:create_anuncio' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-plus"> Nuevo Experiencia</span></a>
+                    {% if moderador %}
+						<a href="{% url 'foro:rechazados' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-trash"> Experiencias Rechazados</span></a>
+                        <a href="{% url 'foro:aprobar' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-inbox"> Experiencias por Revisar</span></a>
+                    {% endif %}
+                </h2>
+                <table id="myTable" class="display" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>Titulo</th>
                             <th>Respuestas</th>
                             <th>Fecha</th>
-                            <th>Categoria</th>
                             <th>Usuario</th>
                         </tr>
                     </thead>
@@ -48,7 +32,6 @@
                             <th>Titulo</th>
                             <th>Respuestas</th>
                             <th>Fecha</th>
-                            <th>Categoria</th>
                             <th>Usuario</th>
                         </tr>
                     </tfoot>
@@ -58,15 +41,12 @@
                             <td><a href="{% url 'foro:detalle_anuncio' thread.op.id %}">{{thread.topic}}</a></td>
                             <td>{{ thread.respuestas }}</td>
                             <td>{{thread.op.date}}</td>
-                            <td>{{thread.category}}</td>
                             <td>{{thread.op.owner.username}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
-            {% endif %}
-            <br><br>
         </div>
     </section>
 {% endblock %}

@@ -6,7 +6,6 @@ from django.urls import reverse
 from django.http import Http404,HttpResponse
 from django.core.exceptions import PermissionDenied
 from django.core.serializers.json import DjangoJSONEncoder
-from django.urls import reverse
 import json
 
 
@@ -20,7 +19,7 @@ def anuncios(request):
 	all_anuncios = Thread.objects.filter(category="anuncio",op__aprobado=True).order_by("-id")
 	username = request.user
 	moderador = request.user.userprofile.moderador
-	context = {'usuario':username,"anuncios":all_anuncios,"moderador":moderador}
+	context = {'usuario':username,"threads":all_anuncios,"moderador":moderador}
 	return render(request, "Foro/anuncios.html", context)
 
 #Vista detallada de cada Post
@@ -31,7 +30,7 @@ def detalle_anuncio(request,Post_Id):
 		thread = Thread.objects.get(op=post)
 		respuestas = Post.objects.filter(reply_to = str(Post_Id),aprobado = True)
 	except Post.DoesNotExist:
-		raise Http404("Anuncio no existe")
+		raise Http404("POST no existe")
 	except Thread.DoesNotExist:
 		raise Http404("Anuncio no es OP	")
 
