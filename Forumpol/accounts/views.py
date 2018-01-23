@@ -6,12 +6,8 @@ from django.urls import reverse
 from django.http import Http404,HttpResponseForbidden
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
-
+from Foro.models import Thread, Post
 from .forms import UserForm, EditProfileForm, EditUserForm
-
-
-# Create your views here.
-
 
 #Esta quedo desactualizado
 '''
@@ -19,7 +15,7 @@ from .forms import UserForm, EditProfileForm, EditUserForm
 def view_profile(request):
 	context = {'user':request.user,'usuario':request.user.username}
 	return render(request, 'Accounts/profile.html',context)
-'''	
+'''
 def view_profile(request,user_id):
 	user = request.user
 	if not (user.id == int(user_id) or user.is_staff or user.userprofile.moderador):
@@ -28,12 +24,12 @@ def view_profile(request,user_id):
 		usuario = User.objects.get(id = str(user_id))
 	except User.DoesNotExist:
 		raise Http404("Usuario No existe")
-	
-	context = {'user':user,'usuarioPerfil':usuario}
+	threads = Thread.objects.filter(op__owner = user_id)
+	context = {'user':user,'usuarioPerfil':usuario,'threads':threads}
 	return render(request, 'Accounts/profile.html',context)
-	
-	
-	
+
+
+
 '''
 def edit_profile_basic_info(request):
 	if request.method == 'POST':
@@ -57,7 +53,7 @@ def edit_profile_secondary_info(request):
 		context = {'profile_form': profile_form,'usuario':request.user}
 		return render(request, 'Accounts/edit_profile.html', context)
 '''
-	
+
 
 def edit_profile(request):
 	if request.method == 'POST':
@@ -88,7 +84,7 @@ def change_password(request):
 
 		context = {'user_form': form,'usuario':request.user.username}
 		return render(request,'Accounts/change_password.html', context)
-	
+
 def login_user(request):
 	logout(request)
 	if request.method == "POST":
@@ -108,13 +104,13 @@ def login_user(request):
 			print("Algo paso al cargar el login_user.")
 	return render(request, 'Accounts/login_user.html')
 
-		
+
 def logout_user(request):
     logout(request)
     form = UserForm(request.POST or None)
     context = {"form": form}
-    return render(request, 'accounts/login_user.html', context)
-	
+    return render(request, 'Accounts/login_user.html', context)
+
 def register(request):
 	logout(request)
 	form = UserForm(request.POST or None)
@@ -132,40 +128,40 @@ def register(request):
 				login(request, user)
 				return redirect('/foro')
 	context = {"form": form,}
-	return render(request, 'accounts/register.html', context)
-	
-	
-	
-	
-	
-	
-"""	
+	return render(request, 'Accounts/register.html', context)
+
+
+
+
+
+
+"""
 class UserFormView(View):
 	form_class = UserForm
 	template_name = "registration_form.html"
-	
-	
-	#Display Blank Form 
+
+
+	#Display Blank Form
 	def get(self,request):
 		form = self.form_class(None)
 		return render(request,self.template_name,{'form':form})
-		
+
 	#Process Form Data
 	def post(self,request):
 		form = self.form_class(request.POST)
-		
+
 		if form.is_valid():
 			user = 	form.save(commit="False")
-			
+
 			#Cleaned (normalized) Data
 			username = form.cleaned_data['username']
 			password = form.cleaned_data['password']
-			#Cambiar contraseña   user.set_password() 
+			#Cambiar contraseña   user.set_password()
 			user.set_password(password)
-			user.save()			
-			
-			
-			#Validar el login	
+			user.save()
+
+
+			#Validar el login
 			#returns User Objects if credentials are correct
 			user = authenticate(username=username,password=password)
 			if user is not None:

@@ -1,7 +1,12 @@
 {% extends 'Foro/base.html' %}
 {% load static from staticfiles %}
-{% block title  %}Perfil de {{ usuario }} | "El foro mas cool de toda la ESPOL{% endblock %}
-{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">{% endblock %}
+{% block title  %}Perfil de {{ usuarioPerfil }} | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+{% endblock %}
 {% block body %}
     <section>
         <div id="categoria" class="col-9">
@@ -24,8 +29,46 @@
 					{% endif %}
 				</div>
             </div>
+            {% if threads %}
+            <div class="anuncios container"><h1><b>Mis Post</b></h1></div>
+            <div class="container">
+
+				<table id="myTable" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Respuestas</th>
+                            <th>Fecha</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Respuestas</th>
+                            <th>Fecha</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for thread in threads %}
+                        <tr>
+                            <td><a href="{% url 'foro:detalle_anuncio' thread.op.id %}">{{thread.topic}}</a></td>
+                            <td>{{ thread.respuestas }}</td>
+                            <td>{{thread.op.date}}</td>
+                            <td>{{thread.op.owner.username}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+            <br><br>
         </div>
     </section>
 {% endblock %}
 {% block script %}
+<script src="{% static 'js/carga_posts.js' %}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 {% endblock%}

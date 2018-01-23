@@ -26,7 +26,7 @@ SECRET_KEY = 'xmtxtq80&e_+npc4bij2wh02$yp7nj0f6ca%sk$4x%zi#6hqtr'
 DEBUG = True
 
 #ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['luibasantes.pythonanywhere.com']
 
 # Application definition
 
@@ -136,7 +136,7 @@ LOGIN_URL = '/accounts/log_in/'
 
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'forumpol2018@gmail.com' 
+EMAIL_HOST_USER = 'forumpol2018@gmail.com'
 EMAIL_HOST_PASSWORD = 'forumpol.2018'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
