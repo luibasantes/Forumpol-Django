@@ -1,8 +1,17 @@
 urlMap = {"detalle_anuncio":'{% url foro:detalle_anuncio %}'}
 
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
 $(document).ready(function(){
 	$("#form-search").submit(function(e){
 		e.preventDefault();
+		$(".post-item").remove();
 		$.ajax({
 			url: $(this).attr('action'),
 			type: $(this).attr('method'),
@@ -23,7 +32,7 @@ $(document).ready(function(){
 					$table.append($row);
 
 				});
-			}		
+			}
 		});
 	});
 });

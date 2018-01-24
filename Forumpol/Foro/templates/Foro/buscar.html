@@ -31,15 +31,37 @@
                         <span class="post-info pull-right fecha glyphicon glyphicon-calendar"> Fecha</span>
                         <span class="post-info pull-right fecha glyphicon glyphicon-info"> Categoria</span>
                     </li>
-					{% for post, thread in all_posts.items %}
-						<li class="list-group-item post-item">
-						    <a href="{% url 'foro:detalle_anuncio' thread.op.id %}">{{post.content}}</a>
-                            <span class="post-info pull-right user">{{post.owner}}</span>
-                            <span class="post-info pull-right fecha">{{post.date}}</span>
-                            <span class="post-info pull-right user">{{thread.category}}</span>
-						</li>
-					{% endfor %}
                 </ul>
+                <!--
+                <table id="myTable" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Respuestas</th>
+                            <th>Categoria</th>
+                            <th>Fecha</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Respuestas</th>
+                            <th>Categoria</th>
+                            <th>Fecha</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for post, thread in all_posts.items %}
+                        <tr>
+                            <td><a href="{% url 'foro:detalle_anuncio' thread.op.id %}">{{ post.content }}</a></td>
+                            <td>{{ thread.categoty }}</td>
+                            <td>{{ post.date }}</td>
+                            <td>{{ post.owner }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                -->
             </div>
         </div>
     </section>
