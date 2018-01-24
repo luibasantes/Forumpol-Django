@@ -7,6 +7,8 @@ from django.http import Http404,HttpResponse
 from django.core.exceptions import PermissionDenied
 from django.core.serializers.json import DjangoJSONEncoder
 import json
+from pymongo import MongoClient
+import gridfs
 
 
 #--------------------------------------MENU PRINCIPAL-----------------------------------------------------
@@ -269,5 +271,9 @@ def serializeUserPosts(post,thread):
 	return {"id": thread.op.id,"content" : post.content,"owner" : post.owner.username,"date" : post.date, "category" : thread.category}
 
 def repo(request):
-	username = request.user
-	return render(request, "Foro/repositorio.html",{'usuario':username})
+    client= MongoClient("mongodb://jjcrow:forumpol2018@ds157667.mlab.com:57667/forumpol_db")
+    db= client.forumpol_db
+    recursos= db.Recursos
+    resultado=recursos.find_one()
+    username = request.user
+    return render(request,"Foro/repositorio.html",{'usuario':username,'resultado':resultado})
