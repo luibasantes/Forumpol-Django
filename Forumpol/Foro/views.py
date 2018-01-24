@@ -241,33 +241,47 @@ def admin_posts(request):
 	categorias = Thread.objects.order_by().values_list('category',flat=True).distinct()
 	return render(request, "Foro/buscar.html", {'usuario':username,'categorias':categorias})
 
-def buscar(request):
-    username = request.user
-    if not (username.userprofile.moderador or username.is_staff):
-        raise PermissionDenied
-    #categorias = Thread.objects.order_by().values_list('category', flat=True).distinct()
-    all_posts = dict()
-    try:
-        usuario = User.objects.get(username=request.POST['usuario'])
-    except User.DoesNotExist:
-        raise Http404("Usuario no existe")
-    categoria = request.POST['categoria']
-    posts = Post.objects.filter(owner=usuario).order_by("id")
-    for post in posts:
-    	if post.reply_to:
-    		all_posts[post] = Thread.objects.get(op=post.reply_to,category=categoria)
-    	else:
-    		all_posts[post] = Thread.objects.get(op=post,category=categoria)
-    result=[serializeUserPosts(p,t) for p,t in all_posts.items()]
-    results={"datos" : result, "posts_url" : reverse('foro:anuncios')}
-    return HttpResponse(json.dumps(results,cls=DjangoJSONEncoder),content_type='application/json')
-
-#--------------------------------------AQUI TERMINA PANEL MODERADOR----------------------------------------------
-
 
 def serializeUserPosts(post,thread):
 	return {"id": thread.op.id,"content" : post.content,"owner" : post.owner.username,"date" : post.date, "category" : thread.category}
 
+
 def repo(request):
 	username = request.user
 	return render(request, "Foro/repositorio.html",{'usuario':username})
+
+
+def buscar(request):
+	username = request.user
+	if not (username.userprofile.moderador or username.is_staff):
+		raise PermissionDenied
+	#categorias = Thread.objects.order_by().values_list('category', flat=True).distinct()
+	all_posts = dict()
+	try:
+		usuario = User.objects.get(username=request.POST['usuario'])
+	except User.DoesNotExist:
+		raise Http404("Usuario no existe")
+	categoria = request.POST['categoria']
+	posts = Post.objects.filter(owner=usuario).order_by("id")
+	for post in posts:
+		if post.reply_to:
+			try:
+				thread = Thread.objects.get(op=post.reply_to,category=categoria)
+			except Thread.DoesNotExist:
+				thread = None
+			if thread:
+				all_posts[post] = thread
+		else:
+			try:
+				thread = Thread.objects.get(op=post,category=categoria)
+			except Thread.DoesNotExist:
+				thread = None
+			if thread:
+				all_posts[post] = thread
+	result=[serializeUserPosts(p,t) for p,t in all_posts.items()]
+	results={"datos" : result, "posts_url" : reverse('foro:anuncios')}
+	return HttpResponse(json.dumps(results,cls=DjangoJSONEncoder),content_type='application/json')
+
+
+#--------------------------------------AQUI TERMINA PANEL MODERADOR----------------------------------------------
+
