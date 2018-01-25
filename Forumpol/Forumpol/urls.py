@@ -21,12 +21,17 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.defaults import (permission_denied,
                                    page_not_found,
                                    server_error)
+#from Foro.api.views import *
+#from Foro.api.routers import HybridRouter
+#router = HybridRouter()
+#router.register(r'recursos', RecursoViewSet, r"recursos")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 	path(r'foro/', include('Foro.urls')),
 	path(r'accounts/', include('accounts.urls')),
-    path(r'api/', include('Foro.api.urls'))
+    path(r'api/', include('Foro.api.urls')),
+    #path(r'mongoapi/',include(router.urls, namespace='api'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
