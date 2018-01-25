@@ -1,6 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
+from mongoengine import connect
+from mongoengine import fields,Document,EmbeddedDocument
+from bson import ObjectId
+
+#connecting to mongo remote
+connect(
+    db='forumpol_db',
+    username='jjcrow',
+    password='forumpol2018',
+    host='ds157667.mlab.com:57667'
+)
+
 # Create your models here.
+
 
 def upload_location(instance,filename):
 	return "posted_images/%s/%s" %(instance.owner.id, filename)
@@ -28,6 +41,27 @@ class Thread(models.Model):
 	respuestas = models.BigIntegerField(default=0)
 
 	def __str__(self):
-		return str(str(self.id) + " " + str(self.topic))
+		return str(str(self.id) + " " + str(self.topic))\
+
+class Archivo(EmbeddedDocument):
+	_id = fields.ObjectIdField(default=ObjectId)
+	nombre = fields.StringField(required=True)
+	tamaño = fields.IntField(required=True)
+	extension = fields.StringField(required=True)
+	fichero = fields.FileField()
 	
-	
+
+class Recurso(Document):
+	#_id = fields.ObjectIdField(required=True)
+	titulo = fields.StringField(required=True)
+	usuario = fields.IntField(required=True)
+	categoria = fields.StringField(required=True)
+	descripcion = fields.StringField(required=True)
+	autor = fields.StringField(required=True)
+	tags = fields.ListField(fields.StringField())
+	fecha_creacion = fields.DateTimeField(required=True)
+	is_active = fields.BooleanField(required=True)
+	archivos = fields.ListField(fields.EmbeddedDocumentField(Archivo),required=True)
+
+class Test(Document):
+	title= fields.StringField(required=True)

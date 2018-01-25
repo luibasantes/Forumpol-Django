@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from .forms import CreateOriginalPostForm, CreateThreadForm
-from .models import Post,Thread
+from .models import Post,Thread,Recurso,Archivo,Test
 from django.urls import reverse
 from django.http import Http404,HttpResponse
 from django.core.exceptions import PermissionDenied
@@ -9,6 +9,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 import json
 from pymongo import MongoClient
 import gridfs
+import datetime
 
 
 #--------------------------------------MENU PRINCIPAL-----------------------------------------------------
@@ -249,12 +250,10 @@ def serializeUserPosts(post,thread):
 
 
 def repo(request):
-    client= MongoClient("mongodb://jjcrow:forumpol2018@ds157667.mlab.com:57667/forumpol_db")
-    db= client.forumpol_db
-    recursos= db.Recursos
-    resultado=recursos.find_one()
-    username = request.user
-    return render(request,"Foro/repositorio.html",{'usuario':username,'resultado':resultado})
+	resultados= Recurso.objects
+	print(resultados.count())
+	username=request.user
+	return render(request,"Foro/repositorio.html",{'usuario':username,'resultados':resultados})
 
 
 
