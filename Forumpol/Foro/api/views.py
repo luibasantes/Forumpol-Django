@@ -1,7 +1,7 @@
 from rest_framework import generics, mixins
-from .serializers import PostSerializer, ThreadSerializer
-from ..models import Post, Thread
-
+from .serializers import PostSerializer, ThreadSerializer, RecursoSerializer, ArchivoSerializer
+from ..models import Post, Thread, Recurso, Archivo
+from rest_framework_mongoengine import viewsets
 
 class PostAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field = 'pk'
@@ -56,3 +56,17 @@ class ThreadRudView(generics.RetrieveUpdateAPIView):
 
     def get_queryset(self):
         return Thread.objects.all()
+
+class RecursoViewSet(viewsets.ModelViewSet):
+    lookup_field = 'id'
+    serializer_class = RecursoSerializer
+
+    def get_queryset(self):
+        return Recurso.objects.all()
+
+class ArchivoViewSet(viewsets.ModelViewSet):
+    lookup_field = 'id'
+    serializer_class = ArchivoSerializer
+
+    def get_queryset(self):
+        return Archivo.objects.all()

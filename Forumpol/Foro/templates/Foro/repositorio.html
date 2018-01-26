@@ -12,9 +12,15 @@
 		<div id="repo_body" class="col-9">
 			<div class="container recursos">
 				<h2>Repositorio</h2>
-				{% if resultado%}
-				    <h4>{{resultado}}</h4>
-				{% endif %}
+				{% for r in resultados %}
+					<h5>titulo: {{r.titulo}}</h5>
+					<h5>usuario: {{r.usuario}}</h5>
+					<h5>categoria: {{r.categoria}}</h5>
+					<h5>descripcion: {{r.descripcion}}</h5>
+					<h5>archivos: {{r.archivos}}</h5>
+					<h5>fecha: {{r.fecha_creacion}}</h5>
+					<h5>activo: {{r.is_active}}</h5>
+				{% endfor %}
 			</div>
 		</div>
 	</section>
