@@ -251,10 +251,13 @@ def serializeUserPosts(post,thread):
 def repo(request):
     client= MongoClient("mongodb://jjcrow:forumpol2018@ds157667.mlab.com:57667/forumpol_db")
     db= client.forumpol_db
-    recursos= db.Recursos
-    resultado=recursos.find_one()
+    recursos= db.Recurso
+    resultados=[]
+    cursor= recursos.find()
+    #for result in cursor:
+        #resultados.append(result)
     username = request.user
-    return render(request,"Foro/repositorio.html",{'usuario':username,'resultado':resultado})
+    return render(request,"Foro/repositorio.html",{'usuario':username,'resultado':cursor.count()})
 
 
 
