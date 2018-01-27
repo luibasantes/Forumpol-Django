@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from .forms import CreateOriginalPostForm, CreateThreadForm
-from .models import Post,Thread,Recurso,Archivo,Test
+from .models import Post,Thread,Recurso,Archivo
 from django.urls import reverse
 from django.http import Http404,HttpResponse
 from django.core.exceptions import PermissionDenied
@@ -248,15 +248,17 @@ def admin_posts(request):
 def serializeUserPosts(post,thread):
 	return {"id": thread.op.id,"content" : post.content,"owner" : post.owner.username,"date" : post.date, "category" : thread.category}
 
-
+#-----------------ESTA PARTE ES LA DEL REPO---------------------------
 def repo(request):
-	resultados= Recurso.objects
-	print(resultados.count())
 	username=request.user
-	return render(request,"Foro/repositorio.html",{'usuario':username,'resultados':resultados})
+	return render(request,"Foro/repositorio.html",{'usuario':username})
 
+def informacion_recurso(request,recurso_id):
+	username=request.user
+	recurso= Recurso.objects.get(id=str(recurso_id))
+	return render(request,"Foro/informacion_recurso.html",{'usuario':username,'recurso':recurso})
 
-
+#----------------------------------------------------------------------
 def buscar(request):
 	username = request.user
 	if not (username.userprofile.moderador or username.is_staff):

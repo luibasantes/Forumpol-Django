@@ -68,4 +68,6 @@ urlpatterns = [
 
 	#Repositorio localhost:8000/foro/repositorio
 	url(r'repositorio/$',login_required(views.repo),name='repo'),
+
+	url(r'repositorio/(?P<recurso_id>([a-zA-Z]|[0-9])+)/$',login_required(views.informacion_recurso),name="info_recurso"),
 ]
