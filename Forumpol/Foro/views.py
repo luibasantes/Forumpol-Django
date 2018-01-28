@@ -271,6 +271,24 @@ def descargar_archivo(request,recurso_id,archivo_id):
 	return response
 
 def agregar_recurso(request):
+	if request.POST:
+		titulo= request.POST["titulo"]
+		autor= request.POST["autor"]
+		descripcion= request.POST["descripcion"]
+		tags= request.POST["tags"]
+		files=[]
+		counter=1
+		print("files dict:",request.FILES)
+		while request.POST.get("file_"+str(counter), False):
+			filename=request.POST["file_"+str(counter)]
+			files.append(request.FILES[filename])
+			counter+=1
+		print(files)
+		usuario= request.user.id
+		categoria="archivo"
+		is_active=True
+		fecha= datetime.datetime.now() 
+
 	username= request.user
 	return render(request,"Foro/agregar_recurso.html",{'usuario':username})
 #----------------------------------------------------------------------
