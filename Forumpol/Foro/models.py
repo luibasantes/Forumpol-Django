@@ -65,6 +65,7 @@ class Recurso(Document):
 	#_id = fields.ObjectIdField(required=True)
 	titulo = fields.StringField(required=True)
 	usuario = fields.IntField(required=True)
+	nom_usuario= fields.StringField(required=True)
 	categoria = fields.StringField(required=True)
 	descripcion = fields.StringField(required=True)
 	autor = fields.StringField(required=True)

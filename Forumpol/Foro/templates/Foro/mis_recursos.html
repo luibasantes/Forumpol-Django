@@ -11,11 +11,11 @@
 			<div class="container recursos">
 				<div class="row">
 					<div class="col-6">
-						<h2>Repositorio</h2>
+						<h2>Mis Recursos</h2>
 					</div>
 					<div class="col-5 text-right">
 						<a href="{% url 'foro:agregar_recurso' %}" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"> Agregar Recurso</span> </a>
-						<a href="{% url 'foro:mis_recursos' usuario.id %}" class="btn btn-primary"> <span class="glyphicon glyphicon-inbox"> Revisar mi colección </span> </a>
+						<a href="{% url 'foro:repo' %}" class="btn btn-primary"> <span class="glyphicon glyphicon-inbox"> Ver todos los recursos </span> </a>
 					</div>
 				</div>
 				<table id="myTable" class='table' cellspacing="0" width="100%">
@@ -23,14 +23,12 @@
 			            <tr>
 			                <th>Titulo</th>
 			                <th>Fecha_Creacion</th>
-			                <th>Usuario</th>
 			            </tr>
 			        </thead>
 			        <tfoot>
 			            <tr>
 			                <th>Titulo</th>
 			                <th>Fecha_Creacion</th>
-			                <th>Usuario</th>
 			            </tr>
 			        </tfoot>
 			        <tbody>
@@ -38,17 +36,10 @@
 			        </tbody>
 			    </table>
 			</div>
-			<div class="container">
-				<h3> Tags </h3>
-				<div class="row tags_div">
-					{% for tag in tags %}
-						<a href="{% url 'foro:recursos_tags' tag %}" class="btn btn-default">{{tag}}</a>
-					{% endfor %}
-				</div>
-			</div>
+
 		</div>
 	</section>
-<script src="{% static 'js/cargar_recursos.js' %}"></script>
+<script src="{% static 'js/mis_recursos.js' %}"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
