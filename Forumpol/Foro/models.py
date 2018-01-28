@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from mongoengine import connect
 from mongoengine import fields,Document,EmbeddedDocument
 from bson import ObjectId
-
+from mongoengine.base.datastructures import EmbeddedDocumentList
 #connecting to mongo remote
 connect(
     db='forumpol_db',
@@ -49,7 +49,14 @@ class Archivo(EmbeddedDocument):
 	tamaño = fields.IntField(required=True)
 	extension = fields.StringField(required=True)
 	fichero = fields.FileField()
+
+	@property
+	def size_to_mb(self):
+		return round((self.tamaño / 1048576),2)
 	
+	@property
+	def id_to_str(self):
+		return str(self._id)
 
 class Recurso(Document):
 	#_id = fields.ObjectIdField(required=True)
@@ -61,7 +68,7 @@ class Recurso(Document):
 	tags = fields.ListField(fields.StringField())
 	fecha_creacion = fields.DateTimeField(required=True)
 	is_active = fields.BooleanField(required=True)
-	archivos = fields.ListField(fields.EmbeddedDocumentField(Archivo),required=True)
+	archivos = fields.EmbeddedDocumentListField(Archivo,required=True)
 
 class Test(Document):
 	title= fields.StringField(required=True)

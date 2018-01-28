@@ -21,7 +21,7 @@ urlpatterns = [
     # Crear y Listar thread 127.0.0.1:8000/api/threads
     url(r'^threads/(?P<categoria>\w+)/$', ThreadAPIView.as_view(), name='thread_create'),
 
-    #
+    # Listar recursos 127.0.0.1:8000/api/recursos
 	url(r'^recursos/$', RecursoViewSet.as_view({'get': 'list'}), name='recursos-view'),
 
 	#

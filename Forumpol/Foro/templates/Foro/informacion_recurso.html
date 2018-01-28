@@ -39,7 +39,7 @@
 				<table id="table_files" class="table" cellspacing="0" width="100%">
 					<thead>
 						<th>Nombre</th>
-						<th>Tamaño</th>
+						<th>Tamaño (MB)</th>
 						<th>Extension</th>
 						<th></th>
 					</thead>
@@ -47,9 +47,9 @@
 						{% for file in recurso.archivos %}
 							<tr>
 								<td>{{file.nombre}}</td>
-								<td>{{file.tamaño}}</td>
+								<td>{{file.size_to_mb}}</td>
 								<td>{{file.extension}}</td>
-								<td><button class="btn primary-btn">Descargar archivo</button></td>
+								<td><a href="{% url 'foro:descarga_archivo' recurso.id file.id_to_str %}" class="btn btn-default"> descargar </a></td>
 							</tr>
 						{% endfor %}
 					</tbody>
