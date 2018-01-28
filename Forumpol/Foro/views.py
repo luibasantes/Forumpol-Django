@@ -252,6 +252,10 @@ def serializeUserPosts(post,thread):
 #-----------------ESTA PARTE ES LA DEL REPO---------------------------
 def repo(request):
 	username=request.user
+	return render(request,"Foro/repositorio.html",{'usuario':username,'resultados':resultados})
+
+
+=======
 	return render(request,"Foro/repositorio.html",{'usuario':username})
 
 def informacion_recurso(request,recurso_id):
@@ -267,7 +271,7 @@ def descargar_archivo(request,recurso_id,archivo_id):
 	fichero= file
 	response= HttpResponse(fichero,content_type="text/plain")
 	response['Content-Disposition'] = 'attachment; filename=%s' % str(archivo.nombre + "." + archivo.extension)
-	response['Content-Length']= archivo.tamaño 
+	response['Content-Length']= archivo.tamaño
 	return response
 
 def agregar_recurso(request):
