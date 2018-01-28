@@ -8,3 +8,11 @@
 	width: 96.5%;
 	padding-top: 2em;
 }
+
+div.col-6,div.col-5{
+	display: inline-block;
+}
+
+div.row{
+	margin-bottom: 4%;
+}

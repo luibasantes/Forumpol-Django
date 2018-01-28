@@ -1,0 +1,62 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/repo.css' %}">
+{% endblock %}
+{% block body %}
+	<section>
+		<div id="repo_body" class="col-9">
+			<div class="container recursos">
+				<h2>Información del recurso</h2>
+				<table id="table_info" class='table' cellspacing="0" width="100%">
+			        <tbody>
+			        	<tr>
+			        		<td> Título: </td>
+			        		<td id="td_titulo">{{recurso.titulo}}</td>
+			        	</tr>
+			        	<tr>
+			        		<td> Descripcion: </td>
+			        		<td id="td_descripcion">{{recurso.descripcion}}</td>
+			        	</tr>
+			        	<tr>
+			        		<td> Fecha de publicación: </td>
+			        		<td id="td_fecha">{{recurso.fecha_creacion}}</td>
+			        	</tr>
+			        	<tr>
+			        		<td> autor: </td>
+			        		<td id="td_autor">{{recurso.autor}}</td>
+			        	</tr>
+			        	<tr>
+			        		<td> tags: </td>
+			        		<td id="td_autor">{{recurso.tags}}</td>
+			        	</tr>
+			        </tbody>
+			    </table>   
+			</div>
+			<div class="container">
+				<h3> Archivos en este recurso</h3>
+				<table id="table_files" class="table" cellspacing="0" width="100%">
+					<thead>
+						<th>Nombre</th>
+						<th>Tamaño (MB)</th>
+						<th>Extension</th>
+						<th></th>
+					</thead>
+					<tbody>
+						{% for file in recurso.archivos %}
+							<tr>
+								<td>{{file.nombre}}</td>
+								<td>{{file.size_to_mb}}</td>
+								<td>{{file.extension}}</td>
+								<td><a href="{% url 'foro:descarga_archivo' recurso.id file.id_to_str %}" class="btn btn-default"> descargar </a></td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+<script src="{% static 'js/cargar_informacion_recurso.js' %}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+{% endblock %}

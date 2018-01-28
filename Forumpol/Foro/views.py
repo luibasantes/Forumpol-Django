@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from .forms import CreateOriginalPostForm, CreateThreadForm
-from .models import Post,Thread,Recurso,Archivo,Test
+from .models import Post,Thread,Recurso,Archivo
 from django.urls import reverse
-from django.http import Http404,HttpResponse
+from django.http import Http404,HttpResponse, StreamingHttpResponse
 from django.core.exceptions import PermissionDenied
 from django.core.serializers.json import DjangoJSONEncoder
+from wsgiref.util import FileWrapper
 import json
 from pymongo import MongoClient
 import gridfs
@@ -248,14 +249,35 @@ def admin_posts(request):
 def serializeUserPosts(post,thread):
 	return {"id": thread.op.id,"content" : post.content,"owner" : post.owner.username,"date" : post.date, "category" : thread.category}
 
-
+#-----------------ESTA PARTE ES LA DEL REPO---------------------------
 def repo(request):
-	resultados= Recurso.objects
-	print(resultados.count())
 	username=request.user
 	return render(request,"Foro/repositorio.html",{'usuario':username,'resultados':resultados})
 
 
+=======
+	return render(request,"Foro/repositorio.html",{'usuario':username})
+
+def informacion_recurso(request,recurso_id):
+	username=request.user
+	recurso= Recurso.objects.get(id=str(recurso_id))
+	return render(request,"Foro/informacion_recurso.html",{'usuario':username,'recurso':recurso})
+
+def descargar_archivo(request,recurso_id,archivo_id):
+	recurso= Recurso.objects.get(id=str(recurso_id))
+	archivo= recurso.archivos.get(_id=archivo_id)
+	file= archivo.fichero.read()
+	print(type(file))
+	fichero= file
+	response= HttpResponse(fichero,content_type="text/plain")
+	response['Content-Disposition'] = 'attachment; filename=%s' % str(archivo.nombre + "." + archivo.extension)
+	response['Content-Length']= archivo.tamaño
+	return response
+
+def agregar_recurso(request):
+	username= request.user
+	return render(request,"Foro/agregar_recurso.html",{'usuario':username})
+#----------------------------------------------------------------------
 def buscar(request):
 	username = request.user
 	if not (username.userprofile.moderador or username.is_staff):

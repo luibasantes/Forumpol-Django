@@ -2,26 +2,47 @@
 {% load static from staticfiles %}
 {% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
 {% block estilo %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/repo.css' %}">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/repo.css' %}">
 {% endblock %}
 {% block body %}
 	<section>
 		<div id="repo_body" class="col-9">
 			<div class="container recursos">
-				<h2>Repositorio</h2>
-				{% for r in resultados %}
-					<h5>titulo: {{r.titulo}}</h5>
-					<h5>usuario: {{r.usuario}}</h5>
-					<h5>categoria: {{r.categoria}}</h5>
-					<h5>descripcion: {{r.descripcion}}</h5>
-					<h5>archivos: {{r.archivos}}</h5>
-					<h5>fecha: {{r.fecha_creacion}}</h5>
-					<h5>activo: {{r.is_active}}</h5>
-				{% endfor %}
+				<div class="row">
+					<div class="col-6">
+						<h2>Repositorio</h2>
+					</div>
+					<div class="col-5 text-right">
+						<a href="{% url 'foro:agregar_recurso' %}" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"> Agregar Recurso</span> </a>
+						<a href="" class="btn btn-primary"> <span class="glyphicon glyphicon-inbox"> Revisar mi colección </span> </a>
+					</div>
+				</div>
+				<table id="myTable" class='table' cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+			                <th>Titulo</th>
+			                <th>Fecha_Creacion</th>
+			                <th>Usuario</th>
+			            </tr>
+			        </thead>
+			        <tfoot>
+			            <tr>
+			                <th>Titulo</th>
+			                <th>Fecha_Creacion</th>
+			                <th>Usuario</th>
+			            </tr>
+			        </tfoot>
+			        <tbody>
+			        	
+			        </tbody>
+			    </table>
 			</div>
+
 		</div>
 	</section>
+<script src="{% static 'js/cargar_recursos.js' %}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 {% endblock %}
