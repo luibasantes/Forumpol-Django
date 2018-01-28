@@ -255,7 +255,6 @@ def repo(request):
 	return render(request,"Foro/repositorio.html",{'usuario':username,'resultados':resultados})
 
 
-=======
 	return render(request,"Foro/repositorio.html",{'usuario':username})
 
 def informacion_recurso(request,recurso_id):
@@ -291,7 +290,7 @@ def agregar_recurso(request):
 		usuario= request.user.id
 		categoria="archivo"
 		is_active=True
-		fecha= datetime.datetime.now() 
+		fecha= datetime.datetime.now()
 
 	username= request.user
 	return render(request,"Foro/agregar_recurso.html",{'usuario':username})
