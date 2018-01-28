@@ -10,6 +10,12 @@
 	<section>
 		<div id="repo_body" class="col-9">
 			<div class="container recursos">
+				{%if mensaje %}
+				<div class="alert alert-success alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>Exito!</strong> {{mensaje}}
+				</div>
+				{% endif %}
 				<h2>Agregar Recurso</h2>
 				<form class="main-form " enctype="multipart/form-data" method="POST" action="{% url 'foro:agregar_recurso' %}">
 					{% csrf_token %}

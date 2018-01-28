@@ -69,9 +69,13 @@ urlpatterns = [
 	#Repositorio localhost:8000/foro/repositorio
 	url(r'repositorio/$',login_required(views.repo),name='repo'),
 
+	url(r'repositorio/tags/(?P<tag_name>([a-zA-Z]|[0-9])+)/$',login_required(views.recursos_por_tag),name="recursos_tags"),
+
+	url(r'repositorio/user/(?P<user_id>([0-9])+)/$',login_required(views.mis_recursos),name="mis_recursos"),
+
 	url(r'repositorio/(?P<recurso_id>([a-zA-Z]|[0-9])+)/$',login_required(views.informacion_recurso),name="info_recurso"),
 
 	url(r'repositorio/(?P<recurso_id>([a-zA-Z]|[0-9])+)/file/(?P<archivo_id>([a-zA-Z]|[0-9])+)/$',login_required(views.descargar_archivo),name="descarga_archivo"),
-
+	
 	url(r'repositorio/agregar_recurso$',login_required(views.agregar_recurso),name="agregar_recurso")
 ]

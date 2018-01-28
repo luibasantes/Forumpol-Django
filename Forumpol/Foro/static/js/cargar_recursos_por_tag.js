@@ -1,7 +1,9 @@
 $(document).ready(function() {
-	var repo_url= window.location.origin + "/foro/repositorio/" 
+	var repo_url= window.location.origin + "/foro/repositorio/"
+	var split = window.location.href.split("/")
+	var tag = split[split.length - 2]
 	$.ajax({
-			url: window.location.origin + "/api/recursos",
+			url: window.location.origin + "/api/recursos/" + tag + "/",
 			type: "GET",
 			success: function(json){
 				$table= $('#myTable>tbody');
