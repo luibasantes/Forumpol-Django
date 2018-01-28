@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.decorators import login_required
 from .views import *
 from ..api.routers import HybridRouter
 
@@ -25,5 +25,8 @@ urlpatterns = [
 	url(r'^recursos/$', RecursoViewSet.as_view({'get': 'list'}), name='recursos-view'),
 
 	#
-	url(r'^archivos/$', ArchivoViewSet.as_view({'get': 'list'}), name='archivos-view'),    
+	url(r'^archivos/$', ArchivoViewSet.as_view({'get': 'list'}), name='archivos-view'),
+
+	# Listar los usuarios con la cantidad de post 127.0.0.1:8000/api/users_stats
+	url(r'^users_stats/$', User_stats.as_view(), name='users_stats'),
  ]

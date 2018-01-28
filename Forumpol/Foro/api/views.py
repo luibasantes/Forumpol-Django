@@ -1,6 +1,9 @@
 from rest_framework import generics, mixins
-from .serializers import PostSerializer, ThreadSerializer, RecursoSerializer, ArchivoSerializer
+from .serializers import PostSerializer, ThreadSerializer, RecursoSerializer, ArchivoSerializer,User_stats_serializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from ..models import Post, Thread, Recurso, Archivo
+from accounts.models import UserProfile
 from rest_framework_mongoengine import viewsets
 
 class PostAPIView(mixins.CreateModelMixin, generics.ListAPIView):
@@ -70,3 +73,16 @@ class ArchivoViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Archivo.objects.all()
+
+
+class User_stats(APIView):
+
+    def get(self,request):
+        user= UserProfile.objects.all()
+        serializer = User_stats_serializer(user,many=True)
+        return Response(serializer.data)
+
+
+
+    def post():
+        pass

@@ -1,4 +1,4 @@
-var svg = d3.select("svg"),
+/*var svg = d3.select("svg"),
     margin = {top: 20, right: 0, bottom: 30, left: 100},
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom;
@@ -41,4 +41,67 @@ d3.tsv("/../../static/data/data.tsv", function(d) {
       .attr("y", function(d) { return y(d.frequency); })
       .attr("width", x.bandwidth())
       .attr("height", function(d) { return height - y(d.frequency); });
+});*/
+
+/*d3.json("http://luibasantes.pythonanywhere.com/api/users_stats/", function(error, data) {
+  (function() {*/
+
+d3.json('https://d3fc.io/examples/bubble/data.json', function(_, data) {
+  // convert string properties to numbers
+  data.forEach(function(d) {
+    d.income = Number(d.income);
+    d.population = Number(d.population);
+    d.lifeExpectancy = Number(d.lifeExpectancy);
+  });
+
+  var regions = d3.set(data.map(function(d) { return d.region; }));
+  var color = d3.scaleOrdinal(d3.schemeCategory10)
+    .domain(regions.values());
+
+  var legend = d3.legendColor()
+    .scale(color);
+
+  var size = d3.scaleLinear().range([20, 800])
+    .domain(fc.extentLinear()
+    .accessors([function(d) { return d.population; }])(data));
+
+  var pointSeries = fc.seriesSvgPoint()
+      .crossValue(function(d) { return d.income; })
+      .mainValue(function(d) { return d.lifeExpectancy; })
+      .size(function(d) { return size(d.population); })
+      .decorate(function(sel) {
+        sel.enter()
+            .attr('fill', function(d) { return color(d.region); });
+      });
+
+  var chart = fc.chartSvgCartesian(
+                d3.scaleLog(),
+                d3.scaleLinear()
+              )
+      .xDomain(fc.extentLinear()
+        .accessors([function(d) { return d.income; }])(data))
+      .yDomain(fc.extentLinear()
+        .accessors([function(d) { return d.lifeExpectancy; }])(data))
+      .chartLabel('The Wealth & Health of Nations')
+      .xLabel('Income (dollars)')
+      .yLabel('Life expectancy (years)')
+      .xTicks(2, d3.format(',d'))
+      .yOrient('left')
+      .plotArea(pointSeries)
+      .decorate(function(selection) {
+        // append an svg for the d3-legend
+        selection.enter()
+          .append('svg')
+          .attr('class', 'legend');
+
+        // render the legend
+        selection.select('.legend')
+          .call(legend);
+      });
+
+  d3.select('#bubble-chart')
+      // remove the loading text from the container
+      .text(null)
+      .datum(data)
+      .call(chart);
 });

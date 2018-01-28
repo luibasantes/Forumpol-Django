@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from Foro.models import Post
 
 # Create your models here.
 def upload_location(instance,filename):
 	return "profile_image/%s/%s" %(instance.id, filename)
-	
-	
+
+
 class UserProfile(models.Model):
 	user = models.OneToOneField(User,on_delete=models.CASCADE)
 	city = models.CharField(max_length=25, default='')
@@ -14,11 +15,23 @@ class UserProfile(models.Model):
 	phone = models.IntegerField(default=0)
 	image = models.ImageField(upload_to= upload_location, blank=True)
 	moderador = models.BooleanField(default=False)
-	
+
+	def numero_posts(self):
+		contador = len(Post.objects.filter(owner=self.user,aprobado=True))
+		return contador
+
+
 	def __str__(self):
 		return self.user.username
 
-	
+	def nombre_usuario(self):
+		return self.user.username
+
+
+
+
+
+
 def create_profile(sender, **kwargs):
     if kwargs['created']:
         user_profile = UserProfile.objects.create(user=kwargs['instance'])

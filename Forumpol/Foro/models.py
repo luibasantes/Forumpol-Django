@@ -9,7 +9,9 @@ connect(
     db='forumpol_db',
     username='jjcrow',
     password='forumpol2018',
-    host='ds157667.mlab.com:57667'
+    host='ds157667.mlab.com:57667',
+    connect=False,
+    maxPoolSize=1
 )
 
 # Create your models here.
@@ -49,7 +51,7 @@ class Archivo(EmbeddedDocument):
 	tamaño = fields.IntField(required=True)
 	extension = fields.StringField(required=True)
 	fichero = fields.FileField()
-	
+
 
 class Recurso(Document):
 	#_id = fields.ObjectIdField(required=True)
