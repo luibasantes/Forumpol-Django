@@ -1,3 +1,14 @@
+svg {
+  border: 1px solid black;
+}
+
+p {
+  text-align: center;
+}
+
+
+
+
 /* Clase categorias */
 
 #categoria {
@@ -45,7 +56,7 @@ div#enlace-repositorio{
 .tarjeta{
   display: flex;
   flex-direction: row;
-  margin: 1.25em 1em 1.25em;    
+  margin: 1.25em 1em 1.25em;
   box-shadow: 0 0 0 1px #563737;
   border-width: 1px;
   color: #001C43;

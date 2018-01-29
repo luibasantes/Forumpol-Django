@@ -1,15 +1,17 @@
 {% extends 'Foro/base.html' %}
 {% load static from staticfiles %}
 {% block title  %}ACERCA DE NOSOTROS | "El foro mas cool de toda la ESPOL{% endblock %}
-{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/acercaDe.css' %}">{% endblock %}
+{% block estilo %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/acercaDe.css' %}">
+<script src="https://d3js.org/d3.v3.min.js"></script>
+{% endblock %}
 {% block body %}
 	<section>
 		<div id="categoria" class="col-9" style="text-align:center;">
 			<header class="categoria-header">
-				<h1 class="categoria-heading">VISITAS DE ESTUDIANTES POR MES</h1>
+				<h1 class="categoria-heading">USUARIOS CON MAS POST</h1>
 			</header>
-			<svg width="960" height="960"></svg>
-			<script src="https://d3js.org/d3.v4.min.js"></script>
+			<div id="Grafico"></div>
 			<script src="{% static 'js/estadisticas.js' %}"></script>
 			<header class="categoria-header">
 				<h1 class="categoria-heading">NOSOTROS</h1>
