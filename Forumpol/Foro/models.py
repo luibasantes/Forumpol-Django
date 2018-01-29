@@ -76,3 +76,8 @@ class Recurso(Document):
 
 class Test(Document):
 	title= fields.StringField(required=True)
+
+class Club(Document):
+	lat = fields.FloatField(required=True)
+	lng = fields.FloatField(required=True)
+	titulo = fields.StringField(required=True)

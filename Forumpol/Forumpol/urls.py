@@ -37,9 +37,9 @@ urlpatterns = [
 urlpatterns += staticfiles_urlpatterns()
 
 urlpatterns += [
-        path(r'^403/$', permission_denied),
-        path(r'^404/$', page_not_found),
-        path(r'^500/$', server_error)
+        path(r'403/', permission_denied),
+        path(r'404/', page_not_found),
+        path(r'500/', server_error)
 ]
 
 if settings.DEBUG:
