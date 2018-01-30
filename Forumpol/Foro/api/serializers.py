@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework_mongoengine import serializers as mongoserializers
-from ..models import Post, Thread, Recurso, Archivo
+from ..models import Post, Thread, Recurso, Archivo, Club
 from accounts.models import UserProfile
 
 
@@ -34,3 +34,9 @@ class User_stats_serializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ["user","moderador","numero_posts","nombre_usuario"]
         #fields = '__all__'
+
+
+class ClubSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Club
+        fields = '__all__'

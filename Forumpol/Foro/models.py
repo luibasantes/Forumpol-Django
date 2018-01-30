@@ -77,7 +77,10 @@ class Recurso(Document):
 class Test(Document):
 	title= fields.StringField(required=True)
 
-class Club(Document):
-	lat = fields.FloatField(required=True)
-	lng = fields.FloatField(required=True)
-	titulo = fields.StringField(required=True)
+class Club(models.Model):
+	lat = models.DecimalField(null=False, default=0.0, max_digits=15, decimal_places=10)
+	lng = models.DecimalField(null=False, default=0.0, max_digits=15, decimal_places=10)
+	titulo = models.CharField(max_length=30, null=False, default='')
+
+	def __str__(self):
+		return self.titulo
