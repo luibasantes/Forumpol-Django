@@ -32,8 +32,17 @@ function initMap() {
 					var marcador = new google.maps.Marker({
 					    position: {lat: parseFloat(data.lat), lng: parseFloat(data.lng)},
 					    map: map,
-					    title: data.titulo,
-					    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+					    label: {
+					        color: '#206eea',
+					        border: '20px',
+					        fontWeight: 'bold',
+					        fontSize: '14px',
+					        text: data.titulo
+					        },
+					    icon: {
+					        url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+					        labelOrigin: new google.maps.Point(15,-10)
+					        }
 					})
 				});
 
