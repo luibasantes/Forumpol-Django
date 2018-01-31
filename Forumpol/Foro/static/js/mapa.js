@@ -24,34 +24,30 @@ function initMap() {
         title: '¡Hola! :)'
       });
 
-      // Aquí se debería de llamar al API REST para obtener todos los clubes y generar los markers
-      var robota = new google.maps.Marker({
-        position: {lat: -2.144012, lng: -79.965907},
-        map: map,
-        title: 'Club Robota',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-      });
+      $.ajax({
+			url: window.location.origin + "/api/clubs",
+			type: "GET",
+			success: function(json){
+				json.forEach(function(data){
+					var marcador = new google.maps.Marker({
+					    position: {lat: parseFloat(data.lat), lng: parseFloat(data.lng)},
+					    map: map,
+					    label: {
+					        color: '#206eea',
+					        border: '20px',
+					        fontWeight: 'bold',
+					        fontSize: '14px',
+					        text: data.titulo
+					        },
+					    icon: {
+					        url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+					        labelOrigin: new google.maps.Point(15,-10)
+					        }
+					})
+				});
 
-      var taws = new google.maps.Marker({
-        position: {lat: -2.145086, lng: -79.966467},
-        map: map,
-        title: 'Club TAWS',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-      });
-
-      var argumentum = new google.maps.Marker({
-        position: {lat: -2.147049, lng: -79.966006},
-        map: map,
-        title: 'Club Argumentum',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-      });
-
-      var koka = new google.maps.Marker({
-        position: {lat: -2.145322, lng: -79.966060},
-        map: map,
-        title: 'Club KOKA',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-      });
+			}
+	});
 
       marker.setMap(map);
     }

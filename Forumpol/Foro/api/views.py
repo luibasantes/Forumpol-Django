@@ -1,8 +1,8 @@
 from rest_framework import generics, mixins
-from .serializers import PostSerializer, ThreadSerializer, RecursoSerializer, ArchivoSerializer,User_stats_serializer
+from .serializers import PostSerializer, ThreadSerializer, RecursoSerializer, ArchivoSerializer,User_stats_serializer, ClubSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..models import Post, Thread, Recurso, Archivo
+from ..models import Post, Thread, Recurso, Archivo, Club
 from accounts.models import UserProfile
 from django.http import Http404
 from rest_framework_mongoengine import viewsets
@@ -106,3 +106,11 @@ class User_stats_by_id(APIView):
         user = self.get_object(pk)
         serializer = User_stats_serializer(user)
         return Response(serializer.data)   
+
+
+class ClubAPIView(generics.ListAPIView):
+    lookup_field = 'pk'
+    serializer_class = ClubSerializer
+
+    def get_queryset(self):
+        return Club.objects.all()

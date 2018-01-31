@@ -37,4 +37,7 @@ urlpatterns = [
 	url(r'^users_stats/$', User_stats.as_view(), name='users_stats'),
 
 	url(r'^users_stats/(?P<pk>([a-zA-Z]|\d)+)/$', User_stats_by_id.as_view(), name='users_stats'),
+
+    #Listar los clubes
+    url(r'^clubs/$', ClubAPIView.as_view(), name='club_list'),
  ]
