@@ -280,7 +280,7 @@ def descargar_archivo(request,recurso_id,archivo_id):
 	fichero= file
 	response= HttpResponse(fichero,content_type="text/plain")
 	response['Content-Disposition'] = 'attachment; filename=%s' % str(archivo.nombre + "." + archivo.extension)
-	response['Content-Length']= archivo.tamaño
+	response['Content-Length'] = archivo['tamaño']
 	return response
 
 def agregar_recurso(request):

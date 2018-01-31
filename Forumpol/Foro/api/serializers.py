@@ -32,5 +32,5 @@ class User_stats_serializer(serializers.ModelSerializer):
     nombre_usuario =serializers.ReadOnlyField()
     class Meta:
         model = UserProfile
-        fields = ["user","moderador","numero_posts","nombre_usuario"]
+        fields = ["user","moderador","numero_posts","nombre_usuario","image"]
         #fields = '__all__'

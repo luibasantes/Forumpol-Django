@@ -3,7 +3,7 @@
 {% block title  %}ACERCA DE NOSOTROS | "El foro mas cool de toda la ESPOL{% endblock %}
 {% block estilo %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/acercaDe.css' %}">
-<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 {% endblock %}
 {% block body %}
 	<section>
@@ -12,6 +12,10 @@
 				<h1 class="categoria-heading">USUARIOS CON MAS POST</h1>
 			</header>
 			<div id="Grafico"></div>
+			<div id="GraficoBubble">
+			    <button id="decade">Separar Moderadores</button>
+			    <button id="combine">Combinar todos</button>
+			</div>
 			<script src="{% static 'js/estadisticas.js' %}"></script>
 			<header class="categoria-header">
 				<h1 class="categoria-heading">NOSOTROS</h1>
