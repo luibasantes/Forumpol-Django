@@ -21,36 +21,37 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static 'css/estilo_sign_new.css' %}"/>
+<link rel="icon" href="{% static 'images/espol.ico' %}">
 </head>
 <body>
 	<section>
 		<img class="mx-auto d-block" src="{% static 'images/logo_sign1.png' %}" alt="Logo de pagina" id= "forumpol">
 		<h3 class= "titulo">Bienvenido a Forumpol</h3>
-	<div class="h-100 row align-items-center">
-		<section class = "section1">		
-			<form class="form-signin" role="form" action="{% url 'accounts:login_user'%}" method="post" enctype="multipart/form-data">
-			{% csrf_token %}
-			<h3 class="login">Ingresar</h3>
-			{% if error_message %}
-				<p><strong>{{ error_message }}</strong></p>
-			{% endif %}
-			<input id="id_username" maxlength="15" name="username" type="text" class="form-control text-white" placeholder="Usuario" required >
-			<input id="id_password" maxlength="15" name="password" type="password" class="form-control text-white" placeholder="Contraseña" required>
-				¿Olvidaste tu contraseña? <a href="{% url 'accounts:reset_password' %}">Presiona Aquí</a>.
-			<button class="btn btn-lg btn-white btn-block" id= "boton" type="submit">Iniciar Sesión</button>
-			</form>
-			</section>
-			<section class="section2">
-				<form class = "form-register">
-			    <h3>Crear una cuenta nueva</h3>
-			    <div class="new-account-img">
-			    	<img src="{% static 'images/usuario.png' %}" alt="New User" class="usuario">
-			    </div>
-				<a href="{% url 'accounts:register' %}"><button class="btn btn-lg btn-white btn-block" type="submit">Registrarte</button></a>
-
+		<div class="h-100 row align-items-center" id="sections">
+			<section class = "section1">		
+				<form class="form-signin" role="form" action="{% url 'accounts:login_user'%}" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<h3 class="login">Ingresar</h3>
+					{% if error_message %}
+						<p><strong>{{ error_message }}</strong></p>
+					{% endif %}
+					<input id="id_username" maxlength="15" name="username" type="text" class="form-control text-white" placeholder="Usuario" required >
+					<input id="id_password" maxlength="15" name="password" type="password" class="form-control text-white" placeholder="Contraseña" required>
+						¿Olvidaste tu contraseña? <a href="{% url 'accounts:reset_password' %}">Presiona Aquí</a>.
+					<button class="btn btn-lg btn-white btn-block" id= "boton" type="submit">Iniciar Sesión</button>
 				</form>
-                </section>		
-	</div>	
+				</section>
+				<section class="section2">
+					<form class = "form-register">
+				    <h3>Crear una cuenta nueva</h3>
+				    <div class="new-account-img">
+				    	<img src="{% static 'images/usuario.png' %}" alt="New User" class="usuario">
+				    </div>
+					<a href="{% url 'accounts:register' %}"><button class="btn btn-lg btn-white btn-block" type="submit">Registrarte</button></a>
+
+					</form>
+	            </section>		
+		</div>	
 	</section>
 					
 </body>

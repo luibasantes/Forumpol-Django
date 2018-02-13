@@ -51,15 +51,15 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-	          <a class="navbar-brand" href="#">FORUMPOL</a>
+	          <a class="navbar-brand" href="{% url 'foro:index' %}">FORUMPOL</a>
 	        </div>
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
-	            <li><a href="index.html">Inicio</a></li>
-				<li><a href="galeria.html">Galeria</a></li>
-				<li><a href="mapa.html">Mapa</a></li>
-				<li><a href="fechas.html">Fechas Históricas</a></li>
-				<li><a href="acercaDe.html">Acerca de nosotros</a></li>
+	            <li><a href="{% url 'foro:index' %}">Inicio</a></li>
+				<li><a href="{% url 'foro:galeria' %}">Galeria</a></li>
+				<li><a href="{% url 'foro:mapa' %}">Mapa</a></li>
+				<li><a href="{% url 'foro:timeline' %}">Fechas Históricas</a></li>
+				<li><a href="{% url 'foro:acerca_de' %}">Acerca de nosotros</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
