@@ -4,6 +4,7 @@
 {% block estilo %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/acercaDe.css' %}">
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="{% static 'js/d3.layout.cloud.js' %}"></script>
 {% endblock %}
 {% block body %}
 	<section>
@@ -16,6 +17,7 @@
 			    <button id="decade">Separar Moderadores</button>
 			    <button id="combine">Combinar todos</button>
 			</div>
+			<div id="wc_div"></div>
 			<script src="{% static 'js/estadisticas.js' %}"></script>
 			<header class="categoria-header">
 				<h1 class="categoria-heading">NOSOTROS</h1>
@@ -40,5 +42,6 @@
 			  <a class="alert-link">Visita nuestro repositorio de Github ;)</a>
 			</div>
 		</div>
+	<script src="{% static 'js/d3_wordcloud.js' %}"></script>
 	</section>
 {% endblock %}
