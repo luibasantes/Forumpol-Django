@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ayudantías Espol - Iniciar Sesión</title>
+<title>FORUMPOL | INCIAR SESIÓN</title>
 <meta name="generator" content="Bluefish 2.2.7" >
 <meta name="author" content="Personal" >
 <meta name="date" content="2017-11-13T03:10:22-0500" >
@@ -23,29 +23,35 @@
 <link rel="stylesheet" href="{% static 'css/estilo_sign_new.css' %}"/>
 </head>
 <body>
-	
+	<section>
+		<img class="mx-auto d-block" src="{% static 'images/logo_sign1.png' %}" alt="Logo de pagina" id= "forumpol">
+		<h3 class= "titulo">Bienvenido a Forumpol</h3>
 	<div class="h-100 row align-items-center">
-		<div class="col">
-			<div class="container">			
-				<form class="form-signin" role="form" action="{% url 'accounts:login_user'%}" method="post" enctype="multipart/form-data">
-					{% csrf_token %}
-					<img class="mx-auto d-block" src="{% static 'images/logo_sign.png' %}" alt="Logo de pagina">
-					<h3>Bienvenido a Forumpol</h3>
-					{% if error_message %}
-						<p><strong>{{ error_message }}</strong></p>
-					{% endif %}
-					<input id="id_username" maxlength="15" name="username" type="text" class="form-control text-white" placeholder="Username" required >
-					<input id="id_password" maxlength="15" name="password" type="password" class="form-control text-white" placeholder="password" required>
-					<button class="btn btn-lg btn-white btn-block" type="submit">Iniciar Sesion</button>
-					<div class="text-white">
-						No tienes Cuenta? <a href="{% url 'accounts:register' %}">Presiona Aqui</a> para registrarte.<br>
-						¿Olvidaste tu contraseña? <a href="{% url 'accounts:reset_password' %}">Presiona Aqui</a>.
-					</div>
+		<section class = "section1">		
+			<form class="form-signin" role="form" action="{% url 'accounts:login_user'%}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<h3 class="login">Ingresar</h3>
+			{% if error_message %}
+				<p><strong>{{ error_message }}</strong></p>
+			{% endif %}
+			<input id="id_username" maxlength="15" name="username" type="text" class="form-control text-white" placeholder="Usuario" required >
+			<input id="id_password" maxlength="15" name="password" type="password" class="form-control text-white" placeholder="Contraseña" required>
+				¿Olvidaste tu contraseña? <a href="{% url 'accounts:reset_password' %}">Presiona Aquí</a>.
+			<button class="btn btn-lg btn-white btn-block" id= "boton" type="submit">Iniciar Sesión</button>
+			</form>
+			</section>
+			<section class="section2">
+				<form class = "form-register">
+			    <h3>Crear una cuenta nueva</h3>
+			    <div class="new-account-img">
+			    	<img src="{% static 'images/usuario.png' %}" alt="New User" class="usuario">
+			    </div>
+				<a href="{% url 'accounts:register' %}"><button class="btn btn-lg btn-white btn-block" type="submit">Registrarte</button></a>
+
 				</form>
-				
-			</div> 	
-		</div>
+                </section>		
 	</div>	
+	</section>
 					
 </body>
 </html>

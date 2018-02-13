@@ -1,0 +1,40 @@
+html,body{
+	color: white;
+	height: 100%;
+	background-color: #eee;
+	background-image: url("../images/fondo.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: "Libre Baskerville";
+}
+.usuario{
+	max-width: 100%;
+	padding-bottom: -17px;
+    padding-top: 3px;
+    padding-bottom: 22px;
+    padding-left: 87px;
+
+}
+input{
+	color: white;
+	background-color:transparent;
+	border:1px solid #ced4da;
+	border-radius: .25rem;
+	margin-top: 2px;
+}
+.form-signin {
+	padding: 15px;
+	margin-left: 386px;
+}
+#boton{
+	margin-top: 5px;
+	width: 60%;
+    margin-left: 14px;
+}
+form{
+	display: inline-block;
+}
+label{
+	margin-bottom: 0px;
+
+}

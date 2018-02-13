@@ -83,10 +83,10 @@ textarea {
 }
 
 .fa-check-circle {
-  color: green;
+  color: #001c43;
 }
 .fa-window-close {
-  color: red;
+  color: #001c43;
 }
 
 @media only screen and (max-width : 480px) {

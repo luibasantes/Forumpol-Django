@@ -35,20 +35,41 @@ html,body{
 	background-image: url("../images/fondo.png");
 	background-repeat: no-repeat;
 	background-size: cover;
+	font-family: "Libre Baskerville";
 }
 
-img{
+#forumpol{
 	max-width: 100%;
-	padding-bottom: 5%;
-  	margin-bottom: 30%;
-  	margin: 0 auto;
-  	
 }
 
+.section2{
+	border-left: 1px solid #dae3e3;
+    margin-left: 197px;
+    max-width: 100%;
+    padding-left: 165px;
+    width: 430px;	
+}
+
+.titulo{
+	text-align: center;
+	padding-bottom: 62px;
+}
+.usuario{
+	max-width: 100%;
+	padding-bottom: -17px;
+    padding-top: 3px;
+    padding-bottom: 22px;
+    padding-left: 87px;
+
+}
+
+.login{
+	text-align: center;
+}
 .form-signin {
   max-width: 330px;
   padding: 15px;
-  margin: 0 auto;
+  margin-left: 200px;
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
@@ -61,17 +82,29 @@ input{
 	margin-bottom: 5%;
 	border:1px solid #ced4da;
 	border-radius: .25rem;
-
 }
 #id_username{
 	margin-bottom: 5%;
 }
 
-#id_password{
-	margin-bottom: 10%;
+#boton{
+	margin-top: 27px;
 }
 
+#id_password{
+	margin: 0;
+}
 
 #id_username,#id_password{
 	background-color:transparent;
+}
+
+#contraseña{
+	padding-left: 400px;
+    margin-left: 400px;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+
 }
