@@ -20,6 +20,9 @@ connect(
 def upload_location(instance,filename):
 	return "posted_images/%s/%s" %(instance.owner.id, filename)
 
+def upload_fechas(instance,filename):
+	return "años/%s" %(filename)
+
 class Post(models.Model):
 	#RESPUESTA HACIA QUE POST (VACIO SI ES POST ORIGINAL
 	reply_to = models.ForeignKey('self',blank=True, null=True,on_delete=models.SET_NULL)
@@ -84,3 +87,12 @@ class Club(models.Model):
 
 	def __str__(self):
 		return self.titulo
+
+
+class Fecha(models.Model):
+	año = models.IntegerField()
+	imagen = models.ImageField(upload_to=upload_fechas, blank=True,null=True)
+	desc = models.TextField(max_length=500, default='', null=False)
+
+	def __str__(self):
+		return str(self.año)

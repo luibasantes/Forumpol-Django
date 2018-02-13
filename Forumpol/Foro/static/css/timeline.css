@@ -14,7 +14,6 @@
 	position: relative;
 	list-style-type: none;
 	padding: 30px 0 50px 0;
-	font-family: 'Gorditas', Arial, sans-serif;
 }
 
 .timeline:before {
@@ -72,36 +71,8 @@
 	bottom: -30px;
 }
 
-.user-1 {
-	background-image: url(../images/time/2015.jpg);
-}
-
-.user-2 {
-	background-image: url(../images/time/2014.jpg);
-}
-
-.user-3 {
-	background-image: url(../images/time/2009.jpg);
-}
-
-.user-4 {
-	background-image: url(../images/time/2007.jpg);
-}
-
-.user-5 {
-	background-image: url(../images/time/2000.jpg);
-}
-
-.user-6 {
-	background-image: url(../images/time/1991.jpg);
-}
-
-.user-7 {
-	background-image: url(../images/time/1990.jpg);
-}
-
-.user-8 {
-	background-image: url(../images/time/1983.jpg);
+div[class*='user-'] {
+    overflow: hidden;
 }
 
 /* Transparent Checkbox/radio hack: leave the checkbox on top, hide it with opacity 0 */
@@ -198,10 +169,7 @@
 
 .content-inner p {
 	font-size: 18px;
-	max-height: 0px;
 	overflow: hidden;
-	color: transparent;
-	color: rgba(0,0,0,0);
 	text-align: left;
 }
 
@@ -305,8 +273,8 @@
 	-o-transform: scale(1);
 	-ms-transform: scale(1);
 	transform: scale(1);
-	box-shadow: 
-		0 0 0 8px rgb(0,28,67), 
+	box-shadow:
+		0 0 0 8px rgb(0,28,67),
 		0 1px 1px rgba(255,255,255,0.5);
 }
 
@@ -322,6 +290,16 @@
 .thumb span,
 .event label {
 	-webkit-backface-visibility: hidden;
+}
+
+#año-form {
+  display: none;
+  margin-bottom: 1em;
+}
+
+.number {
+    width: 100%;
+    height: 100%;
 }
 
 @media screen and (max-width: 850px) { 
