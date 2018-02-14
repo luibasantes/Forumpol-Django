@@ -302,6 +302,14 @@ div[class*='user-'] {
     height: 100%;
 }
 
+.control-label label{
+    font-size: 15px;
+}
+
+.btn-form{
+    margin: 10px 0px;
+}
+
 @media screen and (max-width: 850px) { 
 	.content-inner h3 {
 		font-size: 20px;
