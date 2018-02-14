@@ -61,6 +61,9 @@
 				<li><a href="{% url 'foro:timeline' %}">Fechas Históricas</a></li>
 				<li><a href="{% url 'foro:acerca_de' %}">Acerca de nosotros</a></li>
 	          </ul>
+	          <ul class="nav navbar-nav navbar-right">
+        		<li><a href="{% url 'accounts:view_profile' user.id%}">{{ user }}</a></li>
+        	  </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
 	    </nav>
