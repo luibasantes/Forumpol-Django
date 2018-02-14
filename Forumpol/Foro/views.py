@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from .forms import CreateOriginalPostForm, CreateThreadForm
-from .models import Post,Thread,Recurso,Archivo
+from .forms import CreateOriginalPostForm, CreateThreadForm, CreateFechaForm
+from .models import Post,Thread,Recurso,Archivo,Fecha
 from django.urls import reverse
 from django.http import Http404,HttpResponse, StreamingHttpResponse
 from django.core.exceptions import PermissionDenied
@@ -148,7 +148,18 @@ def mapa(request):
 
 def timeline(request):
 	username = request.user
-	return render(request, "Foro/fechas.html", {'usuario': username})
+	fechas = Fecha.objects.all().order_by("-año")
+	fecha_form = CreateFechaForm(request.POST or None, request.FILES or None)
+	if fecha_form.is_valid():
+		año = request.POST["año"]
+		try:
+			fecha = Fecha.objects.get(año=año)
+			fecha.desc = request.POST["desc"]
+			fecha.save()
+		except Fecha.DoesNotExist:
+			nueva_fecha = fecha_form.save()
+		return redirect(reverse('foro:timeline'))
+	return render(request, "Foro/fechas.html", {'usuario': username, 'fechas':fechas, 'form':fecha_form})
 
 def moderacion(request):
 	username = request.user
@@ -267,11 +278,15 @@ def recursos_por_tag(request,tag_name):
 
 
 def informacion_recurso(request,recurso_id):
+	page_from=request.META.get('HTTP_REFERER')
 	username=request.user
 	recurso= Recurso.objects.get(id=str(recurso_id))
 	tags= ",".join(recurso.tags)
-	return render(request,"Foro/informacion_recurso.html",{'usuario':username,'recurso':recurso,'tags':tags})
-
+	if "/user/" in page_from:
+		user_id= page_from.split("/")[-2]
+		return render(request,"Foro/informacion_recurso.html",{'usuario':username,'recurso':recurso,'tags':tags,'edit':True,'recurso_id':recurso_id,'user_id':user_id})
+	else:
+		return render(request,"Foro/informacion_recurso.html",{'usuario':username,'recurso':recurso,'tags':tags})
 def descargar_archivo(request,recurso_id,archivo_id):
 	recurso= Recurso.objects.get(id=str(recurso_id))
 	archivo= recurso.archivos.get(_id=archivo_id)
@@ -329,6 +344,11 @@ def agregar_recurso(request):
 		recurso.save()
 		return render(request,"Foro/agregar_recurso.html",{'usuario':username,'mensaje':"El recurso ha sido subido con éxito!"})
 
+def editar_recurso(request,user_id,recurso_id):
+	username=request.user
+	recurso= Recurso.objects.get(id=str(recurso_id))
+	tags= ",".join(recurso.tags)
+	return render(request,"Foro/editar_recurso.html",{'usuario':username,'tags':tags,'recurso':recurso})
 #----------------------------------------------------------------------
 def buscar(request):
 	username = request.user

@@ -4,6 +4,7 @@
 {% block estilo %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/acercaDe.css' %}">
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="{% static 'js/d3.layout.cloud.js' %}"></script>
 {% endblock %}
 {% block body %}
 	<section>
@@ -16,7 +17,10 @@
 			    <button id="decade">Separar Moderadores</button>
 			    <button id="combine">Combinar todos</button>
 			</div>
-			<div id="GraficoCloud"></div>
+			<header class="categoria-header">
+				<h1 class="categoria-heading">TAGS MAS USADOS EN REPOSITORIOS</h1>
+			</header>
+			<div id="wc_div"></div>
 			<script src="{% static 'js/estadisticas.js' %}"></script>
 			<header class="categoria-header">
 				<h1 class="categoria-heading">NOSOTROS</h1>
@@ -27,6 +31,8 @@
 					<div class="thumbnail  tarjeta">
 						{% if admin.userprofile.image %}
 				  		<img class = "card" src="{{ admin.userprofile.image.url }}" alt="perfil-{{ admin.first_name }}">
+				  		{% else %}
+				  		<img src="{% static 'images/usuario1.png' %}" alt="New User" class="usuario">				  		
 						{% endif %}
 				  		<div class="caption">
 					  		<h3>{{ admin.first_name }} {{ admin.last_name }}</h3>
@@ -41,5 +47,6 @@
 			  <a class="alert-link">Visita nuestro repositorio de Github ;)</a>
 			</div>
 		</div>
+	<script src="{% static 'js/d3_wordcloud.js' %}"></script>
 	</section>
 {% endblock %}

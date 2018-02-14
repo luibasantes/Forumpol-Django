@@ -83,10 +83,23 @@ textarea {
 }
 
 .fa-check-circle {
-  color: green;
+  color: #001c43;
 }
 .fa-window-close {
-  color: red;
+  color: #001c43;
+}
+
+.control-label label{
+    font-size: 18px;
+}
+
+.btn-form{
+    margin: 10px 0px;
+}
+
+
+button[class*='-btn'] {
+    margin-left: 5px;
 }
 
 @media only screen and (max-width : 480px) {
