@@ -329,6 +329,8 @@ def agregar_recurso(request):
 		recurso.save()
 		return render(request,"Foro/agregar_recurso.html",{'usuario':username,'mensaje':"El recurso ha sido subido con éxito!"})
 
+def editar_recurso(request):
+	""
 #----------------------------------------------------------------------
 def buscar(request):
 	username = request.user

@@ -75,6 +75,15 @@ class RecursoViewSet(viewsets.ModelViewSet):
             queryset = Recurso.objects.filter(tags__contains=pk)
         serializer = RecursoSerializer(queryset,many=True)
         return Response(serializer.data)
+
+    def showFiles(self,request):
+        result= Recurso.objects.values_list('tags')
+        tags= [x.lower() for l in result for x in l]
+        results=[]
+        for t in set(tags):
+            results.append({'tag':t,'counts':tags.count(t)})
+        print(results)
+        return Response(results)
         
 class ArchivoViewSet(viewsets.ModelViewSet):
     lookup_field = 'id'

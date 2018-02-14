@@ -1,16 +1,5 @@
 var fill = d3.scaleOrdinal(d3.schemeCategory20);
-var layout = d3.layout.cloud()
-.size([500, 500])
-.words([{"tag":"math","size:":40},{"tag":"physics","size:":10},{"tag":"algebra","size:":20},{"tag":"chemistry","size:":5},].map(function(d) {
-  return {text: d.tag, size: 10 + d.size * 90, test: "haha"};
-}))
-.padding(5)
-.rotate(function() { return ~~(Math.random() * 2) * 90; })
-.font("Impact")
-.fontSize(function(d) { return d.size; })
-.on("end", draw);
-
-layout.start();
+var layout;
 
 function draw(words) {
 	d3.select("#wc_div").append("svg")
@@ -30,3 +19,24 @@ function draw(words) {
 	  })
 	  .text(function(d) { return d.text; });
 }
+
+$.ajax({
+	url: window.location.origin + "/api/recursos/tags_count/",
+	type: "GET",
+	success: function(json){
+	alert(json)
+	layout = d3.layout.cloud()
+		.size([500, 500])
+		.words(json.map(function(d) {
+		  return {text: d.tag, size: 10 + d.counts * 10, test: "haha"};
+		}))
+		.padding(5)
+		.rotate(function() { return ~~(Math.random() * 2) * 90; })
+		.font("Impact")
+		.fontSize(function(d) { return d.size; })
+		.on("end", draw);
+
+	layout.start();
+	}
+});
+
