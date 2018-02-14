@@ -6,6 +6,7 @@ from ..models import Post, Thread, Recurso, Archivo, Club
 from accounts.models import UserProfile
 from django.http import Http404
 from rest_framework_mongoengine import viewsets
+from django.http import JsonResponse
 
 class PostAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field = 'pk'
@@ -84,7 +85,15 @@ class RecursoViewSet(viewsets.ModelViewSet):
             results.append({'tag':t,'counts':tags.count(t)})
         print(results)
         return Response(results)
-        
+
+    def partial_update(self, request, pk=None):
+        testmodel = Recurso.objects.filter(id=pk)[0]
+        serializer = RecursoSerializer(testmodel, data=request.data, partial=True) # set partial=True to update a data partially
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(data=serializer.data)
+        return JsonResponse(data="wrong parameters")
+
 class ArchivoViewSet(viewsets.ModelViewSet):
     lookup_field = 'id'
     serializer_class = ArchivoSerializer

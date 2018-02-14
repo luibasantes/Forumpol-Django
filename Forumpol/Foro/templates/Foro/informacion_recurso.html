@@ -10,7 +10,17 @@
 	<section>
 		<div id="repo_body" class="col-9">
 			<div class="container recursos">
-				<h2>Información del recurso</h2>
+				<div class="row">
+					<div class="col-6">
+						<h2>Información del recurso</h2>
+					</div>
+					{% if edit %}
+					<div class="col-5 text-right">
+						<a href="{% url 'foro:editar_recurso' user_id recurso_id %}" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"> Editar Recurso</span> </a>
+						<a href="{% url 'foro:mis_recursos' usuario.id %}" class="btn btn-primary"> <span class="glyphicon glyphicon-inbox"> Revisar mi colección </span> </a>
+					</div>
+					{% endif %}
+				</div>
 				<table id="table_info" class='table' cellspacing="0" width="100%">
 			        <tbody>
 			        	<tr>

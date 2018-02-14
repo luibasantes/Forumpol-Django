@@ -28,11 +28,13 @@ urlpatterns = [
 	url(r'^recursos/(?P<pk>\d+)/$', RecursoViewSet.as_view({'get': 'retrieve'}), name='recursos-user'),
 
 	#Listar recursos por  tag
-	url(r'^recursos/(?P<pk>([a-zA-Z]|\d)+)/$', RecursoViewSet.as_view({'get': 'retrieve'}), name='recursos-tags'),
+	url(r'^recursos/(?P<pk>([a-zA-Z]|\d| )+)/$', RecursoViewSet.as_view({'get': 'retrieve'}), name='recursos-tags'),
 
 	#Listar resumen de tags
 	url(r'^recursos/tags_count/$', RecursoViewSet.as_view({'get': 'showFiles'}), name='resumen-tags'),
 
+	#Modificar un recurso
+	url(r'^recursos/edit/(?P<pk>([a-zA-Z]|\d)+)/$', RecursoViewSet.as_view({'put': 'partial_update'}), name='recursos-edit'),
 	#
 	url(r'^archivos/$', ArchivoViewSet.as_view({'get': 'list'}), name='archivos-view'),
 

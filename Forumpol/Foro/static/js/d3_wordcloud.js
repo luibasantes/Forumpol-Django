@@ -24,7 +24,6 @@ $.ajax({
 	url: window.location.origin + "/api/recursos/tags_count/",
 	type: "GET",
 	success: function(json){
-	alert(json)
 	layout = d3.layout.cloud()
 		.size([500, 500])
 		.words(json.map(function(d) {
