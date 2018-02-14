@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from .forms import CreateOriginalPostForm, CreateThreadForm
-from .models import Post,Thread,Recurso,Archivo
+from .forms import CreateOriginalPostForm, CreateThreadForm, CreateFechaForm
+from .models import Post,Thread,Recurso,Archivo,Fecha
 from django.urls import reverse
 from django.http import Http404,HttpResponse, StreamingHttpResponse
 from django.core.exceptions import PermissionDenied
@@ -148,7 +148,18 @@ def mapa(request):
 
 def timeline(request):
 	username = request.user
-	return render(request, "Foro/fechas.html", {'usuario': username})
+	fechas = Fecha.objects.all().order_by("-año")
+	fecha_form = CreateFechaForm(request.POST or None, request.FILES or None)
+	if fecha_form.is_valid():
+		año = request.POST["año"]
+		try:
+			fecha = Fecha.objects.get(año=año)
+			fecha.desc = request.POST["desc"]
+			fecha.save()
+		except Fecha.DoesNotExist:
+			nueva_fecha = fecha_form.save()
+		return redirect(reverse('foro:timeline'))
+	return render(request, "Foro/fechas.html", {'usuario': username, 'fechas':fechas, 'form':fecha_form})
 
 def moderacion(request):
 	username = request.user

@@ -18,11 +18,11 @@
 				</div>
 				<div class="user_detail">
 					<h2><b>{{ usuarioPerfil }}</b></h2>
-					<p>First name: {{ usuarioPerfil.first_name }}</p>
-					<p>Last name: {{ usuarioPerfil.last_name }}</p>
-					<p>City: {{ usuarioPerfil.userprofile.city }}</p>
-					<p>Website: <a href= "{{ usuarioPerfil.userprofile.website }}">{{ usuarioPerfil.userprofile.website }}</a></p>
-					<p>Phone: {{ usuarioPerfil.userprofile.phone }}</p>
+					<p>Nombre: {{ usuarioPerfil.first_name }}</p>
+					<p>Apellido: {{ usuarioPerfil.last_name }}</p>
+					<p>Ciudad: {{ usuarioPerfil.userprofile.city }}</p>
+					<p>Sitio web: <a href= "{{ usuarioPerfil.userprofile.website }}">{{ usuarioPerfil.userprofile.website }}</a></p>
+					<p>Celular: {{ usuarioPerfil.userprofile.phone }}</p>
 					{% if user.id == usuarioPerfil.id %}
 						<a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">Editar Informacion</a>
 						<a class="btn btn-default" href="{% url 'accounts:change_password' %}">Cambiar Contraseña</a>
@@ -30,17 +30,15 @@
 				</div>
             </div>
             {% if threads %}
-            <div class="anuncios container"><h1><b>Mis Post</b></h1></div>
-            <div class="container">
-
-				<table id="myTable" class="display" cellspacing="0" width="100%">
+            <div class="anuncios container"><h1><b>Mis Publicaciones</b></h1></div>
+            <div class="container" style="padding-right: 172px;">
+            <table id="myTable" class="display" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Titulo</th>
                             <th>Respuestas</th>
                             <th>Fecha</th>
                             <th>Categoria</th>
-                            <th>Usuario</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -49,7 +47,6 @@
                             <th>Respuestas</th>
                             <th>Fecha</th>
                             <th>Categoria</th>
-                            <th>Usuario</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -59,7 +56,6 @@
                             <td>{{ thread.respuestas }}</td>
                             <td>{{thread.op.date}}</td>
                             <td>{{thread.category}}</td>
-                            <td>{{thread.op.owner.username}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

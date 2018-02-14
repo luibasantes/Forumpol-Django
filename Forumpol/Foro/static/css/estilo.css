@@ -30,6 +30,7 @@
 
 #cabecera h4 a{
   font-family: "Libre Baskerville";
+
 }
 
 body {
@@ -39,7 +40,7 @@ body {
   background-size:cover;
   height: 100%;
   background-color: rgb(205, 236, 244);
-  font-family: "Times New Roman";
+  font-family: "Libre Baskerville";
 }
 
 h1 {   
@@ -118,7 +119,7 @@ footer {
   color: #7bdef7;
   padding: 1.5em;
   text-align: center;
-  position: absolute;
+  position: re;
   width: 100%;
 }
 
@@ -196,6 +197,8 @@ footer {
 
 #header-opts h4 {
   padding-left: 15px;
+  padding-left: 0px;
+  font-size: 19px;  
 }
 
 #header-opts a {
@@ -210,6 +213,10 @@ footer {
     -webkit-stroke-color: #FFFFFF;
     -webkit-fill-color: #FFFFFF;
     text-shadow: 1px 0px 20px white;
+}
+
+#boton{
+  width: 100px;
 }
 
 /* Navegación responsive */
@@ -266,6 +273,6 @@ nav.responsive-nav{
   }
 
   body {
-    top: 20px;
+    top: 10em;
   }
 }

@@ -14,30 +14,30 @@
                     <b>CLUBS ESPOL</b>
                     <a href="{% url 'foro:create_evento_club' %}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-plus">Nuevo Evento</span></a>
                 </h2>
-                <table id="myTable" class="display" cellspacing="0" width="100%">
+                <table id="myTable" class="table" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>Titulo</th>
-                            <th>Respuestas</th>
+                            <th class="respuesta">Respuestas</th>
                             <th>Fecha</th>
-                            <th>Usuario</th>
+                            <th class="user">Usuario</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Titulo</th>
-                            <th>Respuestas</th>
+                            <th class="respuesta">Respuestas</th>
                             <th>Fecha</th>
-                            <th>Usuario</th>
+                            <th class="user">Usuario</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         {% for thread in threads %}
                         <tr>
                             <td><a href="{% url 'foro:detalle_anuncio' thread.op.id %}">{{thread.topic}}</a></td>
-                            <td>{{ thread.respuestas }}</td>
+                            <td class="respuesta">{{ thread.respuestas }}</td>
                             <td>{{thread.op.date}}</td>
-                            <td>{{thread.op.owner.username}}</td>
+                            <td class="user">{{thread.op.owner.username}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

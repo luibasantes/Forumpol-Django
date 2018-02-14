@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ayudantías Espol - Registrarse</title>
+<title>FORUMPOL | REGISTRARSE</title>
 <meta name="generator" content="Bluefish 2.2.7" >
 <meta name="author" content="Personal" >
 <meta name="date" content="2017-11-13T03:10:22-0500" >
@@ -20,7 +20,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{% static 'css/estilo_sign_new.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/register.css' %}"/>
 </head>
 <body>
 	<div class="h-100 row align-items-center">
@@ -28,15 +28,15 @@
 			<div class="container">			
 				<form class="form-signin" role="form" action="" method="post" enctype="multipart/form-data">
 					{% csrf_token %}
-					<img class="mx-auto d-block" src="{% static 'images/logo_sign.png' %}" alt="Logo de pagina">
+					<img class="mx-auto d-block" src="{% static 'images/logo_sign1.png' %}" alt="Logo de pagina" id = "usuario">
+					<h3>Reg&iacute;strate para inciar sesi&oacute;n</h3>
 					{% if error_message %}
 						<p><strong>{{ error_message }}</strong></p>
 					{% endif %}
-					<h3>Reg&iacute;strate para inciar sesi&oacute;n</h3>
 					{% include 'form_template.html' %}
-					<button class="btn btn-lg btn-white btn-block" type="submit">Registrar</button>
+					<button class="btn btn-lg btn-white btn-block" type="submit" id="boton">Registrar</button>
 					<div class="text-white">
-						Ya tienes una cuenta? <a href="{% url 'accounts:login_user' %}">Click aqui</a> para iniciar sesi&ocaute;.
+						Ya tienes una cuenta? <a href="{% url 'accounts:login_user' %}">Click aqui</a> para iniciar sesión.
 					</div>
 				</form>
 			</div> 	
