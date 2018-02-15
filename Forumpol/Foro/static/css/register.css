@@ -13,28 +13,33 @@ html,body{
     padding-top: 3px;
     padding-bottom: 22px;
     padding-left: 87px;
-
 }
+
 input{
 	color: white;
 	background-color:transparent;
 	border:1px solid #ced4da;
 	border-radius: .25rem;
 	margin-top: 2px;
+	width: 100%;
 }
+
 .form-signin {
 	padding: 15px;
 	margin-left: 386px;
 }
+
 #boton{
 	margin-top: 5px;
-	width: 60%;
-    margin-left: 14px;
+	width: 100%;
 }
+
 form{
 	display: inline-block;
 }
+
 label{
 	margin-bottom: 0px;
-
+	display: inline;
 }
+

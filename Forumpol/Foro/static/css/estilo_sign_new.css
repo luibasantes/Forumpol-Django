@@ -44,12 +44,21 @@ html,body{
 	max-width: 100%;
 }
 
+.row {
+    margin: 0 auto;
+    width: 750px;
+}
+
 .section2{
 	border-left: 1px solid #dae3e3;
-    margin-left: 197px;
-    max-width: 100%;
-    padding-left: 165px;
-    width: 430px;
+	padding: 50px;
+	display: inline-block;
+}
+
+.section1{
+    padding: 50px;
+    display: inline-block;
+
 }
 
 .titulo{
@@ -57,21 +66,16 @@ html,body{
 	padding-bottom: 62px;
 }
 .usuario{
-	max-width: 100%;
-	padding-bottom: -17px;
-    padding-top: 3px;
-    padding-bottom: 22px;
-    padding-left: 87px;
-
+    padding-bottom: 25px;
 }
 
 .login{
 	text-align: center;
 }
+
 .form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin-left: 200px;
+  text-align: center;
+
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
