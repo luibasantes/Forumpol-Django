@@ -1,6 +1,7 @@
 /*Box Sizing*/
 * {
     box-sizing: border-box;
+    font-family: "Libre Baskerville";
 }
 
 /*Box Model*/
@@ -43,7 +44,7 @@ body {
   font-family: "Libre Baskerville";
 }
 
-h1 {   
+h1 {
   color: black;
   font-family: "Libre Baskerville";
 }
@@ -66,7 +67,7 @@ h1 {
     text-align: center;
 }
 
-/* Barra de navegacion */ 
+/* Barra de navegacion */
 
 #menu{
   margin: 0;
@@ -102,7 +103,7 @@ ul li.elemento-opcion a {
   color: white;
   display: block;
   opacity: 0.85;
-  font-size: 1.065em;   
+  font-size: 1.065em;
 }
 
 ul li.elemento-opcion a:hover{
@@ -198,7 +199,7 @@ footer {
 #header-opts h4 {
   padding-left: 15px;
   padding-left: 0px;
-  font-size: 19px;  
+  font-size: 19px;
 }
 
 #header-opts a {
@@ -250,14 +251,14 @@ nav.responsive-nav{
     border-bottom-style: solid;
     border-bottom-color: #001C43;
     color: white;
-    
+
   }
 
   nav.responsive-nav ul.nav, button.navbar-toogle{
     background: linear-gradient(#001C43, #213D5F);
     border-bottom-style: solid;
     border-bottom-color: #001C43;
-    
+
   }
 
   div#navbar ul li{

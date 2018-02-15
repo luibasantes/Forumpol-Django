@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls import url
+from django.shortcuts import redirect
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -21,12 +23,16 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.defaults import (permission_denied,
                                    page_not_found,
                                    server_error)
+
+def redireccionarHome(request):
+    return redirect('/foro/')
 #from Foro.api.views import *
 #from Foro.api.routers import HybridRouter
 #router = HybridRouter()
 #router.register(r'recursos', RecursoViewSet, r"recursos")
 
 urlpatterns = [
+    url(r'^$', redireccionarHome, name='index'),
     path('admin/', admin.site.urls),
 	path(r'foro/', include('Foro.urls')),
 	path(r'accounts/', include('accounts.urls')),
@@ -45,3 +51,6 @@ urlpatterns += [
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
