@@ -80,4 +80,14 @@ urlpatterns = [
 	url(r'repositorio/agregar_recurso$',login_required(views.agregar_recurso),name="agregar_recurso"),
 
 	url(r'repositorio/user/(?P<user_id>([0-9])+)/edit/(?P<recurso_id>([a-zA-Z]|[0-9])+)/$',login_required(views.editar_recurso),name="editar_recurso"),
+
+	url(r'folletos/$',login_required(views.folletos),name='folletos'),
+
+	url(r'folletos/(?P<recurso_id>([a-zA-Z]|[0-9])+)/$',login_required(views.informacion_folleto),name="info_folleto"),
+
+	url(r'folletos/agregar_folleto$',login_required(views.agregar_folleto),name="agregar_folleto"),
+
+	url(r'folletos/user/(?P<user_id>([0-9])+)/$',login_required(views.mis_folletos),name="mis_folletos"),
+
+	url(r'folletos/tags/(?P<tag_name>([a-zA-Z]|[0-9]| )+)/$',login_required(views.folletos_por_tag),name="folletos_tags"),
 ]

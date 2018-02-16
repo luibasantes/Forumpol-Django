@@ -1,13 +1,24 @@
+{% extends 'Foro/base.html' %}
 {% load static from staticfiles %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>FORUMPOL | ERROR 500</title>
-	{% block estilo %}<link rel="stylesheet" type="text/css" href="{% static 'css/error.css' %}">{% endblock %}
-</head>
-<body>
-	<h1 class="advisor">ERROR DEL SERVIDOR</h1>
-	<h2> Existen algunos problemas que estan afectando al servidor, intente mas luego</h2> 
-	<p>Si crees que esto es un error, por favor contáctese con este administrador.</p>
-</body>
-</html>
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/repo.css' %}">
+{% endblock %}
+{% block body %}
+	<section>
+		<div id="repo_body" class="col-9">
+			<div class="container recursos">
+				<div class="row">
+					<h2>ERROR DEL SERVIDOR</h2>
+				</div>
+				<div class="row text-center">
+					<img class="center" src="{% static 'images/500.gif' %}">
+				</div>
+				<div class="row">
+					<h4>Existen algunos problemas con el servidor. Si crees que esto es un error, ponte en contacto con el administrador.</h4>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

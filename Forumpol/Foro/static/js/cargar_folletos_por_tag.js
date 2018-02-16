@@ -1,12 +1,14 @@
 $(document).ready(function() {
-	var repo_url= window.location.origin + "/foro/repositorio/" 
+	var repo_url= window.location.origin + "/foro/folletos/"
+	var split = window.location.href.split("/")
+	var tag = split[split.length - 2]
 	$.ajax({
-			url: window.location.origin + "/api/recursos",
+			url: window.location.origin + "/api/recursos/" + tag + "/",
 			type: "GET",
 			success: function(json){
 				$table= $('#myTable>tbody');
 				json.forEach(function(data){
-					if(data.is_active==true && data.categoria == "archivo"){
+					if(data.is_active==true && data.categoria=="folleto"){
 						var $row= $('<tr></tr>')
 						var fecha= new Date(data.fecha_creacion)
 						var stringFecha=fecha.getUTCDate() +"/" + (fecha.getUTCMonth()+1) + "/" + fecha.getUTCFullYear();

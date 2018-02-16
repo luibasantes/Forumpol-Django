@@ -34,7 +34,7 @@
 						<p><strong>{{ error_message }}</strong></p>
 					{% endif %}
 					{% include 'form_template.html' %}
-					<button class="btn btn-lg btn-white btn-block" type="submit" id="boton">Registrar</button>
+					<div class = "col-sm-11"><button class="btn btn-lg btn-white btn-block" type="submit" id="boton">Registrar</button></div>
 					<div class="text-white">
 						Ya tienes una cuenta? <a href="{% url 'accounts:login_user' %}">Click aqui</a> para iniciar sesión.
 					</div>

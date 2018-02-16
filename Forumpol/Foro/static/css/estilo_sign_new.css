@@ -1,3 +1,4 @@
+padding*/
 * {
     font-family: "Libre Baskerville";
 }
@@ -11,22 +12,25 @@ html,body{
 	font-family: "Libre Baskerville";
 }
 
-.row{
+#forumpol{
+	max-width: 100%;
+}
+
+.row {
     margin: 0 auto;
     width: 750px;
 }
 
-#forumpol{
-	max-width: 100%;
-}
-.section1{
-	display: inline-block;
-	padding:50px;
-}
 .section2{
 	border-left: 1px solid #dae3e3;
+	padding: 50px;
 	display: inline-block;
-	padding:50px;
+}
+
+.section1{
+    padding: 50px;
+    display: inline-block;
+
 }
 
 .titulo{
@@ -34,7 +38,7 @@ html,body{
 	padding-bottom: 62px;
 }
 .usuario{
-	padding-bottom: 25px;
+    padding-bottom: 25px;
 }
 
 .login{
@@ -42,11 +46,12 @@ html,body{
 }
 
 .form-signin {
-    text-align: center;
+  text-align: center;
+
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 input{
