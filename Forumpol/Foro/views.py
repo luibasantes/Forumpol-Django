@@ -263,7 +263,8 @@ def serializeUserPosts(post,thread):
 #-----------------ESTA PARTE ES LA DEL REPO---------------------------
 def repo(request):
 	username=request.user
-	tags=Recurso.objects.values_list('tags')
+	tags=Recurso.objects.filter(categoria='archivo')
+	tags=tags.values_list('tags')
 	tags=set([item for sublist in tags for item in sublist])
 	return render(request,"Foro/repositorio.html",{'usuario':username,'tags':tags})
 
@@ -343,6 +344,7 @@ def agregar_recurso(request):
 		)
 		recurso.save()
 		return render(request,"Foro/agregar_recurso.html",{'usuario':username,'mensaje':"El recurso ha sido subido con éxito!"})
+	return render(request,"Foro/agregar_recurso.html",{'usuario':username})
 
 def editar_recurso(request,user_id,recurso_id):
 	username=request.user
@@ -384,4 +386,73 @@ def buscar(request):
 
 #--------------------------------------AQUI TERMINA PANEL MODERADOR----------------------------------------------
 
+#-------Views para folleto--------------------------------------------------------------------------------------
 
+def folletos(request):
+	username=request.user
+	tags=Recurso.objects.filter(categoria='folleto')
+	print(tags)
+	tags=tags.values_list('tags')
+	tags=set([item for sublist in tags for item in sublist])
+	return render(request,"Foro/folletos.html",{'usuario':username,'tags':tags})
+
+def informacion_folleto(request,recurso_id):
+	username=request.user
+	recurso= Recurso.objects.get(id=str(recurso_id))
+	tags= ",".join(recurso.tags)
+	return render(request,"Foro/informacion_folleto.html",{'usuario':username,'recurso':recurso,'tags':tags})
+
+def mis_folletos(request,user_id):
+	username=request.user
+	return render(request,"Foro/mis_folletos.html",{'usuario':username})
+
+def folletos_por_tag(request,tag_name):
+	username=request.user
+	return render(request,"Foro/folletos_por_tag.html",{'usuario':username,'tag':tag_name})
+
+def agregar_folleto(request):
+	username= request.user
+	if request.POST:
+		titulo= request.POST["titulo"]
+		autor= request.POST["autor"]
+		descripcion= request.POST["descripcion"]
+		tags= request.POST["tags"]
+		tags= tags.strip("[]").split(",")
+		files=[]
+		counter=1
+		print("files dict:",request.FILES)
+		#while request.POST.get("file_"+str(counter), False):
+		#	filename=request.POST["file_"+str(counter)]
+		#	files.append(request.FILES[filename])
+		#	counter+=1
+		#print(files)
+		usuario= request.user.id
+		nom_usuario=request.user.username
+		categoria="folleto"
+		is_active=True
+		fecha= datetime.datetime.now()
+		lista_archivos=[]
+		for file in request.FILES:
+			nombre= ".".join(request.FILES[file].name.split(".")[:-1])
+			archivo= Archivo(nombre=nombre,tamaño=request.FILES[file].size,extension=request.FILES[file].name.split(".")[-1])
+			print("name:",request.FILES[file].name)
+			print("size:",request.FILES[file].size)
+			print("extension:",request.FILES[file].name.split(".")[-1])
+			archivo.fichero.put(request.FILES[file])
+			print("archivo: ",archivo.fichero)
+			lista_archivos.append(archivo)
+		recurso= Recurso(
+			titulo= titulo,
+			usuario= usuario,
+			nom_usuario= nom_usuario,
+			categoria= categoria,
+			descripcion= descripcion,
+			autor= autor,
+			tags= tags,
+			fecha_creacion= fecha,
+			is_active=is_active,
+			archivos=lista_archivos
+		)
+		recurso.save()
+		return render(request,"Foro/agregar_folleto.html",{'usuario':username,'mensaje':"El folleto ha sido subido con éxito!"})
+	return render(request,"Foro/agregar_folleto.html",{'usuario':username})

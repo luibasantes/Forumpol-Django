@@ -1,0 +1,61 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/repo.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/add_recurso.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/tagify.css' %}">
+{% endblock %}
+{% block body %}
+	<section>
+		<div id="repo_body" class="col-9">
+			<div class="container recursos">
+				{%if mensaje %}
+				<div class="alert alert-success alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>Exito!</strong> {{mensaje}}
+				</div>
+				{% endif %}
+				<h2>Agregar Folleto</h2>
+				<form class="main-form " enctype="multipart/form-data" method="POST" action="{% url 'foro:agregar_folleto' %}">
+					{% csrf_token %}
+					<div class="form-group">
+						<div class="form-group row">
+							<label for="titulo" class="col-2 col-form-label"> Titulo del Folleto: </label>
+							<div class="col-10">
+							<input type="text" class="form-control" name="titulo" id="titulo" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="autor" class="col-2 col-form-label"> Autor: </label>
+							<div class="col-10">
+							<input type="text" class="form-control" name="autor" id="autor" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="descripcion" class="col-2 col-form-label"> Descripción: </label><br>
+							<div class="col-10">
+							<textarea name="descripcion" class="form-control" id="descripcion" rows="5" cols="30" required></textarea>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="tags" class="col-2 col-form-label"> Tags: </label>
+							<div class="col-10">
+							<input id="tags" name='tags' placeholder='escribe los tags aquí'>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="" class="col-2 col-form-label"> Seleccione el archivo a agregar: </label>
+							<input type="file" class="form-control-file" name="file_1" accept=".doc,.docx,.pdf" required><br>
+							<button id="add_btn" class="btn btn-outline-primary"> agregar otro archivo</button><br><br>
+						</div>
+						<input id="submit" type="submit" class="btn btn-primary" value="Subir Folleto">
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="{% static 'js/jQuery.tagify.min.js' %}"></script>
+<script src="{% static 'js/insertar_recurso.js' %}"></script>
+{% endblock %}

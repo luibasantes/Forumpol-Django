@@ -1,0 +1,46 @@
+{% extends 'Foro/base.html' %}
+{% load static from staticfiles %}
+{% block title  %}FORUMPOL | "El foro mas cool de toda la ESPOL{% endblock %}
+{% block estilo %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/repo.css' %}">
+{% endblock %}
+{% block body %}
+	<section>
+		<div id="repo_body" class="col-9">
+			<div class="container recursos">
+				<div class="row">
+					<div class="col-6">
+						<h2>Mis Folletos</h2>
+					</div>
+					<div class="col-5 text-right">
+						<a href="{% url 'foro:agregar_folleto' %}" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"> Agregar Folleto</span> </a>
+						<a href="{% url 'foro:folletos' %}" class="btn btn-primary"> <span class="glyphicon glyphicon-inbox"> Ver todos los folletos </span> </a>
+					</div>
+				</div>
+				<table id="myTable" class='table' cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+			                <th>Titulo</th>
+			                <th>Fecha_Creacion</th>
+			            </tr>
+			        </thead>
+			        <tfoot>
+			            <tr>
+			                <th>Titulo</th>
+			                <th>Fecha_Creacion</th>
+			            </tr>
+			        </tfoot>
+			        <tbody>
+			        	
+			        </tbody>
+			    </table>
+			</div>
+
+		</div>
+	</section>
+<script src="{% static 'js/mis_folletos.js' %}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+{% endblock %}

@@ -8,18 +8,20 @@ $(document).ready(function() {
 			success: function(json){
 				$table= $('#myTable>tbody');
 				json.forEach(function(data){
-					var $row= $('<tr></tr>')
-					var fecha= new Date(data.fecha_creacion)
-					var stringFecha=fecha.getUTCDate() +"/" + (fecha.getUTCMonth()+1) + "/" + fecha.getUTCFullYear() + "-" + (fecha.getUTCHours()) + ":" + (fecha.getUTCMinutes() + 1) + ":" + (fecha.getUTCSeconds() + 1);
-					var $date= $('<td>'+stringFecha+'</td>')
-					//$a_content.attr("href", json["posts_url"]+data.id);
-					var $titulo= $('<td></td>')
-					var $a_link= $("<a href=''>"+data.titulo+'</a>')
-					$a_link.attr("href",repo_url+data.id)
-					$titulo.append($a_link)
-					$row.append($titulo);
-					$row.append($date);
-					$table.append($row);
+					if(data.is_active==true && data.categoria=="archivo"){
+						var $row= $('<tr></tr>')
+						var fecha= new Date(data.fecha_creacion)
+						var stringFecha=fecha.getUTCDate() +"/" + (fecha.getUTCMonth()+1) + "/" + fecha.getUTCFullYear() + "-" + (fecha.getUTCHours()) + ":" + (fecha.getUTCMinutes() + 1) + ":" + (fecha.getUTCSeconds() + 1);
+						var $date= $('<td>'+stringFecha+'</td>')
+						//$a_content.attr("href", json["posts_url"]+data.id);
+						var $titulo= $('<td></td>')
+						var $a_link= $("<a href=''>"+data.titulo+'</a>')
+						$a_link.attr("href",repo_url+data.id)
+						$titulo.append($a_link)
+						$row.append($titulo);
+						$row.append($date);
+						$table.append($row);
+					}
 				});
 
 			    $('#myTable').DataTable( {
