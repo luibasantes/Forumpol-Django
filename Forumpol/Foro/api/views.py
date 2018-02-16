@@ -38,7 +38,15 @@ class PostRudView(generics.RetrieveUpdateAPIView):
     def get_queryset(self):
         return Post.objects.all()
 
+class Thread_stats(APIView):
 
+    def get(self,request):
+        threads= Thread.objects.all()
+        serializer = ThreadSerializer(threads,many=True)
+        return Response(serializer.data)
+
+    def post():
+        pass
 
 class ThreadAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field = 'categoria'
@@ -49,7 +57,7 @@ class ThreadAPIView(mixins.CreateModelMixin, generics.ListAPIView):
         return Thread.objects.filter(category=cat)
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save()
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
@@ -68,7 +76,7 @@ class RecursoViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Recurso.objects.all()
-    
+
     def retrieve(self,request, pk=None):
         if pk.isdigit()==True:
             queryset = Recurso.objects.filter(usuario=pk)
@@ -123,7 +131,7 @@ class User_stats_by_id(APIView):
     def get(self, request, pk, format=None):
         user = self.get_object(pk)
         serializer = User_stats_serializer(user)
-        return Response(serializer.data)   
+        return Response(serializer.data)
 
 
 class ClubAPIView(generics.ListAPIView):

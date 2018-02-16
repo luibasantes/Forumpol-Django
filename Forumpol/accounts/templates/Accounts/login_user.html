@@ -28,7 +28,7 @@
         <img class="mx-auto d-block" src="{% static 'images/logo_sign1.png' %}" alt="Logo de pagina" id= "forumpol">
         <h3 class= "titulo">Bienvenido a Forumpol</h3>
         <div class="row">
-            <section class = "section1">        
+            <section class = "section1">
                 <form class="form-signin" role="form" action="{% url 'accounts:login_user'%}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                     <h3 class="login">Ingresar</h3>
@@ -49,8 +49,8 @@
                     </div>
                    <button class="btn btn-lg btn-white btn-block" type="submit">Registrarte</button></a>
                 </form>
-            </section>  
-        </div>  
-    </section>              
+            </section>
+        </div>
+    </section>
 </body>
 </html>

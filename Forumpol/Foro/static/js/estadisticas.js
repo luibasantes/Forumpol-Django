@@ -1,9 +1,5 @@
 function comparar ( a, b ){ return a.valor - b.valor; }
 
-
-
-
-
 var data = [];
 var maximo=0;
 
@@ -20,11 +16,9 @@ var metodoGet = $.getJSON( 'http://luibasantes.pythonanywhere.com/api/users_stat
 });
 
 
-
-
 metodoGet.done(function(){
 
-    var altura = data.length *50 + 30
+    /*var altura = data.length *50 + 30
     var anchura = 960
     var widthscale = d3.scaleLinear()
       .domain([0,maximo])
@@ -64,76 +58,29 @@ metodoGet.done(function(){
 
 
 
-    canvas.append('g').attr('transform','translate(3,'+data.length *50+')').call(axis);
-
-
-
-    var altura = 500
-    var anchura = 960
-
-    var radiusScale = d3.scaleSqrt().domain([1,20]).range([30,150])
-
-    var canvasB = d3.select('#GraficoCloud')
-                    .append('svg')
-                    .attr('width',anchura)
-                    .attr('height',altura)
-                    .append('g')
-                    .attr('transform','translate(0,0)');
-
-
-    var forceCollide = d3.forceCollide(function(d){
-                        return radiusScale(Number(d.numero_posts)+1)
-                    });
-
-    var simulation = d3.forceSimulation()
-                    .force("x",d3.forceX(anchura / 2).strength(0.05))
-                    .force('y',d3.forceY(altura / 2).strength(0.05))
-                    .force('collide',forceCollide)
-
-    var texto = canvasB.selectAll('text')
-                    .data(data)
-                    .enter()
-                        .append("text")
-                        .text( function (d) { return d.nombre_usuario })
-                        .attr("font-family", "sans-serif")
-                        //.attr('font-size',function(d) { return radiusScale(Number(d.numero_posts)+1)+"px"})
-                        .attr('font-size',function (d) { return Number(d.numero_posts)+1})
-                        .attr("fill", "red");
-
-
-    simulation.nodes(data)
-        .on("tick", tick);
-
-    function tick(){
-        texto
-            .attr("x",function(d) { return d.x})
-            .attr("y",function(d) { return d.x})
-            .on('click',function(d){
-                alert("El usuario: "+d.nombre_usuario + " tiene " + d.numero_posts + " aportaciones.")
-            })
-    }
+    canvas.append('g').attr('transform','translate(3,'+data.length *50+')').call(axis);*/
 
 });
 
 var altura = 700
 var anchura = 960
-
-
-
-
-
-
-
 d3.json('http://luibasantes.pythonanywhere.com/api/users_stats/',function(dataUsers){
 
-
-
-   var canvas = d3.select('#GraficoBubble')
+    var svg =d3.select('#GraficoBubble')
                     .append('svg')
                     .attr('width',anchura)
-                    .attr('height',altura)
-                    .append('g')
-                    .attr('transform','translate(0,0)')
+                    .attr('height',altura);
+
+
+    /*var titulo = svg.append("text")
+                    .attr("transform","translate(470,30)")
+                    .attr("text-anchor","middle")
+                    .attr("font-size","2em")
+                    .text("Aportaciones por usuario.");*/
+
+
+   var canvas = svg.append('g')
+                   .attr('transform','translate(0,0)');
 
     var defs = canvas.append("defs");
 
