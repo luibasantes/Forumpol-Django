@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework_mongoengine import serializers as mongoserializers
-from ..models import Post, Thread, Recurso, Archivo, Club
+from ..models import Post, Thread, Recurso, Archivo, Club , Plantas
 from accounts.models import UserProfile
 
 
@@ -40,3 +40,7 @@ class ClubSerializer(serializers.ModelSerializer):
         model = Club
         fields = '__all__'
 
+class PlantasSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Plantas
+        fields = '__all__'

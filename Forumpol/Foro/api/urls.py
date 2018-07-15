@@ -48,4 +48,10 @@ urlpatterns = [
 
     #Listar los clubes
     url(r'^clubs/$', ClubAPIView.as_view(), name='club_list'),
+
+    # Crear y Listar Plantas 127.0.0.1:8000/api/plantas
+    url(r'^plantas/$', PlantasAPIView.as_view(), name='plantas_create'),
+
+    # Crear y Listar Plantas 127.0.0.1:8000/api/plantas
+    url(r'^plantas/last/$', PlantasLastAPIView.as_view(), name='plantas_last'),
  ]

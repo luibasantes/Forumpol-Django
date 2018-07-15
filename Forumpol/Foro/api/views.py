@@ -1,12 +1,15 @@
 from rest_framework import generics, mixins
-from .serializers import PostSerializer, ThreadSerializer, RecursoSerializer, ArchivoSerializer,User_stats_serializer, ClubSerializer
+from .serializers import PostSerializer, ThreadSerializer, RecursoSerializer, ArchivoSerializer,User_stats_serializer, ClubSerializer, PlantasSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..models import Post, Thread, Recurso, Archivo, Club
+from ..models import Post, Thread, Recurso, Archivo, Club,Plantas
 from accounts.models import UserProfile
 from django.http import Http404
 from rest_framework_mongoengine import viewsets
 from django.http import JsonResponse
+
+from rest_framework.permissions import AllowAny
+
 
 class PostAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field = 'pk'
@@ -140,3 +143,27 @@ class ClubAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         return Club.objects.all()
+
+class PlantasLastAPIView(generics.ListAPIView):
+    lookup_field = 'pk'
+    serializer_class = PlantasSerializer
+
+    def get_queryset(self):
+
+        #list = Plantas.objects.filter(id=Plantas.objects.latest('id').id)
+        list = Plantas.objects.order_by('-id')[:1]
+        return list
+
+class PlantasAPIView(mixins.CreateModelMixin, generics.ListAPIView):
+    permission_classes = (AllowAny,)
+    lookup_field = 'pk'
+    serializer_class = PlantasSerializer
+
+    def get_queryset(self):
+        return Plantas.objects.order_by('-id')[:10]
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)

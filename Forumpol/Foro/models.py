@@ -49,20 +49,19 @@ class Thread(models.Model):
 		return str(str(self.id) + " " + str(self.topic))\
 
 class Archivo(EmbeddedDocument):
-	_id = fields.ObjectIdField(default=ObjectId)
-	nombre = fields.StringField(required=True)
-	tamaño = fields.IntField(required=True)
-	extension = fields.StringField(required=True)
-	fichero = fields.FileField()
+    _id = fields.ObjectIdField(default=ObjectId)
+    nombre = fields.StringField(required=True)
+    tamaño = fields.IntField(required=True)
+    extension = fields.StringField(required=True)
+    fichero = fields.FileField()
 
+    @property
+    def size_to_mb(self):
+        return round((self.tamaño / 1048576),2)
 
-	@property
-	def size_to_mb(self):
-		return round((self.tamaño / 1048576),2)
-
-	@property
-	def id_to_str(self):
-		return str(self._id)
+    @property
+    def id_to_str(self):
+        return str(self._id)
 
 class Recurso(Document):
 	#_id = fields.ObjectIdField(required=True)
@@ -96,3 +95,15 @@ class Fecha(models.Model):
 
 	def __str__(self):
 		return str(self.año)
+
+class Plantas(models.Model):
+    nombre = models.CharField(max_length=50, default='N/A')
+    fecha = models.DateTimeField(auto_now=True)
+    temperatura = models.DecimalField(null=False, default=0.0, max_digits=15, decimal_places=10)
+    humedad = models.DecimalField(null=False, default=0.0, max_digits=15, decimal_places=10)
+    ventilador = models.BooleanField()
+    #get_latest_by = "order_date"
+
+
+    def __str__(self):
+        return str(str(self.id) + " " + str(self.nombre) + " " + str(self.fecha) + " " + str(self.temperatura) + " " + str(self.humedad))
