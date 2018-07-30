@@ -160,7 +160,8 @@ class PlantasAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     serializer_class = PlantasSerializer
 
     def get_queryset(self):
-        return Plantas.objects.order_by('-id')[:10]
+        return Plantas.objects.order_by('-id')
+        #return Plantas.objects.order_by('-id')[:10]
 
     def perform_create(self, serializer):
         serializer.save()
